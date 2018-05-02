@@ -6,7 +6,7 @@
             <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>BiBlioPlus</title>
-        <link rel="stylesheet" href="assets/css/app.css ">
+        <link rel="stylesheet" href="css/app.css">
         <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Bevan|Carter+One|Fira+Sans+Extra+Condensed|Fjalla+One|Fredoka+One|Hind+Madurai|Oswald|Palanquin+Dark|Paytone+One|Ramabhadra|Suez+One" rel="stylesheet">
 
@@ -16,15 +16,17 @@
 
  
  <header>
-             <div class="grid-container" > 
+             <div class="grid-container" >
+
+        
 
               <div class="grid-x ">   
-                       <div class="cell medium-2 large-2  small-5 padding-x">
-                        <div id="logo" ><img src="assets/img/BPlogo.png" ></div>
+                       <div class="cell medium-2 large-2  small-8 padding-x">
+                        <div id="logo" ><img src="../BPlogo.png" ></div>
 
                       </div>
                       
-                      <nav class="cell small-12 medium-7 large-8 ">
+                      <nav class="cell small-12 medium-4 large-8 ">
 
                         <ul class="vertical medium-horizontal menu align-center">
                           <li><a href="#"><i class="fas fa-home " ></i></a></li>
@@ -38,7 +40,7 @@
                         
                       </nav>
 
-                       <div class="cell small-12 medium-3 large-2">
+                       <div class="cell small-12 medium-12 large-2">
                         <section class="menu align-center" >
 
                 <li><a  id="login"><i class="fas fa-user-circle  ">
@@ -48,36 +50,25 @@
      <div id="login_box" >
 
    <div id="user" > <!-- Drop down login_box -->
-<form method="POST" action="user_connect.php">
+<form >
   <div class="grid-container">
     <div class="grid-x padding-x">
     
 
-      <div class="cell medium-12">
+    
+      
 
-  <h6>Connexion</h6>
-        
-          <input type="text" placeholder="Nom d'utilisateur" >
-        
-      </div>
-      <div class="medium-12 cell">
-        
-          <input type="text" placeholder="Mot de Passe" >
-      </div>
-
-<div class="medium-12 cell">
-
-  <input type="submit" class="fill_button" value="Connecter"> </button>
+<div class="cell medium-12 ">
+<img src="auteur_homme.jpg"/>
+ 
      </div> 
     
 
 <div class="medium-12 cell">
-
-  <button class="border_button" href="#" >Nouveau compte </button>
+<h6>Expert Plus</h6>
+  <a href=""><button class="fill_button">Deconnexion </button></a>
      </div>
-     <div class="medium-9 cell"> 
-   <span> <a href="#"> Mot de passe oubli&eacute?</a></span>
-     </div>
+   
 
 
     </div>
@@ -138,7 +129,7 @@
       <div class="grid-x" >
           <div class="cell large-12 medium-12" style="min-height:100px;">
                         
-          <img src="assets/img/Biblio1.jpg" style="width:100%;" />
+          <img src="../Biblio1.jpg" style="width:100%;" />
           
           </div>  
                   </div> <!--end of banner-->
@@ -199,7 +190,7 @@
 <div class="columns medium-12"> <h3>Les auteurs de la semaine</h3> </div>
 
 <div  class="columns medium-4">
-  <div class="columns medium-12" style="text-align:center;"> <img src="assets/img/auteur_femme.jpg"
+  <div class="columns medium-12" style="text-align:center;"> <img src="auteur_femme.jpg"
   class="circle_round" /> </div>
 
 <h4>Auteur name</h4>
@@ -210,7 +201,7 @@
 </div>
 
 <div  class="columns medium-4">
-  <div class="columns medium-12" style="text-align:center;"> <img src="assets/img/auteur_homme.jpg"
+  <div class="columns medium-12" style="text-align:center;"> <img src="auteur_homme.jpg"
   class="circle_round" /> </div>
 
 <h4>Auteur name</h4>
@@ -221,7 +212,7 @@
 </div>
 
 <div  class="columns medium-4">
-  <div class="columns medium-12" style="text-align:center;"> <img src="assets/img/auteur_femme.jpg"
+  <div class="columns medium-12" style="text-align:center;"> <img src="auteur_femme.jpg"
   class="circle_round" /> </div>
 
 <h4>Auteur name</h4>
@@ -249,10 +240,10 @@
 
 
 
-                  <script src="assets/node_modules/jquery/dist/jquery.js"></script>
-                  <script src="assets/node_modules/what-input/dist/what-input.js"></script>
-                  <script src="assets/node_modules/foundation-sites/dist/js/foundation.js"></script>
-                  <script src="assets/js/app.js"></script>
+                  <script src="node_modules/jquery/dist/jquery.js"></script>
+                  <script src="node_modules/what-input/dist/what-input.js"></script>
+                  <script src="node_modules/foundation-sites/dist/js/foundation.js"></script>
+                  <script src="js/app.js"></script>
                 </body>
               </html>
        
