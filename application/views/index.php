@@ -30,7 +30,7 @@
                           <li><a href="#"><i class="fas fa-home " ></i></a></li>
                           <li><a href="#">Collection</a></li>
                           <li><a href="#">Auteurs</a></li>
-                          <li><a href="#">Evenements 1</a></li>
+                          <li><a href="#">Evenements</a></li>
                           <li><a href="#">Forum</a></li>
                           
                           
