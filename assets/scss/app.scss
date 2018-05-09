@@ -3,8 +3,6 @@
 @import 'foundation';
 @import 'custom';
 @import 'motion-ui';
-
-
 @include foundation-global-styles;
 
 
@@ -47,10 +45,10 @@
 @include foundation-tooltip;
 @include foundation-top-bar;
 @include foundation-visibility-classes;
-// @include foundation-float-classes;
+@include foundation-float-classes;
 @include foundation-flex-classes;
 
-// @include foundation-prototype-classes;
+@include foundation-prototype-classes;
 
 @include motion-ui-transitions;
 @include motion-ui-animations;

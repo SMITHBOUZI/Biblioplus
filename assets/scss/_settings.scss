@@ -472,7 +472,7 @@ $mediaobject-image-width-stacked: 100%;
 
 $menu-margin: 0;
 $menu-nested-margin: $global-menu-nested-margin;
-$menu-items-padding: 1.3rem;
+$menu-items-padding: 1rem;
 $menu-simple-margin: 1rem;
 $menu-item-color-active: white;
 
@@ -480,7 +480,7 @@ $menu-item-color-active: white;
 $menu-icon-spacing: 0.25rem;
 $menu-item-background-hover: red;
 $menu-state-back-compat: true;
-$menu-centered-back-compat: true;
+$menu-centered-back-compat: false;
 $menu-icons-back-compat: true;
 
 // 24. Meter
