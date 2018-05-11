@@ -1,20 +1,11 @@
-
-<?php 
-include("header.php");
-
-?>
-
-      <div class="grid-x" > <!-- begin of banner photo -->
+ <div class="grid-x" > <!-- begin of banner photo -->
           <div class="cell large-12 medium-12" style="min-height:100px;">
                         
-          <img src="assets/img/Biblio1.jpg" style="width:100%;" />
+          <img src="<?php echo base_url('assets/img/Biblio1.jpg'); ?>" style="width:100%;" />
           
           </div>  
                   </div> <!--end of banner-->
 
-
-                  
-       
     <div class="grid-container">
               <div class="grid-x ">
                   <div class="cell small-12 large-12" style=" margin-top:2em; text-align:center;" >
@@ -68,7 +59,7 @@ include("header.php");
 <div class="columns medium-12"> <h3>Les auteurs de la semaine</h3> </div>
 
 <div  class="columns medium-4">
-  <div class="columns medium-12" style="text-align:center;"> <img src="assets/img/auteur_femme.jpg"
+  <div class="columns medium-12" style="text-align:center;"> <img src="<?php echo base_url('assets/img/auteur_femme.jpg') ?>"
   class="circle_round" /> </div>
 
 <h4>Nom_auteur</h4>
@@ -79,7 +70,7 @@ include("header.php");
 </div>
 
 <div  class="columns medium-4">
-  <div class="columns medium-12" style="text-align:center;"> <img src="assets/img/auteur_homme.jpg"
+  <div class="columns medium-12" style="text-align:center;"> <img src="<?php echo base_url('assets/img/auteur_homme.jpg');?> "
   class="circle_round" /> </div>
 
 <h4>Nom_auteur</h4>
@@ -90,7 +81,7 @@ include("header.php");
 </div>
 
 <div  class="columns medium-4">
-  <div class="columns medium-12" style="text-align:center;"> <img src="assets/img/auteur_femme.jpg"
+  <div class="columns medium-12" style="text-align:center;"> <img src="<?php echo base_url('assets/img/auteur_femme.jpg');?> "
   class="circle_round" /> </div>
 
 <h4>Nom_auteur</h4>
@@ -103,25 +94,17 @@ include("header.php");
 
 
 
-
-  
-
 </div>
 </div>
 
 <p>Salut</p>
 
-
-
 <!-- end of top auteurs -->
 
-
-
-
-                  <script src="assets/node_modules/jquery/dist/jquery.js"></script>
-                  <script src="assets/node_modules/what-input/dist/what-input.js"></script>
-                  <script src="assets/node_modules/foundation-sites/dist/js/foundation.js"></script>
-                  <script src="assets/js/app.js"></script>
+                  <script src="<?php echo base_url('assets/node_modules/jquery/dist/jquery.js'); ?>  "></script>
+                  <script src="<?php echo base_url('assets/node_modules/what-input/dist/what-input.js'); ?>  "></script>
+                  <script src="<?php echo base_url('assets/node_modules/foundation-sites/dist/js/foundation.js'); ?>  "></script>
+                  <script src="<?php echo base_url('assets/js/app.js'); ?> "></script>
                 </body>
               </html>
        
