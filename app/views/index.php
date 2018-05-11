@@ -101,10 +101,9 @@
 
 <!-- end of top auteurs -->
 
-                  <script src="<?php echo base_url('assets/node_modules/jquery/dist/jquery.js'); ?>  "></script>
-                  <script src="<?php echo base_url('assets/node_modules/what-input/dist/what-input.js'); ?>  "></script>
-                  <script src="<?php echo base_url('assets/node_modules/foundation-sites/dist/js/foundation.js'); ?>  "></script>
-                  <script src="<?php echo base_url('assets/js/app.js'); ?> "></script>
-                </body>
-              </html>
-       
+<!--       <script src="<?php //echo base_url('assets/node_modules/jquery/dist/jquery.js'); ?>  "></script>
+      <script src="<?php// echo base_url('assets/node_modules/what-input/dist/what-input.js'); ?>  "></script>
+      <script src="<?php// echo base_url('assets/node_modules/foundation-sites/dist/js/foundation.js'); ?>  "></script>
+      <script src="<?php// echo base_url('assets/js/app.js'); ?> "></script> -->
+  </body>
+</html>
