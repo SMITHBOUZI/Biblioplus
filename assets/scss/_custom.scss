@@ -327,7 +327,7 @@ form{
 }
 }
 #inscription{
-margin-top:2em;
+margin-top:.7em;
 
 padding:15px;
 
@@ -359,18 +359,27 @@ label{
 textarea{
   width: 80%;
   padding:10px;
-  margin-top: 10px;
+  margin-top: 15px;
+  outline: none;
+   border:0.7px solid #2e7f4d;
+
+border-radius: 5px;
+letter-spacing: 0.2px;
+  font-family: arial;
+  font-size: 0.90em;
 }
-:placeholder{
-  font-size: 11px;
-}
+
 form{
 
   text-align: center;
+  background-color: #d6e4da;
+  padding: 10px;
 }
 }
-
-
+/*:placeholder{
+  font-size: 11px;
+}
+*/
 
 
 
