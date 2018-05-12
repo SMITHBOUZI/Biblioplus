@@ -56,14 +56,10 @@ class Account extends CI_Controller {
 		}
     }
 
-    function pass_fotgot() {
-    	$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|htmlspecialchars');
-		
-		if ($this->form_validation->run() === FALSE) {
-			$this->load->view('templates/header');
-			$this->load->view('pass_reset');
-			// $this->load->view('mail_recup');
-		}else{ 
+    function pass_fotgot() { 
+
+    	if (!empty(trim($this->input->post('email')))) {	
+
 			$email = trim($this->input->post('email'));
 			$reset_token = $this->security->get_csrf_hash();
 			 
@@ -90,18 +86,23 @@ class Account extends CI_Controller {
 				$this->email->subject('Email de reinitialisation de mot de passe');
 				$this->email->message('Cliquez sur ce lien pour valider votre compte <br /><br /> '.$url);
 				if ($this->email->send()) {
-					$_SESSION['flash']['success'] = 'Un email de réinitialisation vous a étè envoyer ';
 					$this->load->view('templates/header');
-					$this->load->view('pass_reset');
+					$_SESSION['flash']['success'] = 'Un email de réinitialisation vous a étè envoyer ';
+					$this->load->view('index');
 				}else{
 					show_error($this->email->print_debugger());
 					$_SESSION['flash']['danger'] = 'Une erreur se produit .. ';	
 				}
-			}else{
+			} else{
 				$_SESSION['flash']['danger'] = 'Aucun compter ne correspond a cet email ';
 				$this->load->view('templates/header');
-				$this->load->view('pass_reset');
+				$this->load->view('mail_recup');
 			}
+		} else {
+			
+			$this->load->view('templates/header');
+			$_SESSION['flash']['danger'] = 'Saisir un addresse email svp';
+			$this->load->view('mail_recup');
 		}
     }
 
@@ -115,8 +116,9 @@ class Account extends CI_Controller {
 					$this->load->view('templates/header');
 					$this->load->view('pass_reset');
 				}else{
-					$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
+				//	$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
 					$this->load->view('templates/header');
+					$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
 					$this->load->view('index');
 				}				
 			}			
