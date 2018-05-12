@@ -1,8 +1,8 @@
 
 
 
-   <div class="row" id="inscription">
-<div class="columns small-12 medium-6 large-6 large-centered"> 
+   <div class="row" id="inscription" >
+<div class="columns small-12 medium-8 large-6 small-centered"> 
 
 
    <form class="columns medium-12 large-12" >
@@ -36,7 +36,9 @@
       
 
     <div class="columns small-12 medium-12 "> 
-    <label>Date naissance</label>
+      <div class="columns large-12">
+      <span>Date naissance</span>
+</div>
     <input type="date" name="mailRec" placeholder="Confirmation du mot passe" class="custom_input" />
     </div>
 
@@ -48,13 +50,16 @@
   </select>
     </div>
 
-    <div class="columns small-11 medium-11 " style="margin-top:10px; "> 
+    <div class="columns small-12 medium-12 " style="margin-top:10px; "> 
     
 
 
-
+     <div class="columns large-12">
+      <span>Incrire en tant que</span>
+</div>
 
     <div class="columns large-6 small-9" >
+
     <input type="radio" name="sexe" value="Auteur"  id="sexe" required><label for="sexe">Auteur</label></div>
     <div class="columns large-6 small-9">
     <input type="radio" name="sexe" value="Simple membre" id="sexe">
@@ -64,11 +69,11 @@
     </div>
     
 
-      <div class="columns small-11 medium-11 "> 
-<label>
-  A propos de vous
-  <textarea placeholder="None"></textarea>
-</label>
+      <div class="columns small-12 medium-12 "> 
+<!-- <label> -->
+<!--   A propos de vous -->
+  <textarea placeholder="Une petite description de vous"></textarea>
+<!-- </label> -->
     </div>
 
 
