@@ -1,7 +1,6 @@
-
- 
 $(document).ready(function(){
 $(document).foundation();
+
 
 $("#login").click(function(e){
 	$("#nav_menu").hide(10);
