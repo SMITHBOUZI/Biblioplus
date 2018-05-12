@@ -60,8 +60,8 @@ class Account extends CI_Controller {
     	$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|htmlspecialchars');
 		
 		if ($this->form_validation->run() === FALSE) {
-			$this->load->view('templates/recup_mail_header');
-			$this->load->view('index');
+			$this->load->view('templates/header');
+			$this->load->view('pass_reset');
 			// $this->load->view('mail_recup');
 		}else{ 
 			$email = trim($this->input->post('email'));
@@ -92,17 +92,15 @@ class Account extends CI_Controller {
 				if ($this->email->send()) {
 					$_SESSION['flash']['success'] = 'Un email de réinitialisation vous a étè envoyer ';
 					$this->load->view('templates/header');
-					// $this->load->view('mail_recup');
-					$this->load->view('index');
+					$this->load->view('pass_reset');
 				}else{
 					show_error($this->email->print_debugger());
 					$_SESSION['flash']['danger'] = 'Une erreur se produit .. ';	
 				}
 			}else{
 				$_SESSION['flash']['danger'] = 'Aucun compter ne correspond a cet email ';
-				$this->load->view('templates/recup_mail_header');
-				// $this->load->view('mail_recup');
-				$this->load->view('index');
+				$this->load->view('templates/header');
+				$this->load->view('pass_reset');
 			}
 		}
     }

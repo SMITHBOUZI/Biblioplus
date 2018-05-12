@@ -72,11 +72,11 @@
             <h6>Connexion</h6>
 
             <!--  <input type="text" placeholder="Nom d'utilisateur" > -->
-            <?php echo form_input('pseudo','','class="form-control" id="pseudo" placeholder="Nom d\'utilisateur" '); ?>
+            <?php echo form_input('pseudo','','class="custom_input" id="pseudo" placeholder="Nom d\'utilisateur" '); ?>
           </div>
           <div class="medium-12 cell">        
             <!-- <input type="text" placeholder="Mot de Passe" > -->
-            <?php echo form_password('mot_de_passe','','class="form-control" id="mot_de_passe" placeholder="Mot de passe" ') ?>
+            <?php echo form_password('mot_de_passe','','class="custom_input" id="mot_de_passe" placeholder="Mot de passe" ') ?>
           </div>
 
           <div class="medium-12 cell">

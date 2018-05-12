@@ -80,10 +80,6 @@ text-transform: uppercase;
 /*font-style: lighter;*/
 }
 
-.hollow.button{
-
-  color:red;
-}
 
 
 
@@ -91,6 +87,66 @@ text-transform: uppercase;
 .container {
   @include grid-row;
 }
+
+.custom_input{
+  
+  padding:10px;
+  letter-spacing: 0.2px;
+  font-family: arial;
+  font-size: 0.90em;
+   margin-bottom:5px;
+   margin-top:5px;
+width: 80%;
+ 
+ border: 1px solid gray;
+ /*background-color: transparent;*/
+/* color: white;*/
+}
+
+.fill_button{
+  
+  padding: 10px;
+  width: 80%;
+  font-size: 0.90em;
+  color: white;
+  letter-spacing: 0.2px;
+  font-family: arial;
+  background-color: #2e7f4d;
+ margin-top: 8px;
+  cursor: pointer; 
+  border: none; 
+}
+
+
+.fill_button:hover{
+color: white;
+opacity: 0.8;
+background-color: #2e7f4d;
+}
+
+.border_button{
+  
+  padding: 10px;
+ /* border-radius: 6px;*/
+  /*border: 1px solid #2e7f4d;*/
+  width: 100%;
+  font-size: 0.89em;
+  color: #2e7f4d;
+  letter-spacing: 0.2px;
+  font-family: arial;
+  border: 1.3px solid #2e7f4d;
+  margin-top: 3px;
+  cursor: pointer;
+  
+}
+.border_button:hover{
+  color: white;
+opacity: 0.8;
+background-color: #2e7f4d;
+}
+
+
+
 
 #login_box{
 
@@ -111,25 +167,7 @@ position: relative;
 
 
 .fill_button{
-  
-  padding: 10px;
- /* border-radius: 6px;*/
-  /*border: 1px solid #2e7f4d;*/
   width: 100%;
-  font-size: 0.89em;
-  color: white;
-  letter-spacing: 0.2px;
-  font-family: arial;
-  background-color: #2e7f4d;
-  margin: 3px;
-  cursor: pointer;  
-}
-
-
-.fill_button:hover{
-color: white;
-opacity: 0.8;
-background-color: #2e7f4d;
 }
 
 
@@ -169,31 +207,7 @@ padding: 10px;
 
 
 
-.border_button{
-  
-  padding: 10px;
- /* border-radius: 6px;*/
-  /*border: 1px solid #2e7f4d;*/
-  width: 100%;
-  font-size: 0.89em;
-  color: #2e7f4d;
-  letter-spacing: 0.2px;
-  font-family: arial;
-  border: 1.3px solid #2e7f4d;
-  margin: 3px;
-  cursor: pointer;
-  
-
-}
-.border_button:hover{
-  color: white;
-opacity: 0.8;
-background-color: #2e7f4d;
-}
-
-
-
-input{
+.custom_input{
   
   padding:8px;
    font-size: 0.75em;
@@ -209,11 +223,9 @@ width: 100%;
  outline: none;
 
 }
-input:focus{
-  
-/*border:2px solid red;*/
 
-}
+
+
   
 }
 #search_box{
@@ -231,13 +243,13 @@ position: relative;
   display: none;
   padding: 10px;
   
-input{
+.custom_input{
   
   padding:8px;
    font-size: 0.75em;
    margin-top: 6px;
 margin-bottom:  10px;
-width: 100%;
+/*width: 100%;*/
  border-top: none;
  border-right: none;
  border-left: none;
@@ -245,11 +257,7 @@ width: 100%;
  background-color: transparent;
  color: white;
 }
-input:focus{
-  
-border:none;
 
-}
 
 }
 .auteur_setion{
@@ -300,6 +308,70 @@ border:none;
   width: 4em;
   top:17px;
 }
+
+#mail_recup{
+
+/*border: 2px solid red;*/
+margin-top:3em;
+
+padding:15px;
+
+p{
+  color: gray;
+  font-weight: 200;
+  font-size: 14px;
+}
+form{
+  padding: 15px;
+  background-color: #f9fffb
+}
+}
+#inscription{
+margin-top:2em;
+
+padding:15px;
+
+select{
+
+  padding: 10px;
+  width: 80%;
+  outline: none;
+  background-color: none;
+  border-radius: 5px;
+  border:0.7px solid #2e7f4d;
+}
+.custom_input{
+ padding: 12px; 
+ border:0.7px solid #2e7f4d;
+ outline: none;
+ border-radius: 5px;
+}
+
+
+label{
+
+  padding:10px;
+  font-size: 12px;
+  font-style: italic;
+  color: gray;
+  text-align: right;
+}
+textarea{
+  width: 80%;
+  padding:10px;
+  margin-top: 10px;
+}
+:placeholder{
+  font-size: 11px;
+}
+form{
+
+  text-align: center;
+}
+}
+
+
+
 
 
 
@@ -360,6 +432,13 @@ top:0px;
  width:250px;
 
 }
+
+
+#mail_recup{
+
+  width: auto !important;
+}
+
 
 }
 
