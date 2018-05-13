@@ -78,6 +78,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '3276@7223',
+	'password' => '',
 	'database' => 'biblioplus',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

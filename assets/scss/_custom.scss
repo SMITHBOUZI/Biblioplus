@@ -112,7 +112,7 @@ width: 80%;
   letter-spacing: 0.2px;
   font-family: arial;
   background-color: #2e7f4d;
- margin-top: 8px;
+  margin-top: 8px;
   cursor: pointer; 
   border: none; 
 }
@@ -209,11 +209,11 @@ padding: 10px;
 
 .custom_input{
   
-  padding:8px;
-   font-size: 0.75em;
-   margin-top: 6px;
-margin-bottom:  10px;
-width: 100%;
+ padding:8px;
+ font-size: 0.75em;
+ margin-top: 6px;
+ margin-bottom:  10px;
+ width: 100%;
  border-top: none;
  border-right: none;
  border-left: none;
@@ -468,4 +468,16 @@ top:0px;
   display: flex !important;
 }
 
+}
+
+#utilinscription div{
+ font-family: arial;
+  font-size: 0.90em;
+  font-style: italic;
+  color: #2e7f4d;
+  text-align: justify;
+  text-justify: inter-word;
+  ul{
+    list-style: none;
+  }
 }
