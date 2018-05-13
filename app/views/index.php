@@ -9,7 +9,7 @@
     <div class="grid-container">
               <div class="grid-x ">
                   <div class="cell small-12 large-12" style=" margin-top:2em; text-align:center;" >
-      <h3>D&eacutecouvrez notre catalogue les expert .. </h3>
+      <h3>D&eacutecouvrez notre catalogue  </h3>
       <p>Des livres de tous genres Romans,Historique,Scientifiques</br>
       Rien que pour le plaisir de vos yeux </p>
                       
@@ -37,6 +37,7 @@
       <img src="https://placehold.it/180x240" class="thumbnail" alt="">
     </div>
    
+
    
   </div>
      

@@ -98,10 +98,11 @@ class Account_model extends CI_Model {
 		$req = $this->db->where('reset_token', $reset_token);
 		$req = $this->db->get();
 
-		if($req->num_rows() == 1){	
+		if($req->num_rows() === 1){	
 			return $req->result_object();
 		}else{
-			 return false;
+			// echo "Token invalid !!";
+			return false;
 		}
 	} 
 

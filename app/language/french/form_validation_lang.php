@@ -43,7 +43,7 @@ $lang['check_if_email_exists']            	   = "Cet {field} est déjà utilisé
 $lang['ckeck_if_champ_valid']              	   = "Le champ {field} peut contenir que des caractères alphabetique.";
 $lang['ckeck_format_pseudo']             	   = "Le champ {field} peut contenir que des caractères alphanumériques, des caractères de soulignement et des traits d'union.";
 $lang['ckeck_format_prenom']              	   = "Le champ {field} peut contenir que des caractères alphabetique.";
-$lang['ckeck_format_nom']               	   = "Le champ {field} peut contenir que des caractères alphabetique.";
+$lang['ckeck_format_nom_prenom']          	   = "Le champ {field} peut contenir que des caractères alphabetique Ex.: (Bergele Franck).";
 
 $lang['ckeck_format_sexe']               	   = "Le champ {field} peut contenir que des caractères alphabetique.";
 $lang['sexe_valide']               	  		   = "Le {field}  doit être Masculin ou Feminin ";

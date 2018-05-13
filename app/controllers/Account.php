@@ -44,13 +44,13 @@ class Account extends CI_Controller {
 			foreach ($result as $user) {
 				if ($user && $user->confirm_token === $token) {
 					// $_SESSION['auth'] = $user ;
-					$_SESSION['flash']['info'] = 'Votre compté  a étè confirmé avec succés' ;
+					$_SESSION['flash']['info'] = 'Votre compté a étè confirmé avec succés' ;
 					// $this->load->view('template/header');
 					$this->load->view('index');
 				}else{
+					$this->load->view('template/header');
 					$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
-					// $this->load->view('template/header');
-					$this->load->view('index');
+					// $this->load->view('index');
 				}				
 			}			
 		}
@@ -119,15 +119,19 @@ class Account extends CI_Controller {
 				//	$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
 					$this->load->view('templates/header');
 					$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
-					$this->load->view('index');
+					 $this->load->view('pass_reset');
 				}				
-			}			
+			} 		
+		} else {
+			$this->load->view('templates/header');
+			$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
+			$this->load->view('index');
 		}
     }
 
     function update_pass(){
-    	$this->form_validation->set_rules('mot_de_passe', 'Mot de passe', 'trim|required|min_length[8]|htmlspecialchars');
-		$this->form_validation->set_rules('mot_de_passe_c', 'Mot de passe de confirmation', 'trim|required|min_length[8]|htmlspecialchars|matches[mot_de_passe]');
+    	$this->form_validation->set_rules('mot_de_passe', 'mot de passe', 'trim|required|min_length[8]|htmlspecialchars');
+		$this->form_validation->set_rules('mot_de_passe_c', 'mot de passe de confirmation', 'trim|required|min_length[8]|htmlspecialchars|matches[mot_de_passe]');
 
 		if ($this->form_validation->run() === FALSE) {
 			$this->load->view('templates/header');

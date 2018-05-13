@@ -75,18 +75,10 @@ class Login extends CI_Controller {
     	}    	
     }
 
-    function ckeck_format_nom($nom) {
-    	if (!preg_match('/^[a-zA-Z ]+$/', trim($this->input->post('nom')))) {
+    function ckeck_format_nom_prenom($nom_prenom) {
+    	if (!preg_match('/^[a-zA-Z ]+$/', trim($this->input->post('nom_prenom')))) {
     		return FALSE ;
     	}else {
-    		return TRUE ;
-    	}
-    }
-
-    function ckeck_format_prenom($prenom) {
-    	if (!preg_match('/^[a-zA-Z ]+$/', trim($this->input->post('prenom')))) {
-    		return FALSE ;
-    	} else {
     		return TRUE ;
     	}
     }
@@ -125,30 +117,26 @@ class Login extends CI_Controller {
     }
 
 	public function sign_up() {
-		
-		$this->form_validation->set_rules('nom', 'nom', 'trim|required|htmlspecialchars|callback_ckeck_format_nom');
-		$this->form_validation->set_rules('prenom', 'prenom', 'trim|required|htmlspecialchars|callback_ckeck_format_prenom');
-		$this->form_validation->set_rules('sexe', 'sexe', 'trim|required|htmlspecialchars|callback_ckeck_format_sexe|callback_sexe_valide');
-		$this->form_validation->set_rules('date_naissance', 'date de naissanse', 'trim|required|htmlspecialchars');
-		$this->form_validation->set_rules('pseudo', 'pseudo', 'trim|required|min_length[6]|max_length[12]|htmlspecialchars|callback_check_if_pseudo_exists|callback_ckeck_format_pseudo');
 		$this->form_validation->set_rules('mot_de_passe', 'mot de passe', 'trim|required|min_length[8]|htmlspecialchars');
-		$this->form_validation->set_rules('mot_de_passe_c', 'Mot de passe de confirmation', 'trim|required|min_length[8]|htmlspecialchars|matches[mot_de_passe]');
+		$this->form_validation->set_rules('mot_de_passe_c', 'mot de passe de confirmation', 'trim|required|min_length[8]|htmlspecialchars|matches[mot_de_passe]');
+		$this->form_validation->set_rules('pseudo', 'pseudo', 'trim|required|min_length[6]|max_length[12]|htmlspecialchars|callback_check_if_pseudo_exists|callback_ckeck_format_pseudo');
 		$this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|htmlspecialchars|callback_check_if_email_exists');
-		// $this->form_validation->set_rules('userfile', 'photo', 'trim|required|valid_email|htmlspecialchars|callback_upload_file');
-	
-		// if ($this->form_validation->run() === FALSE) {
-		// 	$this->load->view('template/header');
-		// 	$this->load->view('user/form_register');
-		// }else{
+		$this->form_validation->set_rules('nom_prenom', 'nom complet', 'trim|required|htmlspecialchars|callback_ckeck_format_nom_prenom');
+
+
+		if ($this->form_validation->run() === FALSE) {
+				$this->load->view('templates/header');
+				$this->load->view('form_register');
+		} else {
+		
 			if($this->input->post('save')) {
-				if (!empty(trim($this->input->post('nom'))) AND !empty(trim($this->input->post('prenom'))) 
-					AND !empty(trim($this->input->post('sexe'))) AND !empty(trim($this->input->post('date_naissance')))
-					AND !empty(trim($this->input->post('email'))) AND !empty(trim($this->input->post('pseudo')))
-					AND !empty(trim($this->input->post('password'))) AND !empty(trim($this->input->post('password_c')))
-					AND !empty(trim($this->input->post('membre'))) AND !empty(trim($this->input->post('reponse')))
-					AND !empty(trim($this->input->post('reponse_x'))) AND empty(trim($this->input->post('departement'))) ) {
-					# code...
-				
+
+				if (!empty(trim($this->input->post('nom_prenom'))) AND !empty(trim($this->input->post('sexe')))
+					 AND !empty(trim($this->input->post('date_naissance'))) AND !empty(trim($this->input->post('email'))) 
+					 AND !empty(trim($this->input->post('pseudo'))) AND !empty(trim($this->input->post('mot_de_passe'))) 
+					 AND !empty(trim($this->input->post('mot_de_passe_c'))) AND !empty(trim($this->input->post('mem')))
+					 AND !empty(trim($this->input->post('desc'))) )  {
+
 					$config['upload_path']          = 'assets/avatar/';
 					$config['allowed_types']        = 'gif|jpg|png|jpeg';
 					$config['max_size']             = 0;
@@ -196,15 +184,18 @@ class Login extends CI_Controller {
 					  	$_SESSION['flash']['success'] = 'Une erreur se produit .. ';	
 					}					
 					redirect('login/Sign_in');
-				} else {
-					$_SESSION['flash']['danger'] = '* Remplis tous les champs svp';
-					$this->load->view('templates/header');
-					$this->load->view('form_register');
+
+				  // 		$this->load->view('templates/header');
+						// $_SESSION['flash']['danger'] = 'Success';
+						// $this->load->view('form_register');
+
 				}
-			}else{ 
+			} else {
+				
 				$this->load->view('templates/header');
+				$_SESSION['flash']['danger'] = 'Remplis tous les champs svp';
 				$this->load->view('form_register');
-		    }
-		// }        
-    }
+			}
+		}
+	}
 }

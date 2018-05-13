@@ -113,13 +113,18 @@
         <div class="grid-x padding-x">
 
           <div class="cell medium-12 ">
-            <img src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" />
+            <?php if(isset($_SESSION['photo'] )){ ?>
+              <img src="<?php echo base_url('assets/avatar/avatar.png'); ?>" />
+            <?php } else {?>
+               <img src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" />
+            <?php } ?>
           </div>
 
           <div class="medium-12 cell">
             <h6><?php echo $_SESSION['pseudo']; ?> </h6>
 
-            <button class="border_button"><a href="<?php echo base_url('account/sign_out'); ?>">  Deconnexion </a> </button>
+            <button class="border_button"> <a href="<?php echo base_url('account/sign_out'); ?>">  Deconnexion </a> </button>
+            <a href="<?php echo base_url('account/sign_out'); ?>">  Deconnexion </a>
           </div> 
 
         </div>
@@ -168,14 +173,20 @@
           </div><!--end of grid-container-header-->
       </header>
 
+  </div>
 
 
+<?php if (isset($_SESSION['flash'])): ?>
+  <?php foreach ($_SESSION['flash'] as $type => $message):?>
+     <div class="alert alert-<?= $type; ?>">
+        <?= $message; ?>            
+     </div>
+  <?php endforeach ?>
+  <?php unset($_SESSION['flash']) ?>
+<?php endif ?>
 
 
-
-  </div> 
-
-      <script src="<?php echo base_url('assets/node_modules/jquery/dist/jquery.js'); ?>  "></script>
-      <script src="<?php echo base_url('assets/node_modules/what-input/dist/what-input.js'); ?>  "></script>
-      <script src="<?php echo base_url('assets/node_modules/foundation-sites/dist/js/foundation.js'); ?>  "></script>
-      <script src="<?php echo base_url('assets/js/app.js'); ?> "></script>
+<script src="<?php echo base_url('assets/node_modules/jquery/dist/jquery.js'); ?>  "></script>
+<script src="<?php echo base_url('assets/node_modules/what-input/dist/what-input.js'); ?>  "></script>
+<script src="<?php echo base_url('assets/node_modules/foundation-sites/dist/js/foundation.js'); ?>  "></script>
+<script src="<?php echo base_url('assets/js/app.js'); ?> "></script>

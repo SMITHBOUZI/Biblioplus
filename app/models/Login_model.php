@@ -41,61 +41,35 @@ class Login_model extends CI_Model {
     }
 
 	function sign_up(){
-		$sql = 'SELECT * FROM reponse';
-		$req = $this->db->query($sql);
-		if ($req->num_rows() === 1) {
-			$rep = $this->input->post('reponse');
-			$rep_x = $this->input->post('reponse_x');
-			$mem = $this->input->post('membre');
-			//if ($mem == 'membre') {
-				# code...
-			
-				foreach ($req as $row ) {
-					if ( ($row->reponse === $req) AND ($row->reponse_x === $req_x)) {
-						# code...
-						$no = $this->input->post('nom');
-						$pr = $this->input->post('prenom');
-						$se = $this->input->post('sexe');
-						$dt = $this->input->post('date_naissance');
-						$ps = $this->input->post('pseudo');
-						$pw = sha1($this->input->post('password'));	
-						// $pw =  $this->input->post('mot_de_passe');	
-						// $pw = password_hash(trim($this->input->post('mot_de_passe')), PASSWORD_BCRYPT);	
-						$em = $this->input->post('email');
 
-						// $rep = $this->input->post('reponse');
-						// $rep_x = $this->input->post('reponse_x');
-						$dep = $this->input->post('departement');
-						$mem = $this->input->post('membre');
-						
-						$co = $this->security->get_csrf_hash();
-						$to = $this->input->post('token_confirmed');
-						$pho = $this->upload->file_name;
+		$nom = $this->input->post('nom_prenom');
+		$sex = $this->input->post('sexe');
+		$dat = $this->input->post('date_naissance');
+		$pseu = $this->input->post('pseudo');
+		$pass = sha1($this->input->post('mot_de_passe'));	
+		$ema = $this->input->post('email'); 
+		$sta = $this->input->post('mem');
+		$desc = $this->input->post('desc');
+		
+		$co = $this->security->get_csrf_hash();
+		$to = $this->input->post('token_confirmed');
+		$pho = $this->upload->file_name;
 
-						$data = array(
-							'idinscription'		=> '',
-							'nom' 			 	=> $no,
-							'prenom' 		 	=> $pr,
-							'sexe' 			 	=> $se,
-							'date_naissance' 	=> $dt,
-							'pseudo'		 	=> $ps,
-							'mot_de_passe' 	 	=> $pw,
-							'email'   		 	=> $em,
+		$data = array(
+			'idinscription'		=> '',
+			'nom_prenom' 	 	=> $nom,
+			'sexe' 			 	=> $sex,
+			'date_naissance' 	=> $dat,
+			'pseudo'		 	=> $pseu,
+			'mot_de_passe' 	 	=> $pass,
+			'email'   		 	=> $ema,
+			'status'			=> $sta,
+			'description'		=> $desc,
 
-							'status'			=> $mem,
-							// 'reponse'			=> $rep,
-							// 'reponse-x'			=> $rep_x,
-							'departement'		=> $dep,
-							// 'membre'				=> $mem,
-							// 'code_postal'		=> $cop,
-							'token_confirmed'	=> $to,
-							'confirm_token' 	=> $co,
-							'photo'				=> $pho				
-						);
-						$this->db->insert('inscription', $data);
-					}
-				}
-			// }
-		}	
+			'token_confirmed'	=> $to,
+			'confirm_token' 	=> $co,
+			'photo'				=> $pho				
+		);
+		$this->db->insert('inscription', $data);
 	}	
 }

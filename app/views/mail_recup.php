@@ -31,7 +31,6 @@
     
      <div class="columns small-12 medium-12 "> 
     <input type="mail" name="email" id="email" placeholder="expertplus@biblio.com" class="custom_input" />
-
     </div>
 
     <div class="columns small-12 medium-12 "> 
