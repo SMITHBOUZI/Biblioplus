@@ -12,7 +12,7 @@
 
 
 <div class="row" id="mail_recup">
-<div class="columns small-12 medium-5 large-5 large-centered"> 
+<div class="columns small-12 medium-6 large-6 large-centered medium-centered"> 
       
   <!--  <form class="columns medium-12 large-12" style="text-align:center;" > -->
     <?php echo form_open('account/Pass_fotgot', 'class="columns medium-12 large-12" style="text-align:center;"'); ?>

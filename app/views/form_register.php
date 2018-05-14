@@ -1,7 +1,53 @@
 
 
    <div class="row" id="inscription" >
-<div class="columns small-12 medium-8 large-6 small-centered">  
+        <div class="columns medium-12 large-12">
+      <h4 style="text-align: center; color: #2e7f4d; text-shadow: 1px 1px #0a0a0a; ">Nouveau sur BiblioPlus!!!</h4>
+    </div>
+    <div class="columns small-12 medium-5 large-5 " style="margin-bottom: 5px;" id="utilinscription">
+  <div class="columns medium-12 small-12"> 
+    <h5  > Utilit&eacute d'etre membre de BiblioPlus</h5>
+  </div>
+
+  <div class="columns medium-12 small-12">
+    <ul>
+      <li><i class="" aria-hidden="true"></i>Pour ajouter un ouvrage</li>
+    </ul>
+  </div>
+
+  <div class="columns medium-12 small-12">
+    <ul>
+      <li><i class="" aria-hidden="true"></i>Pour faire la lecture</li>
+    </ul>
+  </div>
+
+  <div class="columns medium-12 small-12">
+    <ul>
+      <li><i class="" aria-hidden="true"></i>Afin de telecharger un ouvrage</li>
+    </ul>
+  </div>
+
+  <div class="columns medium-12 small-12">
+    <ul>
+      <li><i class="" aria-hidden="true"></i>Besoin de cr&eacuteer un &eacutev&eacutenement</li>
+    </ul>
+  </div>
+
+
+  <div class="columns medium-12 small-12">
+    <ul>
+      <li><i class="" aria-hidden="true"></i>Besoin de discuter sur le FORUM de Biblioplus</li>
+    </ul>
+  </div>
+
+
+  <div class="columns medium-12 small-12">
+    <span>W3Schools est optimisé pour l'apprentissage, les tests et la formation. Les exemples pourraient être simplifiés pour améliorer la lecture et la compréhension de base. Les tutoriels, les références et les exemples sont constamment révisés pour éviter les erreurs, mais nous ne pouvons pas garantir l'exactitude complète de tout le contenu. 
+       </span>
+  </div>
+  
+</div>
+<div class="columns small-12 medium-7 large-6 ">  
 
     <!-- REGISTRATION FORM -->
      <?php if (validation_errors()): ?> 
@@ -67,11 +113,11 @@
       <span>Inscrire en tant que</span>
 </div>
 
-  <div class="columns large-6 small-9" >
+  <div class="columns large-6 small-6" >
     <input type="radio" name="mem" value="Auteur"  id="mem"><label for="mem">Auteur</label>
   </div>
 
-  <div class="columns large-6 small-9">
+  <div class="columns large-6 small-6">
     <input type="radio" name="mem" value="Simple membre" id="mem">
     <label for="mem">Simple Membre</label>
   </div>

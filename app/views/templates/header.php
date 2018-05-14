@@ -146,7 +146,7 @@
 
       <div class="medium-12 cell">
         
-          <input type="text" placeholder="Rechercher" >
+          <input class="custom_input" type="text" placeholder="Rechercher" >
         
       </div>
       
