@@ -31,7 +31,6 @@ class Account extends CI_Controller {
 		$this->session->unset_userdata('logged_in');
 		$this->session->sess_destroy();
 		$_SESSION['flash']['info'] = 'Vous etez deconnecter ';
-   		
    		$this->load->view('templates/header');
 		$this->load->view('index');   
     }
@@ -101,7 +100,7 @@ class Account extends CI_Controller {
 		} else {
 			
 			$this->load->view('templates/header');
-			$_SESSION['flash']['danger'] = 'Saisir un addresse email svp';
+			// $_SESSION['flash']['danger'] = 'Saisir un addresse email svp';
 			$this->load->view('mail_recup');
 		}
     }

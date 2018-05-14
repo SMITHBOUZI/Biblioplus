@@ -49,92 +49,90 @@
 
 <?php if ($this->session->userdata('pseudo') === NULL) : ?>
 
-<!-- login connect-->
+  <!-- login connect-->
 
-<div id="login_box" >
-  <div id="user" > <!-- Drop down login_box -->
-    <?php  echo form_open('login/sign_in', "class='myclass'" ); ?> 
-      <div class="grid-container">
-        <div class="grid-x padding-x">
+  <div id="login_box" >
+    <div id="user" > <!-- Drop down login_box -->
+      <?php  echo form_open('login/sign_in', "class='myclass'" ); ?> 
+        <div class="grid-container">
+          <div class="grid-x padding-x">
 
-          <div class="cell medium-12">
-            <!--C Moi -->
-            <?php if (isset($_SESSION['flash'])): ?>
-              <?php foreach ($_SESSION['flash'] as $type => $message):?>
-                <div class="alert alert-<?= $type; ?>">
-                  <?= $message; ?>            
-                </div>
-              <?php endforeach ?>
-              <?php unset($_SESSION['flash']) ?>
-            <?php endif ?>
-            <!-- fin MOi -->
+            <div class="cell medium-12">
+              <!--C Moi -->
+              <?php if (isset($_SESSION['flash'])): ?>
+                <?php foreach ($_SESSION['flash'] as $type => $message):?>
+                  <div class="alert alert-<?= $type; ?>">
+                    <?= $message; ?>            
+                  </div>
+                <?php endforeach ?>
+                <?php unset($_SESSION['flash']) ?>
+              <?php endif ?>
+              <!-- fin MOi -->
 
-            <h6>Connexion</h6>
+              <h6>Connexion</h6>
 
-            <!--  <input type="text" placeholder="Nom d'utilisateur" > -->
-            <?php echo form_input('pseudo','','class="custom_input" id="pseudo" placeholder="Nom d\'utilisateur" '); ?>
+              <!--  <input type="text" placeholder="Nom d'utilisateur" > -->
+              <?php echo form_input('pseudo','','class="custom_input" id="pseudo" placeholder="Nom d\'utilisateur" '); ?>
+            </div>
+            <div class="medium-12 cell">        
+              <!-- <input type="text" placeholder="Mot de Passe" > -->
+              <?php echo form_password('mot_de_passe','','class="custom_input" id="mot_de_passe" placeholder="Mot de passe" ') ?>
+            </div>
+
+            <div class="medium-12 cell">
+              <input type="submit" class="fill_button" name="sign_in" value="Connecter"> </button>
+            <!--  <input type="submit" class="fill_button" value="Connecter"> </button> -->
+            </div>
+
+            <div class="medium-12 cell">
+              <button class="border_button"><a href="<?php echo base_url('login/sign_up'); ?>">  Nouveau compte </a> </button>
+            </div>
+            <div class="medium-9 cell"> 
+              <span> <a href="<?php echo base_url('account/pass_fotgot'); ?>"> Mot de passe oubli&eacute?</a></span>
+              <!--  <span> <a href="#"> Mot de passe oubli&eacute?</a></span> -->
+            </div>
           </div>
-          <div class="medium-12 cell">        
-            <!-- <input type="text" placeholder="Mot de Passe" > -->
-            <?php echo form_password('mot_de_passe','','class="custom_input" id="mot_de_passe" placeholder="Mot de passe" ') ?>
-          </div>
+        </div> <!-- end of container dropdown -->
+      <?php echo form_close(); ?>
+    </div> 
+  </div> <!-- end of dropdown_login  --> 
 
-          <div class="medium-12 cell">
-            <input type="submit" class="fill_button" name="sign_in" value="Connecter"> </button>
-          <!--  <input type="submit" class="fill_button" value="Connecter"> </button> -->
-          </div>
-
-          <div class="medium-12 cell">
-            <button class="border_button"><a href="<?php echo base_url('login/sign_up'); ?>">  Nouveau compte </a> </button>
-          </div>
-          <div class="medium-9 cell"> 
-            <span> <a href="<?php echo base_url('account/pass_fotgot'); ?>"> Mot de passe oubli&eacute?</a></span>
-            <!--  <span> <a href="#"> Mot de passe oubli&eacute?</a></span> -->
-          </div>
-        </div>
-      </div> <!-- end of container dropdown -->
-    <?php echo form_close(); ?>
-  </div> 
-</div> <!-- end of dropdown_login  --> 
-
-<!-- end login connect -->
-
+  <!-- end login connect -->
 <?php endif ?>
 
 <?php if ($this->session->userdata('pseudo') !== NULL) : ?>
 
-<!-- user connect -->
+  <!-- user connect -->
 
-<div id="login_box" >
+  <div id="login_box" >
 
-  <div id="user" > <!-- Drop down login_box -->
-    <form >
-      <div class="grid-container">
-        <div class="grid-x padding-x">
+    <div id="user" > <!-- Drop down login_box -->
+      <form >
+        <div class="grid-container">
+          <div class="grid-x padding-x">
 
-          <div class="cell medium-12 ">
-            <?php if(isset($_SESSION['photo'] )){ ?>
-              <img src="<?php echo base_url('assets/avatar/avatar.png'); ?>" />
-            <?php } else {?>
-               <img src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" />
-            <?php } ?>
+            <div class="cell medium-12 ">
+              <?php if(empty($_SESSION['photo'] )){ ?>
+                <img src="<?php echo base_url('assets/avatar/avatar.png'); ?>" />
+              <?php } else {?>
+                 <img src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" />
+              <?php } ?>
+            </div>
+
+            <div class="medium-12 cell">
+              <h6><?php echo $_SESSION['pseudo']; ?> </h6>
+
+              <button class="border_button"> <a href="<?php echo base_url('account/sign_out'); ?>">  Deconnexion </a> </button>
+              <a href="<?php echo base_url('account/sign_out'); ?>">  Deconnexion </a>
+            </div> 
+
           </div>
+        </div> <!-- end of container dropdown -->
+      </form>
+    </div>   
+  </div><!-- end of dropdown_login  -->
 
-          <div class="medium-12 cell">
-            <h6><?php echo $_SESSION['pseudo']; ?> </h6>
-
-            <button class="border_button"> <a href="<?php echo base_url('account/sign_out'); ?>">  Deconnexion </a> </button>
-            <a href="<?php echo base_url('account/sign_out'); ?>">  Deconnexion </a>
-          </div> 
-
-        </div>
-      </div> <!-- end of container dropdown -->
-    </form>
-  </div>   
-</div><!-- end of dropdown_login  -->
-
-<!-- end user connect -->
-
+  <!-- end user connect -->
 <?php endif ?>   
 
         <li><a id="search_button" ><i class="fas fa-search" ></i></a></li>
@@ -174,17 +172,6 @@
       </header>
 
   </div>
-
-
-<?php if (isset($_SESSION['flash'])): ?>
-  <?php foreach ($_SESSION['flash'] as $type => $message):?>
-     <div class="alert alert-<?= $type; ?>">
-        <?= $message; ?>            
-     </div>
-  <?php endforeach ?>
-  <?php unset($_SESSION['flash']) ?>
-<?php endif ?>
-
 
 <script src="<?php echo base_url('assets/node_modules/jquery/dist/jquery.js'); ?>  "></script>
 <script src="<?php echo base_url('assets/node_modules/what-input/dist/what-input.js'); ?>  "></script>
