@@ -27,7 +27,7 @@
                 <nav class="cell small-10 medium-9 large-8 ">
 
                   <ul class="  menu align-center"  id="nav_menu">
-                    <li><a href="#"><i class="fas fa-home " ></i></a></li>
+                    <li><a href="<?php echo base_url('login/index'); ?>"><i class="fas fa-home " ></i></a></li>
                     <li><a href="#">Collection</a></li>
                     <li><a href="#">Auteurs</a></li>
                     <li><a href="#">Evenements</a></li>

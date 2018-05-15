@@ -26,23 +26,27 @@
 			<div class="columns large-12 medium-12 small-12">
 			<tbody>
 				<div class="columns large-12 medium-12 small-12">
-					<tr>
-						<div class=" columns large-6 medium-6 small-6">
-							<td>
-								<p> Les éléments thead, tbody et tfoot n'affectent pas la disposition de la table par défaut. Cependant, vous pouvez utiliser CSS pour styliser ces éléments.</p>
-							</td>
-						</div>
-						<div class=" columns large-3 medium-3 small-3">
-							<td>
-								<p>histoire</p>
-							</td>
-						</div>
-						<div class=" columns large-3 medium-3 small-3">
-							<td>
-								<p>3h:31min</p>
-							</td>
-						</div>						
-					</tr>
+					<?php $req = $this->forum->lister_sujet(); ?>
+						<?php foreach ($req as $rows): ?>
+							<tr>
+								<div class=" columns large-6 medium-6 small-6">
+									<td>
+										<p> <?php echo $rows->sujet; ?></p>
+									</td>
+								</div>
+								<div class=" columns large-3 medium-3 small-3">
+									<td>
+										<p><?php echo $rows->contenu_c; ?></p>
+									</td>
+								</div>
+								<div class=" columns large-3 medium-3 small-3">
+									<td>
+										<p><?php echo $rows->date_hres_creation; ?></p>
+									</td>
+								</div>						
+							</tr>
+						<?php endforeach ?>
+					<?php // endif ?>
 				</div>				
 			</tbody>
 			</div>

@@ -2,7 +2,7 @@
 
 class Forum extends CI_Controller {
 	
-	public function index(){
+	function index(){
 		$this->load->view('templates/header');
 		$this->load->view('forum/index');
 	}
@@ -43,20 +43,6 @@ class Forum extends CI_Controller {
 			}			 
 		}
 	}
-
-	// function lister_sujet(){
-	// 	// $req = $this->forum->lister_sujet();
-	// 	// if ($req) {
-	// 	// 	# code...
-	// 	// 	foreach ($req as $value) {
-	// 	// 		# code...
-	// 	// 		echo $req->sujet;
-	// 	// 	}
-	// 	// }
-
-	// 	$this->load->view('template/header');
-	// 	$this->load->view('forum/index');
-	// }
 
 }
  
