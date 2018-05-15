@@ -19,9 +19,6 @@ class Account_model extends CI_Model {
  		}
 	}
 
-	function check_for_dislike(){		
-	}
-
 	function search_bar(){		
 	}
 
@@ -60,12 +57,12 @@ class Account_model extends CI_Model {
 						);
 					$this->db->insert('membre', $data);
 				}else{
-					echo "pas ok";
+					// echo "pas ok";
 				}				
 			}	
 			return $req->result_object();
 		}else{
-			 return false;
+			return false;
 		}
     }
 

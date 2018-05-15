@@ -42,20 +42,24 @@ class Account extends CI_Controller {
 		if ($result) {
 			foreach ($result as $user) {
 				if ($user && $user->confirm_token === $token) {
-					// $_SESSION['auth'] = $user ;
 					$_SESSION['flash']['info'] = 'Votre compté a étè confirmé avec succés' ;
-					// $this->load->view('template/header');
+					$this->load->view('templates/header');
 					$this->load->view('index');
-				}else{
-					$this->load->view('template/header');
+				}
+				else{
+					$this->load->view('templates/header');
 					$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
-					// $this->load->view('index');
+					$this->load->view('index');
 				}				
 			}			
+		} else {
+			$this->load->view('templates/header');
+			$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
+		    $this->load->view('index');
 		}
     }
 
-    function pass_fotgot() { 
+    function pass_fotgot() {
 
     	if (!empty(trim($this->input->post('email')))) {	
 
@@ -71,19 +75,16 @@ class Account extends CI_Controller {
                 
 				// $url = 'http://localhost/public_html/account/password_reset?email='.$email .'&token='.$reset_token;
 
-				$url = 'http://localhost/gitbiblioplus/public_html/account/password_reset?token='.$reset_token;
-				// mail($email, 'Email de confirmation', 'Merci de cliquer pour valide votre compter '.$url);
-
-				// mail($email, 'Email de confirmation', 'Cliquez sur ce lien pour valider votre compte <br /> '.$url);
-
-				// mail($email, 'Email de confirmation', 'Cliquez sur ce lien pour valider votre compte <br /><br /> '.$url);
+				$url = "http://localhost/gitbiblioplus/public_html/account/password_reset?token=".$reset_token;
+				 
+				// mail($email, 'Email de confirmation', 'Cliquez sur ce lien pour valider votre compte.:  '.$url); 
 				// $_SESSION['flash']['success'] = 'Un email de reinitialisation vous a étè envoyer ';
 				// header('Location:http://localhost/public_html/login/Sign_in');
 
 				$this->email->from('expertcloudplus@gmail.com', 'Biblioplus');
 				$this->email->to($email);
 				$this->email->subject('Email de reinitialisation de mot de passe');
-				$this->email->message('Cliquez sur ce lien pour valider votre compte <br /><br /> '.$url);
+				$this->email->message('Cliquez sur ce lien pour valider votre compte.: '.$url);
 				if ($this->email->send()) {
 					$this->load->view('templates/header');
 					$_SESSION['flash']['success'] = 'Un email de réinitialisation vous a étè envoyer ';
@@ -114,16 +115,15 @@ class Account extends CI_Controller {
 				if ($user && $user->reset_token == $reset_token) {
 					$this->load->view('templates/header');
 					$this->load->view('pass_reset');
-				}else{
-				//	$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
+				} else{
 					$this->load->view('templates/header');
-					$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
-					 $this->load->view('pass_reset');
+					$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide ' ;
+					$this->load->view('pass_reset');
 				}				
 			} 		
 		} else {
 			$this->load->view('templates/header');
-			$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
+			$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide ' ;
 			$this->load->view('index');
 		}
     }
@@ -136,7 +136,6 @@ class Account extends CI_Controller {
 			$this->load->view('templates/header');
 			$this->load->view('pass_reset');
 		}else {
-			// $mot_de_passe = password_hash(trim($this->input->post('mot_de_passe')), PASSWORD_BCRYPT);	
 			$mot_de_passe = sha1($this->input->post('mot_de_passe'));
 			$query = $this->account->update_pass($mot_de_passe);
 			if ($query) {
