@@ -31,10 +31,11 @@ class Forum extends CI_Controller {
 					$this->load->view('templates/header');
 					$this->load->view('forum/nouveau_sujet');
 				} else {
-				    $user_id = $this->session->userdata('id_inscription');
+				    $user_id = $this->session->userdata('idmembre');
 					$this->forum->nouveau_sujet($user_id, $ts, $tc, $td);
-					$_SESSION['flash']['info'] = "Sujet ajouter";
 					// redirect('forum/index');
+					$this->load->view('templates/header');
+					$_SESSION['flash']['info'] = "Sujet ajouter";
 					$this->load->view('forum/index');
 				}
 			}else{

@@ -11,9 +11,9 @@ class Forum_model extends CI_Model {
 		if ($req->num_rows()) {
 			foreach ($req->result() as $key) {
 				if ($key->contenu_c != $cat ) {
-					echo 'Categorie differente';
+					// echo 'Categorie differente';
+					return false;
 				} else {
-
 					$requte = 'INSERT INTO f_sujets ( `id_createur`, `id_categorie`, `sujet`, `contenu_s`, `date_hres_creation`) VALUES ( ?, ?, ?, ?, CURRENT_TIMESTAMP() )';
 					$this->db->query($requte, array($user_id, $key->id, $ts, $tc ));
 
@@ -25,7 +25,7 @@ class Forum_model extends CI_Model {
 					$req = $this->db->query($sql, array($sujet_id, $user_id));
 					if($req->num_rows()){
 						foreach ($req->result() as $key ) {
-							var_dump($key);
+							// var_dump($key);
 							// update dans f_categorie
 							$sujet_id = $key->id ;
 
