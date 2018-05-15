@@ -10,9 +10,9 @@ class Forum_model extends CI_Model {
 		$req = $this->db->query($sql);
 		if ($req->num_rows()) {
 			foreach ($req->result() as $key) {
-				if ($key->contenu_c != $cat ) {
+				if ($key->contenu_c !== $cat ) {
 					// echo 'Categorie differente';
-					return false;
+					// return false;
 				} else {
 					$requte = 'INSERT INTO f_sujets ( `id_createur`, `id_categorie`, `sujet`, `contenu_s`, `date_hres_creation`) VALUES ( ?, ?, ?, ?, CURRENT_TIMESTAMP() )';
 					$this->db->query($requte, array($user_id, $key->id, $ts, $tc ));
