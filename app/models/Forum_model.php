@@ -40,7 +40,7 @@ class Forum_model extends CI_Model {
 
 	function lister_sujet(){		
 
-		$sql = 'SELECT f_sujets.id, f_sujets.sujet, f_sujets.contenu_s, f_sujets.date_hres_creation, f_categorie.contenu_c, f_messages.contenu_m FROM f_sujets INNER JOIN f_messages, f_categorie WHERE f_sujets.id = f_messages.id_sujet  AND f_categorie.id = f_sujets.id_categorie GROUP BY f_messages.id LIMIT 5	';
+		$sql = 'SELECT f_sujets.id, f_sujets.sujet, f_sujets.contenu_s, f_sujets.date_hres_creation, f_categorie.contenu_c, f_messages.contenu_m FROM f_sujets INNER JOIN f_messages, f_categorie WHERE f_sujets.id = f_messages.id_sujet  AND f_categorie.id = f_sujets.id_categorie GROUP BY f_messages.id DESC LIMIT 8 	';
 
 		$req = $this->db->query($sql );
 		if ($req->num_rows() === 1  ) {

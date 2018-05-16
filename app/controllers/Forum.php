@@ -26,7 +26,7 @@ class Forum extends CI_Controller {
 				$time = NOW();
 				$td = mdate($datestring, $time); 
 
-				if (strlen($ts) >= 70) {
+				if (strlen($ts) >= 90) {
 					$_SESSION['flash']['info'] = "Le sujet ne doit pas de passe 10 caracteres !";
 					$this->load->view('templates/header');
 					$this->load->view('forum/nouveau_sujet');
@@ -35,7 +35,7 @@ class Forum extends CI_Controller {
 					$this->forum->nouveau_sujet($user_id, $ts, $tc, $td);
 					// redirect('forum/index');
 					$this->load->view('templates/header');
-					$_SESSION['flash']['info'] = "Sujet ajouter";
+					$_SESSION['flash']['info'] = "Succés!";
 					$this->load->view('forum/index');
 				}
 			}else{

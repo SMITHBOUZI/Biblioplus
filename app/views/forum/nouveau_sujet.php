@@ -1,12 +1,8 @@
 <?php 
 	if ($this->session->userdata('pseudo') === NULL) {
-		# code...
-		redirect(base_url('login/Sign_in'));
+		$_SESSION['flash']['info'] = 'Connecter vous !';
+		redirect(base_url('forum/index'));
 	}
-	// 'AAAA-MM-JJ HH:MM:SS'		'%Y-%m-%d %h:%i:%s'
-	// $datestring = '%Y-%m-%d %h:%i:%s';
-	// $time = NOW();
-	// echo mdate($datestring, $time); 
 ?>
 
 <div class="row" id="nouveau_sujet_view" >

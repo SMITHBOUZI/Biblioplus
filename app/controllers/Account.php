@@ -69,21 +69,17 @@ class Account extends CI_Controller {
 			$req = $this->account->password_fotgot($email, $reset_token); 
 			 
 			if ($req) {
-				// $user_id = $this->db->insert_id();
 				$reset_token = $this->security->get_csrf_hash();
-				// $email 	     = trim($this->input->post('email')); 
-                
-				// $url = 'http://localhost/public_html/account/password_reset?email='.$email .'&token='.$reset_token;
-
+				// https://expertcloudplus.000webhostapp.com/
 				$url = "http://localhost/gitbiblioplus/public_html/account/password_reset?token=".$reset_token;
 				 
 				// mail($email, 'Email de confirmation', 'Cliquez sur ce lien pour valider votre compte.:  '.$url); 
-				// $_SESSION['flash']['success'] = 'Un email de reinitialisation vous a étè envoyer ';
-				// header('Location:http://localhost/public_html/login/Sign_in');
+				// $_SESSION['flash']['success'] = 'Un mail de réinitialisation vous a étè envoyer ';
+				// header('Location:https://expertcloudplus.000webhostapp.com/login/Sign_in');
 
 				$this->email->from('expertcloudplus@gmail.com', 'Biblioplus');
 				$this->email->to($email);
-				$this->email->subject('Email de reinitialisation de mot de passe');
+				$this->email->subject('Email de réinitialisation de mot de passe');
 				$this->email->message('Cliquez sur ce lien pour valider votre compte.: '.$url);
 				if ($this->email->send()) {
 					$this->load->view('templates/header');
@@ -98,10 +94,8 @@ class Account extends CI_Controller {
 				$this->load->view('templates/header');
 				$this->load->view('mail_recup');
 			}
-		} else {
-			
+		} else {			
 			$this->load->view('templates/header');
-			// $_SESSION['flash']['danger'] = 'Saisir un addresse email svp';
 			$this->load->view('mail_recup');
 		}
     }
@@ -139,7 +133,7 @@ class Account extends CI_Controller {
 			$mot_de_passe = sha1($this->input->post('mot_de_passe'));
 			$query = $this->account->update_pass($mot_de_passe);
 			if ($query) {
-				$_SESSION['flash']['success'] = 'Votre mot de passe a ete modifier avec succes ';
+				$_SESSION['flash']['success'] = 'Votre mot de passe a étè modifier avec succés ';
 				$this->load->view('templates/header');
 				$this->load->view('index');
 			}else {

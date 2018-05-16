@@ -1,6 +1,14 @@
 <div class="row" id="forum_view">
 	<div class="columns large-12 medium-12" id="entete">
 		<h3 >Forum Biblioplus</h3>
+		<?php if (isset($_SESSION['flash'])): ?>
+				<?php foreach ($_SESSION['flash'] as $type => $message):?>
+					 <div class="alert alert-<?= $type; ?>">
+							<?= $message; ?> 						
+					 </div>
+				<?php endforeach ?>
+				<?php unset($_SESSION['flash']) ?>
+			<?php endif ?>
 	</div>
 
 	<div class=" columns large-12 medium-12 small-12" id="corps">

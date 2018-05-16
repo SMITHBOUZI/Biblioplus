@@ -14,42 +14,43 @@ class Login extends CI_Controller {
 
 	function sign_in() {
 
-		if ( !empty(trim($this->input->post('pseudo'))) AND !empty(trim($this->input->post('mot_de_passe'))) ) {
+		if ($this->input->post('sign_in')) {
 
-		 	$pseudo =  trim($this->input->post('pseudo'));	
-			$pass   =  sha1(trim($this->input->post('mot_de_passe')));
-		    $result =  $this->login->sign_in($pseudo, $pass);
-		    if(!$result) {
-		    	$_SESSION['flash']['danger'] = 'Soit aucun compte ne correspond ou il n\'est pas encore activé, merci de verifié votre addresse mail pour la confirmation.';
-				// $this->load->view('template/header');
+				if ( !empty(trim($this->input->post('pseudo'))) AND !empty(trim($this->input->post('mot_de_passe'))) ) {
+
+			 	$pseudo =  trim($this->input->post('pseudo'));	
+				$pass   =  sha1(trim($this->input->post('mot_de_passe')));
+			    $result =  $this->login->sign_in($pseudo, $pass);
+			    if(!$result) {
+			    	$_SESSION['flash']['danger'] = 'Soit aucun compte ne correspond ou il n\'est pas encore activé, merci de verifié votre addresse mail pour la confirmation.';
+					$this->load->view('templates/header');
+					$this->load->view('index');			    
+				}else {
+					foreach ($result as $user) {
+				    	if ( !empty($user->pseudo) && $user->mot_de_passe === $pass ) {
+				    		$sess_array = array( 
+							    'pseudo' => $pseudo,
+							    'idmembre' => $user->idmembre,
+							    'photo' => $user->photo,
+							    'is_logged_in ' => TRUE 
+							); 
+							$this->session->set_userdata($sess_array);	
+							$user = $this->session->userdata();
+
+							redirect('account');
+				    	}else if( $user->mot_de_passe != $pass  ) {
+				    		$_SESSION['flash']['danger'] = 'Login incorrect ';
+							$this->load->view('templates/header');
+							$this->load->view('index');
+				    	}
+				    }
+				}	 
+			}  else {
+				$_SESSION['flash']['danger'] = 'Remplis tous les champ svp ';
 				$this->load->view('templates/header');
-				$this->load->view('index');			    
-			}else {
-				foreach ($result as $user) {
-			    	if ( !empty($user->pseudo) && $user->mot_de_passe === $pass ) {
-			    		$sess_array = array( 
-						    'pseudo' => $pseudo,
-						    'idmembre' => $user->idmembre,
-						    'photo' => $user->photo,
-						    'is_logged_in ' => TRUE 
-						); 
-						$this->session->set_userdata($sess_array);	
-						$user = $this->session->userdata();
+				$this->load->view('index');
+		}
 
-						redirect('account');
-			    	}else if( $user->mot_de_passe != $pass  ) {
-			    		$_SESSION['flash']['danger'] = 'Login incorrect ';
-						// $this->load->view('template/header');
-						$this->load->view('templates/header');
-						$this->load->view('index');
-			    	}
-			    }
-			}	 
-		} else {
-			$_SESSION['flash']['danger'] = 'Remplis les champ svp ';
-			// $this->load->view('template/header');
-			$this->load->view('templates/header');
-			$this->load->view('index');
 		}
     }
 
@@ -159,25 +160,26 @@ class Login extends CI_Controller {
 
 					$user_id = $this->db->insert_id();
 					$token 	 = $this->security->get_csrf_hash();
-					$email 	 = trim($this->input->post('email')); 
+					$email 	 = trim($this->input->post('email'));
 
+					//https://expertcloudplus.000webhostapp.com/
 					$url = "http://localhost/gitbiblioplus/public_html/account/confirmation?id=".$user_id ."&token=".$token; 
 
-					// mail($email, 'Email de confirmation', 'Cliquez sur ce lien pour valider votre compte.:  '.$url);
+					// mail($email, "Email de confirmation", "Cliquez sur ce lien pour valider votre compte.:  ".$url);
 					// $_SESSION['flash']['success'] = 'Un email de confirmation vous a étè envoyer';
-					// header('Location:http://localhost/public_html/login/Sign_in');
+					// header('Location:https://expertcloudplus.000webhostapp.com/login/index');
 
 					$this->email->from('expertcloudplus@gmail.com', 'Biblioplus');
 					$this->email->to($email);
 					$this->email->subject('Email de confirmation');
-					$this->email->message('Cliquez sur ce lien pour valider votre compte.:   '.$url);
+					$this->email->message("Cliquez sur ce lien pour valider votre compte.:   ".$url);
 					if ($this->email->send()) {
 					  	$_SESSION['flash']['success'] = 'Un email de confirmation vous a étè envoyé';
 					}else{
 					  	show_error($this->email->print_debugger());
 					  	$_SESSION['flash']['success'] = 'Une erreur se produit .. ';	
 					}					
-					redirect('login/Sign_in');
+					redirect('login/index');
 
 				  // 		$this->load->view('templates/header');
 						// $_SESSION['flash']['danger'] = 'Success';
