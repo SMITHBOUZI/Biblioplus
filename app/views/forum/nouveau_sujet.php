@@ -7,6 +7,10 @@
 
 <div class="row" id="nouveau_sujet_view" >
 	<div class="columns large-9 medium-9 large-centered medium-centered">
+
+		<div class="columns large-12 medium-12" id="entete">
+		<h3 >Forum Biblioplus</h3>
+		</div>
 		<!-- <form class="columns large-12 medium-12" > -->
 			<!-- REGISTRATION FORM -->
 		     <?php if (validation_errors()): ?> 
@@ -25,7 +29,7 @@
 		      <?php endif ?>
 		<?php echo form_open_multipart('forum/nouveau_sujet','class="columns medium-12 large-12"');?> 
 			<div class="columns large-12 medium-12">			
-				<h4>Nouveau sujet</h4>
+				<h4 style="text-align: center; color: #2e7f4d;">Nouveau sujet</h4>
 			</div>
 			<div class=" columns large-12 medium-12 ">
 				<div class="columns large-3 medium-3"> 
@@ -57,11 +61,11 @@
 					<label> Contenu</label>		
 				</div>
 				<div class="columns large-9 medium-9">					
-					<textarea placeholder="" name="tcontenue" class="tcontenue"></textarea>					
+			<textarea  rows="6" cols="40" placeholder="" name="tcontenue" class="tcontenue"></textarea>					
 				</div>				
 			</div>
 			<div class="columns large-12 medium-12">
-				<input type="submit" name="poster" value="poster" class="custom_input" />
+				<input type="submit" name="poster" value="poster" id="custom_input_post" />
 			</div>
 			<?php echo form_close();  ?>
 		<!-- </form> -->

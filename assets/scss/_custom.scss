@@ -533,15 +533,22 @@ label{
   color: gray;
   text-align: right;
 }
+#entete {
+  color: green;
+  font-size: 2px;
+  
+  position: relative;
+  top: 6px;
+  }
 textarea{
   width: 80%;
   padding:10px;
   margin-top: 15px;
   outline: none;
   border:0.7px solid #2e7f4d;
-
-border-radius: 5px;
-letter-spacing: 0.2px;
+  
+  border-radius: 5px;
+  letter-spacing: 0.2px;
   font-family: arial;
   font-size: 0.90em;
 }
@@ -549,10 +556,22 @@ letter-spacing: 0.2px;
 form{
 
   text-align: center;
-  background-color: #d6e4da;
+  background-color: #f3fdf6;
   padding: 10px;
 }
 }
+
+#custom_input_post{
+ padding: 12px; 
+ border:0.7px solid #2e7f4d;
+ outline: none;
+ border-radius: 5px;
+ margin: auto;
+ position: relative;
+ top: 5px;
+}
+
+
 
 
 
