@@ -18,7 +18,7 @@
 				<div class="columns large-12 medium-12 small-12">
 					<tr>
 						<div class=" columns large-6 medium-6 small-6">
-							<th>Sujet</th>
+							<th>Sujet <a href="<?php echo base_url('forum/nouveau_sujet'); ?>">"nouveau sujet"</a> </th>
 						</div>
 						<div class=" columns large-3 medium-3 small-3">
 							<th>Categorie</th>
