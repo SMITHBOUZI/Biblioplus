@@ -58,16 +58,7 @@
           <div class="grid-x padding-x">
 
             <div class="cell medium-12">
-              <!--C Moi -->
-              <?php if (isset($_SESSION['flash'])): ?>
-                <?php foreach ($_SESSION['flash'] as $type => $message):?>
-                  <div class="alert alert-<?= $type; ?>">
-                    <?= $message; ?>            
-                  </div>
-                <?php endforeach ?>
-                <?php unset($_SESSION['flash']) ?>
-              <?php endif ?>
-              <!-- fin MOi -->
+              
 
               <h6>Connexion</h6>
 
@@ -85,7 +76,9 @@
             </div>
 
             <div class="medium-12 cell">
-              <button class="border_button"><a href="<?php echo base_url('login/sign_up'); ?>">  Nouveau compte </a> </button>
+              <a href="<?php echo base_url('login/sign_up'); ?>">
+                <input type="button" class="fill_button" value="Nouveau compte " />
+              </a> 
             </div>
             <div class="medium-9 cell"> 
               <span> <a href="<?php echo base_url('account/pass_fotgot'); ?>"> Mot de passe oubli&eacute?</a></span>
@@ -121,9 +114,9 @@
 
             <div class="medium-12 cell">
               <h6><?php echo $_SESSION['pseudo']; ?> </h6>
-
-              <button class="border_button"> <a href="<?php echo base_url('account/sign_out'); ?>">  Deconnexion </a> </button>
-              <a href="<?php echo base_url('account/sign_out'); ?>">  Deconnexion </a>
+             <a href="<?php echo base_url('account/sign_out'); ?>"> 
+              <input type="button" name="account/sign_out" value="Deconnexion" class="fill_button" />
+             </a> 
             </div> 
 
           </div>
@@ -172,6 +165,17 @@
       </header>
 
   </div>
+
+  <!--C Moi -->
+              <?php if (isset($_SESSION['flash'])): ?>
+                <?php foreach ($_SESSION['flash'] as $type => $message):?>
+                  <div class="callout success<?= $type; ?>" style="position: absolute;">
+                    <?= $message; ?>            
+                  </div>
+                <?php endforeach ?>
+                <?php unset($_SESSION['flash']) ?>
+              <?php endif ?>
+              <!-- fin MOi -->
 
 <script src="<?php echo base_url('assets/node_modules/jquery/dist/jquery.js'); ?>  "></script>
 <script src="<?php echo base_url('assets/node_modules/what-input/dist/what-input.js'); ?>  "></script>
