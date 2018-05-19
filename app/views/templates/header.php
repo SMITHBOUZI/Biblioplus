@@ -66,7 +66,7 @@
             <div class="cell medium-12">
               
 
-              <h6>Connexion</h6>
+              <h6 id="temp">Connexion</h6>
 
               <!--  <input type="text" placeholder="Nom d'utilisateur" > -->
               <?php echo form_input('pseudo','','class="custom_input" id="pseudo" placeholder="Nom d\'utilisateur" '); ?>
@@ -77,7 +77,7 @@
             </div>
 
             <div class="medium-12 cell">
-              <input type="submit" class="fill_button" name="sign_in" value="Connecter"> </button>
+              <input type="submit" id="connecter" class="fill_button" name="sign_in" value="Connecter"> </button>
             <!--  <input type="submit" class="fill_button" value="Connecter"> </button> -->
             </div>
 

@@ -34,6 +34,14 @@ $("#nav_menu").slideToggle(400);
 
 });
 
+$("#connecter").click(function(e){
+   e.preventDefault();
+   if(   ($("#mot_de_passe").val()=='') && ($("#pseudo").val()=='')   ){
+    $("#temp").text("Veuillez remplir tous les champs").css("color","red");
+
+   }
+
+});
 
 
 
