@@ -156,8 +156,8 @@ class Login extends CI_Controller {
 					$config['upload_path']          = 'assets/avatar/';
 					$config['allowed_types']        = 'gif|jpg|png|jpeg';
 					$config['max_size']             = 0;
-					// $config['max_width']            = 768;
-					// $config['max_height']           = 1024;
+					$config['max_width']            = 180;
+					$config['max_height']           = 240;
 
 					// $this->load->library('upload', $config);
 					$this->upload->initialize($config);

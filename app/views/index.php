@@ -19,27 +19,27 @@
     </div>
     </div> <!-- end of gridC -->
     <!--Catalogue Ouvrage-->
-    <div class="row small-up-2 medium-up-3 large-up-5 padding-x " 
-    style="text-align:center;margin:auto;">
-    <div class="column column-block" style="overflow:hidden;">
-      <img src="https://placehold.it/180x240" class="thumbnail" alt="">
-    </div>
-     <div class="column column-block">
-      <img src="https://placehold.it/180x240" class="thumbnail" alt="">
-    </div>
-     <div class="column column-block">
-      <img src="https://placehold.it/180x240" class="thumbnail" alt="">
-    </div>
-     <div class="column column-block">
-      <img src="https://placehold.it/180x240" class="thumbnail" alt="">
-    </div>
-    <div class="column column-block">
-      <img src="https://placehold.it/180x240" class="thumbnail" alt="">
-    </div>
-   
+   <div class="row">
 
+<div class="owl-carousel owl-theme">
+
+
+ <div class="items" >
+      <img src="<?php echo base_url('assets/img/ouvrage.jpg'); ?>" class="thumbnail" alt="">
+    </div>
    
-  </div>
+    <div class="items" >
+      <img src="<?php echo base_url('assets/img/ouvrage.jpg'); ?>" class="thumbnail" alt="">
+    </div>
+  <div class="items" >
+      <img src="<?php echo base_url('assets/img/auteur_homme.jpg'); ?>" class="thumbnail" alt="">
+    </div>
+  <div class="items" >
+      <img src="<?php echo base_url('assets/img/ouvrage.jpg'); ?>" class="thumbnail" alt="">
+    </div>
+</div>
+
+</div>
      
           <div class="row">
 

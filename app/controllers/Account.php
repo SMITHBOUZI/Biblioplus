@@ -80,9 +80,9 @@ class Account extends CI_Controller {
 				$this->email->subject('Email de réinitialisation de mot de passe');
 				$this->email->message('Cliquez sur ce lien pour valider votre compte.: '.$url);
 				if ($this->email->send()) {
-					// $this->load->view('templates/header');
+					$this->load->view('templates/header');
 					$_SESSION['flash']['success'] = 'Un mail de réinitialisation vous a étè envoyer ';
-					// $this->load->view('index');
+					$this->load->view('index');
 				}else{
 					show_error($this->email->print_debugger());
 					$_SESSION['flash']['danger'] = 'Une erreur se produit .. ';	

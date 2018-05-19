@@ -7,6 +7,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>BiBlioPlus</title>
         <link rel="stylesheet" href="<?php echo base_url('assets/css/app.css'); ?> ">
+<link rel="stylesheet" href="<?php echo base_url('assets/css/app.css'); ?> ">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.min.css'); ?> ">
+         <link rel="stylesheet" href="<?php echo base_url
+         ('assets/css/owl.theme.default.min'); ?> ">
+
+        
         <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Bevan|Carter+One|Fira+Sans+Extra+Condensed|Fjalla+One|Fredoka+One|Hind+Madurai|Oswald|Palanquin+Dark|Paytone+One|Ramabhadra|Suez+One" rel="stylesheet">
 
@@ -181,3 +187,5 @@
 <script src="<?php echo base_url('assets/node_modules/what-input/dist/what-input.js'); ?>  "></script>
 <script src="<?php echo base_url('assets/node_modules/foundation-sites/dist/js/foundation.js'); ?>  "></script>
 <script src="<?php echo base_url('assets/js/app.js'); ?> "></script>
+<script src="<?php echo base_url('assets/js/owl.carousel.min.js'); ?> "> 
+</script>
