@@ -16,41 +16,44 @@ class Login extends CI_Controller {
 
 		if ($this->input->post('sign_in')) {
 
-				if ( !empty(trim($this->input->post('pseudo'))) AND !empty(trim($this->input->post('mot_de_passe'))) ) {
+			if ( !empty(trim($this->input->post('pseudo'))) AND !empty(trim($this->input->post('mot_de_passe'))) ) {
 
-			 	$pseudo =  trim($this->input->post('pseudo'));	
-				$pass   =  sha1(trim($this->input->post('mot_de_passe')));
-			    $result =  $this->login->sign_in($pseudo, $pass);
-			    if(!$result) {
-			    	$_SESSION['flash']['danger'] = 'Soit aucun compte ne correspond ou il n\'est pas encore activé, merci de verifié votre addresse mail pour la confirmation.';
-					$this->load->view('templates/header');
-					$this->load->view('index');			    
-				}else {
-					foreach ($result as $user) {
-				    	if ( !empty($user->pseudo) && $user->mot_de_passe === $pass ) {
-				    		$sess_array = array( 
-							    'pseudo' => $pseudo,
-							    'idmembre' => $user->idmembre,
-							    'photo' => $user->photo,
-							    'is_logged_in ' => TRUE 
-							); 
-							$this->session->set_userdata($sess_array);	
-							$user = $this->session->userdata();
+		 	$pseudo =  trim($this->input->post('pseudo'));	
+			$pass   =  sha1(trim($this->input->post('mot_de_passe')));
+		    $result =  $this->login->sign_in($pseudo, $pass);
+		    if(!$result) {
+		    	$_SESSION['flash']['danger'] = 'Ce compte n\'est pas actif, merci de verifier votre addresse mail pour la confirmation.';
+				$this->load->view('templates/header');
+				$this->load->view('index');			    
+			}else {
+				foreach ($result as $user) {
+			    	if ( !empty($user->pseudo) && $user->mot_de_passe === $pass ) {
+			    		$sess_array = array( 
+						    'pseudo' => $pseudo,
+						    'idmembre' => $user->idmembre,
+						    'photo' => $user->photo,
+						    'is_logged_in ' => TRUE 
+						); 
+						$this->session->set_userdata($sess_array);	
+						$user = $this->session->userdata();
 
-							redirect('account');
-				    	}else if( $user->mot_de_passe != $pass  ) {
-				    		$_SESSION['flash']['danger'] = 'Login incorrect ';
+						redirect('account');
+			    	} else if( $user->mot_de_passe != $pass ) {
+				    		$_SESSION['flash']['danger'] = 'Connexion incorrect ';
 							$this->load->view('templates/header');
+							$this->load->view('index');
+
+				    	} else {
+				    		$this->load->view('templates/header');
 							$this->load->view('index');
 				    	}
 				    }
 				}	 
 			}  else {
-				$_SESSION['flash']['danger'] = 'Remplis tous les champ svp ';
+				$_SESSION['flash']['danger'] = 'Veuillez remplir tous les champs ';
 				$this->load->view('templates/header');
 				$this->load->view('index');
-		}
-
+			}
 		}
     }
 
@@ -90,7 +93,6 @@ class Login extends CI_Controller {
 
     function sexe_valide(){
 		if ( (trim($this->input->post('sexe')) === 'Masculin') OR (trim($this->input->post('sexe')) === 'Feminin') ){
-				# code...
 			return TRUE;
 		} else {
 			return FALSE ;
@@ -113,12 +115,30 @@ class Login extends CI_Controller {
     	}
     }
 
+    function ckeck_status_found($mem){
+    	if (empty(trim($this->input->post('mem')))) {
+    		return FALSE ;    		
+    	} else {
+    		return TRUE ;
+    	}
+    }
+    function ckeck_datenaiss_found($date_naissance){
+    	if (empty(trim($this->input->post('date_naissance')))) {
+    		return FALSE ;    		
+    	} else {
+    		return TRUE ;
+    	}
+    }
+
 	public function sign_up() {
-		$this->form_validation->set_rules('mot_de_passe', 'mot de passe', 'trim|required|min_length[8]|htmlspecialchars');
-		$this->form_validation->set_rules('mot_de_passe_c', 'mot de passe de confirmation', 'trim|required|min_length[8]|htmlspecialchars|matches[mot_de_passe]');
-		$this->form_validation->set_rules('pseudo', 'pseudo', 'trim|required|min_length[6]|max_length[12]|htmlspecialchars|callback_ckeck_format_pseudo');
-		$this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|htmlspecialchars|callback_check_if_email_exists');
 		$this->form_validation->set_rules('nom_prenom', 'nom complet', 'trim|required|htmlspecialchars|callback_ckeck_format_nom_prenom');
+		$this->form_validation->set_rules('pseudo', 'nom d\'utilisateur', 'trim|required|min_length[6]|max_length[12]|htmlspecialchars|callback_ckeck_format_pseudo');
+		$this->form_validation->set_rules('mot_de_passe', 'mot de passe', 'trim|required|min_length[8]|htmlspecialchars');
+		$this->form_validation->set_rules('mot_de_passe_c', 'mot de passe de confirmation', 'trim|min_length[8]|htmlspecialchars|matches[mot_de_passe]');
+		$this->form_validation->set_rules('pseudo', 'nom d\'utilisateur', 'trim|required|min_length[6]|max_length[12]|htmlspecialchars|callback_ckeck_format_pseudo');
+		$this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|htmlspecialchars|callback_check_if_email_exists');
+		$this->form_validation->set_rules('date_naissance', 'date naissance', 'trim|required|htmlspecialchars|callback_ckeck_datenaiss_found');
+		$this->form_validation->set_rules('mem', '', 'trim|required|htmlspecialchars|callback_ckeck_status_found');
 
 
 		if ($this->form_validation->run() === FALSE) {
@@ -187,7 +207,7 @@ class Login extends CI_Controller {
 
 				}else {				
 					$this->load->view('templates/header');
-					$_SESSION['flash']['danger'] = 'Remplis tous les champs svp';
+					$_SESSION['flash']['danger'] = 'Remplir tous les champs ';
 					$this->load->view('form_register');
 				}
 			} 

@@ -11,12 +11,11 @@ class Account extends CI_Controller {
  
 	public function index() {
 		if ($this->session->get_userdata('logged_in')) {
-			$session_data = $this->session->userdata('logged_in');
-			$data['id'] = $session_data['id'];
-			$data['pseudo'] = $session_data['pseudo'];
-			$data['photo'] = $session_data['photo'];
+			$session_data 	 = $this->session->userdata('logged_in');
+			$data['id']		 = $session_data['id'];
+			$data['pseudo']	 = $session_data['pseudo'];
+			$data['photo'] 	 = $session_data['photo'];
 
-			// $this->load->view('user_connect', $data);
 			$this->load->view('templates/header', $data);
 			$this->load->view('index');
 		}else{
@@ -30,9 +29,8 @@ class Account extends CI_Controller {
     function sign_out() {
 		$this->session->unset_userdata('logged_in');
 		$this->session->sess_destroy();
-		$_SESSION['flash']['info'] = 'Vous etez deconnecter ';
-   		$this->load->view('templates/header');
-		$this->load->view('index');   
+		   		
+		header('Location:index');
     }
 
     function confirmation(){
@@ -82,9 +80,9 @@ class Account extends CI_Controller {
 				$this->email->subject('Email de réinitialisation de mot de passe');
 				$this->email->message('Cliquez sur ce lien pour valider votre compte.: '.$url);
 				if ($this->email->send()) {
-					$this->load->view('templates/header');
-					$_SESSION['flash']['success'] = 'Un email de réinitialisation vous a étè envoyer ';
-					$this->load->view('index');
+					// $this->load->view('templates/header');
+					$_SESSION['flash']['success'] = 'Un mail de réinitialisation vous a étè envoyer ';
+					// $this->load->view('index');
 				}else{
 					show_error($this->email->print_debugger());
 					$_SESSION['flash']['danger'] = 'Une erreur se produit .. ';	
@@ -264,6 +262,5 @@ class Account extends CI_Controller {
 		} else {
 			// echo "Lal";
 		}
-    }
-    
+    }    
 }
