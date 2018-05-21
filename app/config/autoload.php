@@ -136,5 +136,4 @@ $autoload['model'] = array(
 							'login_model'  => 'login',
 							'forum_model'  => 'forum',
 							'account_model'  => 'account'
-
 							);

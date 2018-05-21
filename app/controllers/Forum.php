@@ -45,6 +45,11 @@ class Forum extends CI_Controller {
 		}
 	}
 
+	function contenu_sujet(){
+		$this->load->view('templates/header');
+		$this->load->view('forum/contenu_sujet');
+	}
+
 }
  
 

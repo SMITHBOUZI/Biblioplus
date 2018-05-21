@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="<?php echo base_url('assets/css/app.css'); ?> ">
         <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Bevan|Carter+One|Fira+Sans+Extra+Condensed|Fjalla+One|Fredoka+One|Hind+Madurai|Oswald|Palanquin+Dark|Paytone+One|Ramabhadra|Suez+One" rel="stylesheet">
-
+        <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
   </head>
 
 <body>
@@ -28,9 +28,9 @@
 
                   <ul class="  menu align-center"  id="nav_menu">
                     <li><a href="<?php echo base_url('login/index'); ?>"><i class="fas fa-home " ></i></a></li>
-                    <li><a href="#">Collection</a></li>
+                    <li><a href="<?php echo base_url('Collection/collection'); ?>">Collection</a></li>
                     <li><a href="#">Auteurs</a></li>
-                    <li><a href="#">Evenements</a></li>
+                    <li><a href="<?php echo base_url('Evenement/evenement'); ?>">Evenements</a></li>
                     <li><a href="<?php echo base_url('forum/index'); ?>">Forum</a></li>
                     
                     
