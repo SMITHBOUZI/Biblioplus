@@ -42,8 +42,9 @@
 
 
   <div class="columns medium-12 small-12">
-    <span>W3Schools est optimisé pour l'apprentissage, les tests et la formation. Les exemples pourraient être simplifiés pour améliorer la lecture et la compréhension de base. Les tutoriels, les références et les exemples sont constamment révisés pour éviter les erreurs, mais nous ne pouvons pas garantir l'exactitude complète de tout le contenu. 
-       </span>
+    <span>
+      Les connaissances sont dans les livres et faire parti d'un site qui vous les mettent à votre disposition ne serait que vous faciliter la vie. Vous serez à même de satisfaire votre curiosité intellectuelle.  Inscrivez vous,  vous serez plus que satisfaites! !!
+    </span>
   </div>
   
 </div>
@@ -76,7 +77,7 @@
     </div>
 
      <div class="columns small-12 medium-12 "> 
-    <input type="text" name="pseudo" placeholder="Pseudo" class="custom_input" />
+    <input type="text" name="pseudo" placeholder="Nom d'utilisateur" class="custom_input" />
     </div>
 
      <div class="columns small-12 medium-12"> 

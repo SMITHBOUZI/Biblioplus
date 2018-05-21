@@ -34,7 +34,44 @@ $("#nav_menu").slideToggle(400);
 
 });
 
+$("#connecter").click(function(e){
+   e.preventDefault();
+   if(   ($("#mot_de_passe").val()=='') && ($("#pseudo").val()=='')   ){
+    $("#temp").text("Veuillez remplir tous les champs").css("color","red");
 
+   }
+
+});
+
+
+
+$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:5,
+    nav:true,
+    center:true,
+    dots:true,
+    responsive:{
+        0:{
+            items:1
+        },
+
+        300:{
+            items:2
+        },
+        600:{
+            items:3
+        },
+
+        800:{
+            items:4
+        },
+
+        1000:{
+            items:5
+        }
+    }
+})
 
 });
 
