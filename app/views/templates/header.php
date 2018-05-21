@@ -15,7 +15,7 @@
         
         <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Bevan|Carter+One|Fira+Sans+Extra+Condensed|Fjalla+One|Fredoka+One|Hind+Madurai|Oswald|Palanquin+Dark|Paytone+One|Ramabhadra|Suez+One" rel="stylesheet">
-        <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+        <script src="https://cdn.ckeditor.com/4.9.2/iFR2sdA7u06vHJyyLlAd4snFpCl/ckeditor.js"></script>
   </head>
 
 <body>

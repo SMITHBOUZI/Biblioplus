@@ -17,8 +17,13 @@
 
 	    <div class="columns large-12 medium-12" style=" padding: 0px;">
 
-	    	<div class="columns large-1 medium-1" style="padding: 0px; text-align: center;">
+	    	<div class="columns large-1 medium-1"style="padding: 0px; text-align: center; font-style: italic; color: gray;">
+	    	<div class="columns large-12 medium-12" >
 	    	<img src="https://placehold.it/50x50" class="thumbnail" alt="" style="border-radius: 50%">
+	    	</div>
+	    	<div class="columns large-12 medium-12">
+	    	<small><span>nom posteur</span></small>	
+	    	</div>
 	    	</div>
 
 	    	<div class="columns large-11 medium-11" id="contenu_sujet">
@@ -63,34 +68,28 @@
 	</div>
 
 	<div class="columns large-12 medium-12">
-		<h5 id="text"> Faite de vos exp&eacuteriences d'angrais pour l'augmentation <br/>de l'appetit de tout les autres</h5>
+		<h5 id="text"> Faites de vos exp&eacuteriences d'engrais pour augmenter <br/> l'app&eacutetit des autres a la lecture</h5>
 	</div>
 
-	<div class="columns large-12 medium-12" id="reaction">
-    <div class="columns large-1 medium-1" style="padding:0px; text-align: center;">
-	<img src="https://placehold.it/50x50" class="thumbnail" alt="" style="border-radius: 50%">
-	</div> 
-    <div class="columns large-11 medium-11 " style="text-align: justify; padding: 0px; position: relative; top: 10px;"> <p>Les navigateurs peuvent utiliser ces éléments pour activer le défilement du corps de la table indépendamment de l'en-tête et du pied de page.hkfbbbbbbfjudhjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjddddddddddddddddduuuuuuuuuu</p>
-    </div>    
-	</div>
+
 
 
 	<div class="columns large-12 medium-12" id="reaction">
-    <div class="columns large-1 medium-1" style="padding:0px; text-align: center;">
-	<img src="https://placehold.it/50x50" class="thumbnail" alt="" style="border-radius: 50%">
-	</div> 
-    <div class="columns large-11 medium-11 " style="text-align: justify; padding: 0px; position: relative; top: 10px;"> <p>Les navigateurs peuvent utiliser ces éléments pour activer le défilement du corps de la table indépendamment de l'en-tête et du pied de page.hkfbbbbbbfjudhjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjddddddddddddddddduuuuuuuuuuvLes navigateurs peuvent utiliser ces éléments pour activer le défilement du corps de la table indépendamment de l'en-tête et du pied de page.hkfbbbbbbfjudhjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjddddddddddddddddduuuuuuuuuu</p>
+	    	<div class="columns large-1 medium-1"style="padding: 0px; text-align: center; font-style: italic; color: gray;">
+	    	<div class="columns large-12 medium-12" >
+	    	<img src="https://placehold.it/50x50" class="thumbnail" alt="" style="border-radius: 50%">
+	    	</div>
+	    	<div class="columns large-12 medium-12">
+	    	<small><span>nom posteur</span></small>	
+	    	</div>
+	    	</div>
+    <div class="columns large-11 medium-11 " style="text-align: justify; padding: 0px; position: relative; top: 10px;"> 
+    	<div class="columns large-12 medium-12" style="text-align: right; font-style: italic; color: gray;">date de r&eacuteponse</div>
+        <div class="columns large-12 medium-12">
+    	<p>Les navigateurs peuvent utiliser ces éléments pour activer le défilement du corps de la table indépendamment de l'en-tête et du pied de page.</p>
+    	</div>
     </div>    
 	</div>
-
-		<div class="columns large-12 medium-12" id="reaction">
-    <div class="columns large-1 medium-1" style="padding:0px; text-align: center;">
-	<img src="https://placehold.it/50x50" class="thumbnail" alt="" style="border-radius: 50%">
-	</div> 
-    <div class="columns large-11 medium-11 " style="text-align: justify; padding: 0px; position: relative; top: 10px;"> <p>Les navigateurs peuvent utiliser ces éléments pour activer le défilement du corps de la table indépendamment de l'en-tête et du pied de page.hkfbbbbbbfjudhjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjddddddddddddddddduuuuuuuuuu Les navigateurs peuvent utiliser ces éléments pour activer le défilement du corps de la table indépendamment de l'en-tête et du pied de page.hkfbbbbbbfjudhjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjddddddddddddddddduuuuuuuuuu</p>
-    </div>    
-	</div>
-
 	</div>
 </div>
 </body>
