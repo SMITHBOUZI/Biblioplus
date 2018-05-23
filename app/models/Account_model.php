@@ -19,7 +19,19 @@ class Account_model extends CI_Model {
  		}
 	}
 
-	function search_bar(){		
+	function search_bar($search){
+		if ($search) {
+			// SELECT * FROM inscription WHERE nom_prenom LIKE 'b%' OR pseudo LIKE 'd%'
+			$sql = 'SELECT * FROM inscription WHERE pseudo = ? LIKE "b%" OR nom_prenom LIKE "b%" ';
+			$query = $this->db->query($sql, array($search));
+
+			if ($query->num_rows() === 1 ) {
+				return $query->result_object();
+			} else {
+				echo "Data not found ..";
+				return false;
+			}
+		}
 	}
 
 	function fetch($user_id){

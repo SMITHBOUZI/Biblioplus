@@ -11,7 +11,6 @@ class Forum_model extends CI_Model {
 		if ($req->num_rows()) {
 			foreach ($req->result() as $key) {
 				if ($key->contenu_c !== $cat ) {
-					// echo 'Categorie differente';
 					// return false;
 				} else {
 					$requte = 'INSERT INTO f_sujets ( `id_createur`, `id_categorie`, `sujet`, `contenu_s`, `date_hres_creation`) VALUES ( ?, ?, ?, ?, CURRENT_TIMESTAMP() )';
@@ -25,11 +24,9 @@ class Forum_model extends CI_Model {
 					$req = $this->db->query($sql, array($sujet_id, $user_id));
 					if($req->num_rows()){
 						foreach ($req->result() as $key ) {
-							// var_dump($key);
-							// update dans f_categorie
 							$sujet_id = $key->id ;
 
-							$query = "INSERT INTO `f_messages` ( `id_sujet`, `date_hres_post`, `date_hres_edition`) VALUES ( ?, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP() ) ";
+							$query = "INSERT INTO `f_messages` ( `id_sujet`, `date_hres_post`) VALUES ( ?, CURRENT_TIMESTAMP() ) ";
 							$req1 = $this->db->query($query, array($sujet_id));
 						}
 					}
@@ -38,17 +35,30 @@ class Forum_model extends CI_Model {
 		}
 	}
 
-	function lister_sujet(){		
-
-		$sql = 'SELECT f_sujets.id, f_sujets.sujet, f_sujets.contenu_s, f_sujets.date_hres_creation, f_categorie.contenu_c, f_messages.contenu_m FROM f_sujets INNER JOIN f_messages, f_categorie WHERE f_sujets.id = f_messages.id_sujet  AND f_categorie.id = f_sujets.id_categorie GROUP BY f_messages.id DESC LIMIT 8 	';
+	function lister_sujet(){	
+		$sql = 'SELECT f_sujets.id, membre.pseudo, f_sujets.id_createur, f_sujets.sujet, f_sujets.contenu_s, f_sujets.date_hres_creation, f_categorie.contenu_c, f_messages.contenu_m FROM f_sujets INNER JOIN f_messages, f_categorie, membre WHERE membre.idmembre = f_sujets.id_createur AND f_sujets.id = f_messages.id_sujet  AND f_categorie.id = f_sujets.id_categorie GROUP BY f_messages.id DESC LIMIT 5 ';
 
 		$req = $this->db->query($sql );
+
 		if ($req->num_rows() === 1  ) {
 			return $req->result();
 		} else {
 			// false;
 			return $req->result();
-		}		
+		}
+	}
+
+	function sujet_cat($categorie_name){
+		$sql = 'SELECT membre.pseudo, f_sujets.id_createur, f_sujets.sujet, f_sujets.contenu_s, f_sujets.date_hres_creation, f_categorie.contenu_c, f_messages.contenu_m FROM f_sujets INNER JOIN f_messages, f_categorie, membre WHERE membre.idmembre = f_sujets.id_createur AND f_sujets.id = f_messages.id_sujet  AND f_categorie.id = f_sujets.id_categorie AND f_categorie.contenu_c = ? GROUP BY f_messages.id DESC LIMIT 5 ';
+
+		$req = $this->db->query($sql );
+
+		if ($req->num_rows() === 1  ) {
+			return $req->result();
+		} else {
+			// false;
+			return $req->result();
+		}
 	}
 
 	function get_sujet_admin(){
@@ -79,15 +89,18 @@ class Forum_model extends CI_Model {
 
 	function get_sujet_by_id($s, $id){
 		// $sql = 'SELECT sujet, contenu_c, contenu_s, date_hres_creation FROM f_sujets INNER JOIN f_messages, f_categorie WHERE sujet = ? AND f_sujets.id = ? AND f_sujets.id = f_messages.id_sujet  AND f_categorie.id = f_sujets.id_categorie  ';
-		$sql = 'SELECT f_sujets.sujet, f_categorie.contenu_c, f_sujets.contenu_s, f_sujets.date_hres_creation, f_messages.contenu_m FROM f_sujets 
-		INNER JOIN f_messages, f_categorie WHERE sujet = ? 
+		$sql = 'SELECT membre.pseudo, f_sujets.sujet, f_categorie.contenu_c, f_sujets.contenu_s, f_sujets.date_hres_creation, f_messages.contenu_m FROM f_sujets 
+		INNER JOIN f_messages, f_categorie, membre WHERE sujet = ? 
 		AND f_sujets.id = ? AND f_sujets.id = f_messages.id_sujet 
-		AND f_categorie.id = f_sujets.id_categorie  ';
+		AND f_categorie.id = f_sujets.id_categorie AND membre.idmembre = f_sujets.id_createur  ';
 		$req = $this->db->query($sql, array( $s, $id ) );
 
+		// $com = $this->input->post('comment');
+		
 		if ($req->num_rows() === 1 ) {
 			// foreach ($req as $rows) {
-			// 	$sql = 'UPDATE `f_messages` SET contenu_m =? WHERE id = ? ';
+			// 	$sql = 'UPDATE `f_messages` SET contenu_m = ? WHERE id_sujet = ? ';
+			// 	$id = $rows->id_sujet;
 			// 	$this->db->query($sql, array($com, $id));
 			// }
 			return $req->result_object();
@@ -98,10 +111,22 @@ class Forum_model extends CI_Model {
 		}
 	}
 
-	function editer($sujet){
-		// $query = 'UPDATE f_sujets SET contenu_s = ? , sujet = ?, date_hres_creation = NOW() ';
-		// $this->db->query($query, array())
+	function comment($comment, $id){
+		// $req = 'SELECT f_messages.id_sujet, f_sujets.id, membre.pseudo, f_sujets.id_createur, f_sujets.sujet, f_sujets.contenu_s, f_sujets.date_hres_creation, f_categorie.contenu_c, f_messages.contenu_m FROM f_sujets INNER JOIN f_messages, f_categorie, membre WHERE membre.idmembre = f_sujets.id_createur AND f_sujets.id = f_messages.id_sujet  AND f_categorie.id = f_sujets.id_categorie GROUP BY f_messages.id DESC LIMIT 5 ';
 
+		// $query = $this->db->query($req );
+
+		// if ($query->num_rows() === 1  ) {
+			// return $req->result();
+			// foreach ($query as $rows) {
+				$sql = 'UPDATE f_messages SET contenu_m = ?, date_hres_edition = CURRENT_TIMESTAMP() WHERE id_sujet = ? ';
+				// $id = $rows->id_sujet;
+				$this->db->query($sql, array($comment, $id));
+		// 	}
+		// } else {
+		// 	// false;
+		// 	return $query->result();
+		// }
 	}
 
 	function update($user_id, $ts, $tc){
@@ -138,13 +163,5 @@ class Forum_model extends CI_Model {
 				}
 			}
 		}
-	}
-
-	function supression(){
-		
-	}
-
-	function commente($s){
-
 	}
 }
