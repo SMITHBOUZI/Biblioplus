@@ -19,7 +19,18 @@ class Account_model extends CI_Model {
  		}
 	}
 
-	function search_bar(){		
+	function search_bar($search){
+		if ($search) {
+			$sql = 'SELECT * FROM membre WHERE pseudo = ? ';
+			$query = $this->db->query($sql, array($search));
+
+			if ($query->num_rows() === 1 ) {
+				return $query->result_object();
+			} else {
+				echo "Data not found ..";
+				return false;
+			}
+		}
 	}
 
 	function fetch($user_id){

@@ -46,7 +46,7 @@
 
 
                  <div class="cell small-4  medium-2 large-2">
-                  <section class="menu align-center" style="padding:0px;" id="search_login">
+                  <section class="menu align-center" style="padding:0px;" id="search_login" >
 
                 <li><a href="<?php ?>" id="login"><i class="fas fa-user-circle  ">
                    
@@ -94,21 +94,22 @@
             <div id="search_box" ><!-- Drop down search -->
 
    <div id="search" > 
-<form >
-  <div class="grid-container">
-    <div class="grid-x padding-x">
-    
+<?php  echo form_open('account/search_bar','');?> 
 
-      <div class="medium-12 cell">
-        
-          <input class="custom_input" type="text" placeholder="Rechercher" >
-        
-      </div>
+    <div class="grid-container">
+      <div class="grid-x padding-x">
       
 
+        <div class="medium-12 cell">
+          
+          <input class="custom_input" type="text" placeholder="Rechercher" name="search_bar"> 
+          
+        </div>
+        
+
+      </div>
     </div>
-  </div>
-</form>
+<?php echo form_close();  ?>
 
  </div>   
     
