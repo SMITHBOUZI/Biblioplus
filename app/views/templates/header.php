@@ -53,8 +53,8 @@
 
               </i></a></li>
 
-              <div  id="xax">
-                <div id="xox">
+              <div  id="authen">
+                <div id="box_authen">
              <a href="<?php echo base_url('account/sign_out'); ?>"> 
               <input type="button" name="account/sign_out" value="connecter" class="fill_button" align="center" />
              </a> 
