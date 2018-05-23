@@ -3,22 +3,16 @@ $(document).foundation();
 
 
 $("#login").click(function(e){
-<<<<<<< HEAD
 	$("#nav_menu").hide(10);
 
 $("#search").hide(100);	
 
 $("#user").slideToggle(350);
 
-$('#xax').hide();
-
-=======
-
 $("#search").hide(100);	
 
  $("#xox").slideToggle(350);
 
->>>>>>> f794ed7201f9c56336fb9f17edf48f26f614d823
 });
 
 
