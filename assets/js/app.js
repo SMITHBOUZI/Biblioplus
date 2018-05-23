@@ -14,7 +14,7 @@ $("#search").hide(100);
 $("#search_button").click(function(e){
 $("#user").hide(100);
 $("#nav_menu").hide(10);
-
+$("#xox").hide(100);
 $("#search").slideToggle(500);
 
 });
@@ -26,7 +26,7 @@ $("#search").slideToggle(500);
 
 $(".menu-icon").click(function(e){
 	$("#search").hide(10);
-
+$("#xox").hide(100);
 
 $("#nav_menu").slideToggle(400);
 
