@@ -535,9 +535,7 @@ top:0px;
   top: 6px;
   }
 
-#corps div{
-  border-bottom: 1px solid black;
-}
+
 
   p{
     text-align: justify;
@@ -567,7 +565,6 @@ select{
 
 
 label{
-
   padding:10px;
   font-size: 16px;
   font-style: italic;
@@ -612,7 +609,89 @@ form{
  top: 5px;
 }
 
+#contenair_contenu_sujet{
+  position: relative;
+  top: 20px;
+  margin: auto;
+  background-color:#f8f9f8;
+#box_sujet_poster{
+  background-color:#f4fbf7;
+ 
+  padding: 1px;
+  box-shadow: 0.2px 0.7px 0.2px 0.7px  #eaeaea;
+}
+#custom_input_reagir{
+ 
+ border:0.7px solid #2e7f4d; 
+ border-radius: 5px;
+ margin: auto;
+ position: relative;
+ size: 10px;
+}
+#categorie{
+  font-size: 16px;
+  font-style: italic;
+  color: gray;
+  text-align:left;
+}
+#sujet{
+  font-style: bold;
+  color: green;
+  text-align: left;
+}
 
+#espace_de_reaction
+{ 
+  display: none;
+ 
+  position: relative;
+  top: 5px;
+  right: 14px;
+  
+   }
+#reaction{
+  position: relative;
+  top: 15px;
+  box-shadow: 0px 0.5px #eaeaea;
+ 
+  float: left;
+}
+#valider{
+  border:0.7px solid #2e7f4d; 
+ border-radius: 5px;
+ margin: auto;
+ position: relative;
+ size: 10px; 
+ top: 5px;
+}
+#show{
+  border:0.7px solid #2e7f4d; 
+ border-radius: 5px;
+ margin: auto;
+ position: relative;
+ size: 10px; 
+}
+#text{
+   font-family: arial;
+  font-size: 1.40em;
+  font-style: italic;
+  color: #2e7f4d;
+  text-align: center;
+   position: relative; 
+   top: 15px;
+}
+
+}
+
+
+#selectcat{
+  padding: 2px;
+  width: 70%;
+  outline: none;
+  background-color: none;
+  border-radius: 5px;
+  border:0.7px solid #2e7f4d;
+}
 
 
 
