@@ -21,7 +21,8 @@ class Account_model extends CI_Model {
 
 	function search_bar($search){
 		if ($search) {
-			$sql = 'SELECT * FROM membre WHERE pseudo = ? ';
+			// SELECT * FROM inscription WHERE nom_prenom LIKE 'b%' OR pseudo LIKE 'd%'
+			$sql = 'SELECT * FROM inscription WHERE pseudo = ? LIKE "b%" OR nom_prenom LIKE "b%" ';
 			$query = $this->db->query($sql, array($search));
 
 			if ($query->num_rows() === 1 ) {

@@ -29,8 +29,13 @@ class Account extends CI_Controller {
 		if ($fetch) {
 			foreach ($fetch as $key) {
 				$data = array(
-					'pseudo'	=> $key->pseudo,
-					'email'		=> $key->email
+					'pseudo'			=> $key->pseudo,
+					'email'				=> $key->email,
+					'sexe'				=> $key->sexe,
+					'date_naissance'	=> $key->date_naissance,
+					'status'			=> $key->status,
+					'photo'				=> $key->photo,
+					'nom_prenom'		=> $key->nom_prenom
 				);
 			}
 			$this->load->view('templates/header');

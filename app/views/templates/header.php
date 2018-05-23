@@ -53,42 +53,7 @@
 
               </i></a></li>
 
-
-
-<?php if ($this->session->userdata('pseudo') !== NULL) : ?>
-
-  <!-- user connect -->
-
-  <div id="login_box" >
-
-    <div id="user" > <!-- Drop down login_box -->
-      <form >
-        <div class="grid-container">
-          <div class="grid-x padding-x">
-
-            <div class="cell medium-12 ">
-              <?php if(empty($_SESSION['photo'] )){ ?>
-                <img src="<?php echo base_url('assets/avatar/avatar.png'); ?>" />
-              <?php } else {?>
-                 <img src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" />
-              <?php } ?>
-            </div>
-
-            <div class="medium-12 cell">
-              <h6><?php echo $_SESSION['pseudo']; ?> </h6>
-             <a href="<?php echo base_url('account/sign_out'); ?>"> 
-              <input type="button" name="account/sign_out" value="Deconnexion" class="fill_button" />
-             </a> 
-            </div> 
-
-          </div>
-        </div> <!-- end of container dropdown -->
-      </form>
-    </div>   
-  </div><!-- end of dropdown_login  -->
-
-  <!-- end user connect -->
-<?php endif ?>   
+        
 
         <li><a id="search_button" ><i class="fas fa-search" ></i></a></li>
             <div id="search_box" ><!-- Drop down search -->
@@ -130,15 +95,15 @@
   </div>
 
   <!--C Moi -->
-              <?php if (isset($_SESSION['flash'])): ?>
-                <?php foreach ($_SESSION['flash'] as $type => $message):?>
-                  <div class="callout success<?= $type; ?>" style="position: absolute;">
-                    <?= $message; ?>            
-                  </div>
-                <?php endforeach ?>
-                <?php unset($_SESSION['flash']) ?>
-              <?php endif ?>
-              <!-- fin MOi -->
+    <?php if (isset($_SESSION['flash'])): ?>
+      <?php foreach ($_SESSION['flash'] as $type => $message):?>
+        <div class="callout success<?= $type; ?>" style="position: absolute;">
+          <?= $message; ?>            
+        </div>
+      <?php endforeach ?>
+      <?php unset($_SESSION['flash']) ?>
+    <?php endif ?>
+  <!-- fin MOi -->
 
 <script src="<?php echo base_url('assets/node_modules/jquery/dist/jquery.js'); ?>  "></script>
 <script src="<?php echo base_url('assets/node_modules/what-input/dist/what-input.js'); ?>  "></script>
