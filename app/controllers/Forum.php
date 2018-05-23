@@ -45,9 +45,70 @@ class Forum extends CI_Controller {
 		}
 	}
 
+	function discussions_view(){
+		if ( (isset($_GET['s']) === true) && (isset($_GET['id']) === true) ) {
+			$s   = $_GET['s'];
+		    $id  = $_GET['id'];
+
+			$req = $this->forum->get_sujet_by_id($s, $id);
+			if ($req) {
+				foreach ($req as $key ) {
+					$data = array (
+						'sujet'				 => $key->sujet,
+						'contenu_c'			 => $key->contenu_c,
+						'contenu_s'			 => $key->contenu_s,
+						'date_hres_creation' => $key->date_hres_creation,
+						'contenu_m' 		 => $key->contenu_m
+					);
+				}
+				$this->load->view('templates/header');
+				$this->load->view('forum/discussions/view', $data);
+			} else {
+				$_SESSION['flash']['info'] = 'Desole aucun sujet trouver ';
+				$this->load->view('templates/header');
+				$this->load->view('forum/discussions/view');
+			}
+		} else if ( (isset($_GET['s']) === false) && (isset($_GET['id']) === false) ){
+			
+			$req = $this->forum->lister_sujet();
+			if ($req) {
+				foreach ($req as $key ) {
+					$data = array (
+						'sujet'				 => $key->sujet,
+						'contenu_c'			 => $key->contenu_c,
+						'contenu_s'			 => $key->contenu_s,
+						'date_hres_creation' => $key->date_hres_creation,
+						'contenu_m' 		 => $key->contenu_m
+					);
+				}
+				$this->load->view('templates/header');
+				$this->load->view('forum/discussions/view', $data); 
+			}		
+		}
+	}
+
 	function contenu_sujet(){
 		$this->load->view('templates/header');
 		$this->load->view('forum/contenu_sujet');
+	}
+
+	function cat(){
+		$cat = $this->input->post('categorie');
+		if ($cat) {
+			$req = $this->forum->sujet_cat($cat);
+			if ($req) {
+				foreach ($req as $key) {
+					$data = array(
+						'sujet' 	=> $key->sujet,
+						'contenu_c' => $key->contenu_c
+					);
+				}
+			// $this->load->view('templates/header');
+			// $this->load->view('forum/categories',$data);
+			}
+		}var_dump($data);
+		$this->load->view('templates/header');
+		$this->load->view('forum/categories',$data);
 	}
 
 }

@@ -38,17 +38,32 @@ class Forum_model extends CI_Model {
 		}
 	}
 
-	function lister_sujet(){		
-
-		$sql = 'SELECT f_sujets.id, f_sujets.sujet, f_sujets.contenu_s, f_sujets.date_hres_creation, f_categorie.contenu_c, f_messages.contenu_m FROM f_sujets INNER JOIN f_messages, f_categorie WHERE f_sujets.id = f_messages.id_sujet  AND f_categorie.id = f_sujets.id_categorie GROUP BY f_messages.id DESC LIMIT 8 	';
+	function lister_sujet(){
+	// SELECT membre.pseudo, f_sujets.id_createur, f_sujets.sujet, f_sujets.contenu_s, f_sujets.date_hres_creation, f_categorie.contenu_c, f_messages.contenu_m FROM f_sujets INNER JOIN f_messages, f_categorie, membre WHERE membre.idmembre = f_sujets.id_createur AND f_sujets.id = f_messages.id_sujet  AND f_categorie.id = f_sujets.id_categorie AND f_categorie.contenu_c ='Religions' GROUP BY f_messages.id DESC LIMIT 5
+		
+		$sql = 'SELECT f_sujets.id, membre.pseudo, f_sujets.id_createur, f_sujets.sujet, f_sujets.contenu_s, f_sujets.date_hres_creation, f_categorie.contenu_c, f_messages.contenu_m FROM f_sujets INNER JOIN f_messages, f_categorie, membre WHERE membre.idmembre = f_sujets.id_createur AND f_sujets.id = f_messages.id_sujet  AND f_categorie.id = f_sujets.id_categorie GROUP BY f_messages.id DESC LIMIT 5 ';
 
 		$req = $this->db->query($sql );
+
 		if ($req->num_rows() === 1  ) {
 			return $req->result();
 		} else {
 			// false;
 			return $req->result();
-		}		
+		}
+	}
+
+	function sujet_cat($categorie_name){
+		$sql = 'SELECT membre.pseudo, f_sujets.id_createur, f_sujets.sujet, f_sujets.contenu_s, f_sujets.date_hres_creation, f_categorie.contenu_c, f_messages.contenu_m FROM f_sujets INNER JOIN f_messages, f_categorie, membre WHERE membre.idmembre = f_sujets.id_createur AND f_sujets.id = f_messages.id_sujet  AND f_categorie.id = f_sujets.id_categorie AND f_categorie.contenu_c = ? GROUP BY f_messages.id DESC LIMIT 5 ';
+
+		$req = $this->db->query($sql );
+
+		if ($req->num_rows() === 1  ) {
+			return $req->result();
+		} else {
+			// false;
+			return $req->result();
+		}
 	}
 
 	function get_sujet_admin(){
@@ -138,13 +153,5 @@ class Forum_model extends CI_Model {
 				}
 			}
 		}
-	}
-
-	function supression(){
-		
-	}
-
-	function commente($s){
-
 	}
 }

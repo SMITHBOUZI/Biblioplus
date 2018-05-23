@@ -19,20 +19,10 @@
 		<div class="columns large-3 medium-3">
 			<div class="columns large-9 medium-9">
 				<?php $req = $this->forum->get_sujet_cat(); ?>
-
-				<ul>
-					<li>
-						<a href="http://localhost/gitbilioplus/public_html/forum/cat/categorie_name"> Lien_x </a>
-					</li>
-				</ul>
-
 			    <select id="categorie" name="categorie">
 			    	<option> Lister par cat&eacutegorie </option>
 			    	<?php foreach ($req as $rows) :?>
-			      <option value="<?php echo $rows->contenu_c; ?>" ><?php echo $rows->contenu_c; ?>
-			      	<!-- <a href="http://localhost/gitbilioplus/public_html/forum/cat/<?php // echo $rows->contenu_c; ?>"> </a> -->
-			      </option>
-			     
+			      <option id="cat" value="<?php echo $rows->contenu_c; ?>" ><?php echo $rows->contenu_c; ?></option>
 			       <?php endforeach?>
 			    </select>
 			</div>			
@@ -71,23 +61,22 @@
 			<div class="columns large-12 medium-12 small-12">
 			<tbody>
 				<div class="columns large-12 medium-12 small-12">
-					<?php $req = $this->forum->lister_sujet(); ?>
-						<?php foreach ($req as $rows): ?> <?php // var_dump($rows->repons); ?>
+					<!-- <?php $req // = $this->forum->lister_sujet(); ?>
+						<?php // foreach ($req as $rows): ?> --> <?php // var_dump($rows->repons); ?>
 							<tr>
 								<div class=" columns large-6 medium-6 small-6">
 									<td>
-										<p> <?php //echo $rows->sujet; ?></p>
-										<a href="http://localhost/gitbiblioplus/public_html/forum/discussions_view?s=<?php echo $rows->sujet ; ?>&id=<?php echo $rows->id; ?>"><?php echo $rows->sujet; ?> </a> 
+										<p> <?php echo $sujet; ?></p>
 									</td>
 								</div>
 								<div class=" columns large-3 medium-3 small-3">
 									<td>
-										<h6 style="font-weight: bold;"><?php echo $rows->contenu_c; ?></h6>
+										<h6 style="font-weight: bold;"><?php // echo $rows->contenu_c; ?></h6>
 									</td>
 								</div>
 								<div class=" columns large-3 medium-3 small-3">
 									<td>
-										<p><?php echo $rows->pseudo; ?></p>
+										<p><?php // echo $rows->pseudo; ?></p>
 									</td>
 								</div>
 								<div class=" columns large-3 medium-3 small-3">
@@ -97,11 +86,11 @@
 								</div>
 								<div class=" columns large-3 medium-3 small-3">
 									<td>
-										<p><?php echo $rows->date_hres_creation; ?></p>
+										<p><?php // echo $rows->date_hres_creation; ?></p>
 									</td>
 								</div>						
 							</tr>
-						<?php endforeach ?>
+						<?php // endforeach ?>
 					<?php // endif ?>
 				</div>				
 			</tbody>
