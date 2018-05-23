@@ -97,6 +97,52 @@
 
 </div>
 </div>
+
+
+<div id="section_evenement">
+  <div class="row">
+    <div class="columns large-12 medium-12" style=" margin-top:2em; text-align:center;">
+      <h3>Les l'&eacutev&eacutenements les plus proches</h3>
+      <p>Amant du livre, vous qui ne voulez pas manquer un &eacutev&eacutenement auxquels vous voudriez prendre part<br/> dans cette section vous resterez informer.</p>
+                      
+    </div>
+    <div class="columns large-12 medium-12">
+            <div class="columns large-4 medium-6 small-12 " >    
+                   <img src="http://via.placeholder.com/350x200" class="circle_rectangle" />
+                   <h4 style="text-align: center;">Nom de l'&eacutev&eacutenement </h4>
+                   <div class="columns large-12 medium-12">
+                     <p>
+                       une petite description de l'&eacutev&eacutenement a venir
+                     </p>
+                     <span style="position: relative; float: left; font-style: italic; font-size: 12px;">date</span>
+                   </div>
+            </div>
+
+            <div class="columns large-4 medium-6 small-12" >
+                   <img src="http://via.placeholder.com/350x200" class="circle_rectangle"">
+                    <h4 style="text-align: center;">Nom de l'&eacutev&eacutenement </h4>
+                   <div class="columns large-12 medium-12">
+                     <p>
+                       une petite description de l'&eacutev&eacutenement a venir
+                     </p>
+                     <span style="position: relative; float: left; font-style: italic; font-size: 12px;">Date</span>
+                   </div>
+            </div>
+
+            <div class="columns large-4 medium-6 small-12" >
+                   <img src="http://via.placeholder.com/350x200" class="circle_rectangle">
+                    <h4 style="text-align: center;">Nom de l'&eacutev&eacutenement </h4>
+                   <div class="columns large-12 medium-12">
+                     <p>
+                       une petite description de l'&eacutev&eacutenement a venir
+                     </p>
+                     <span style="position: relative; float: left; font-style: italic; font-size: 12px;">date</span>
+                   </div>
+            </div>
+    </div>
+  </div>
+</div>
+
 <!-- Begining of footer -->
 <div id="footer_section">
 <div class="row" >

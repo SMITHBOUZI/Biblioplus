@@ -642,8 +642,7 @@ form{
 
 #espace_de_reaction
 { 
-  display: ;
- 
+  display: none; 
   position: relative;
   top: 5px;
   right: 14px;
@@ -653,8 +652,9 @@ form{
   position: relative;
   top: 15px;
   box-shadow: 0px 0.5px #eaeaea;
- 
-  float: left;
+  left: 55px;
+  float: right;
+  width: 90%;
 }
 #valider{
   border:0.7px solid #2e7f4d; 
@@ -734,9 +734,22 @@ input {
      bottom: 0;
      font-size: 50px; /* some huge for cursor pointer hack */
 }
+
 }
 }
 
+#section_evenement{
+
+  background-color: #f4fbf7;
+}
+
+
+.circle_rectangle{
+
+  border-radius: 5%;
+  border:3px solid #47ab6d;
+ 
+}
 
 
 
