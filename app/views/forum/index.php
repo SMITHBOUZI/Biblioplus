@@ -20,12 +20,6 @@
 			<div class="columns large-9 medium-9">
 				<?php $req = $this->forum->get_sujet_cat(); ?>
 
-				<ul>
-					<li>
-						<a href="http://localhost/gitbilioplus/public_html/forum/cat/categorie_name"> Lien_x </a>
-					</li>
-				</ul>
-
 			    <select id="categorie" name="categorie">
 			    	<option> Lister par cat&eacutegorie </option>
 			    	<?php foreach ($req as $rows) :?>
@@ -77,7 +71,7 @@
 								<div class=" columns large-6 medium-6 small-6">
 									<td>
 										<p> <?php //echo $rows->sujet; ?></p>
-										<a href="http://localhost/gitbiblioplus/public_html/forum/discussions_view?s=<?php echo $rows->sujet ; ?>&id=<?php echo $rows->id; ?>"><?php echo $rows->sujet; ?> </a> 
+										<a href="http://localhost/gitbiblioplus/public_html/forum/view?s=<?php echo $rows->sujet ; ?>&id=<?php echo $rows->id; ?>"><?php echo $rows->sujet; ?> </a> 
 									</td>
 								</div>
 								<div class=" columns large-3 medium-3 small-3">

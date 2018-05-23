@@ -45,7 +45,7 @@ class Forum extends CI_Controller {
 		}
 	}
 
-	function discussions_view(){
+	function view(){
 		if ( (isset($_GET['s']) === true) && (isset($_GET['id']) === true) ) {
 			$s   = $_GET['s'];
 		    $id  = $_GET['id'];
@@ -58,7 +58,8 @@ class Forum extends CI_Controller {
 						'contenu_c'			 => $key->contenu_c,
 						'contenu_s'			 => $key->contenu_s,
 						'date_hres_creation' => $key->date_hres_creation,
-						'contenu_m' 		 => $key->contenu_m
+						'contenu_m' 		 => $key->contenu_m,
+						'pseudo'			 => $key->pseudo
 					);
 				}
 				$this->load->view('templates/header');
@@ -78,7 +79,8 @@ class Forum extends CI_Controller {
 						'contenu_c'			 => $key->contenu_c,
 						'contenu_s'			 => $key->contenu_s,
 						'date_hres_creation' => $key->date_hres_creation,
-						'contenu_m' 		 => $key->contenu_m
+						'contenu_m' 		 => $key->contenu_m,
+						'pseudo'			 => $key->pseudo
 					);
 				}
 				$this->load->view('templates/header');
@@ -87,9 +89,10 @@ class Forum extends CI_Controller {
 		}
 	}
 
-	function contenu_sujet(){
-		$this->load->view('templates/header');
-		$this->load->view('forum/contenu_sujet');
+	function comment(){
+		$id  = $_GET['id'];
+		$comment = $this->input->post('comment');
+		$this->forum->comment($id, $comment);
 	}
 
 	function cat(){
