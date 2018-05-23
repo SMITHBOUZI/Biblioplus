@@ -642,7 +642,11 @@ form{
 
 #espace_de_reaction
 { 
+<<<<<<< HEAD
   
+=======
+  display: ;
+>>>>>>> 0b82c61bd10a607e6a1d58c9445aa1e1effea983
  
   position: relative;
   top: 5px;
@@ -679,11 +683,9 @@ form{
   text-align: center;
    position: relative; 
    top: 15px;
-}
+ }
 
 }
-
-
 #selectcat{
   padding: 2px;
   width: 70%;
@@ -692,6 +694,55 @@ form{
   border-radius: 5px;
   border:0.7px solid #2e7f4d;
 }
+
+
+.wrapper {
+    width: 100px;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+
+input {
+     position: absolute;
+     right: 0;
+     top: 0;
+     bottom: 0;
+     font-size: 50px; /* some huge for cursor pointer hack */
+}
+
+.wrapper {
+    width: 100px;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+
+input {
+     position: absolute;
+     right: 0;
+     top: 0;
+     bottom: 0;
+     font-size: 50px; /* some huge for cursor pointer hack */
+}
+
+
+.wrapper {
+    width: 100px;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+}
+input {
+     position: absolute;
+     right: 0;
+     top: 0;
+     bottom: 0;
+     font-size: 50px; /* some huge for cursor pointer hack */
+}
+}
+}
+
+
+
 
 
 
