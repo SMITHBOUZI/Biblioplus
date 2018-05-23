@@ -48,7 +48,7 @@
                  <div class="cell small-4  medium-2 large-2">
                   <section class="menu align-center" style="padding:0px;" id="search_login">
 
-                <li><a  id="login"><i class="fas fa-user-circle  ">
+                <li><a href="<?php ?>" id="login"><i class="fas fa-user-circle  ">
                    
 
               </i></a></li>

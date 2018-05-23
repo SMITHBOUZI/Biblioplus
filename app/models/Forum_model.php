@@ -112,7 +112,7 @@ class Forum_model extends CI_Model {
 	}
 
 	function comment($id, $comment){
-		$sql = 'UPDATE `f_messages` SET contenu_m = ? WHERE id_sujet = ? ';
+		$sql = 'UPDATE f_messages SET contenu_m = ?, date_hres_edition = CURRENT_TIMESTAMP() WHERE id_sujet = ? ';
 		$id = $rows->id_sujet;
 		$this->db->query($sql, array($comment, $id));
 	}

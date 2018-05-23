@@ -16,21 +16,21 @@
 			<a href="<?php echo base_url('forum/nouveau_sujet'); ?>">Nouveau sujet</a> 
 		</div>
 
-		<div class="columns large-3 medium-3">
+		<!-- <div class="columns large-3 medium-3">
 			<div class="columns large-9 medium-9">
-				<?php $req = $this->forum->get_sujet_cat(); ?>
+				<?php //$req = $this->forum->get_sujet_cat(); ?>
 
 			    <select id="categorie" name="categorie">
 			    	<option> Lister par cat&eacutegorie </option>
-			    	<?php foreach ($req as $rows) :?>
-			      <option value="<?php echo $rows->contenu_c; ?>" ><?php echo $rows->contenu_c; ?>
+			    	<?php //foreach ($req as $rows) :?>
+			      <option value="<?php //echo $rows->contenu_c; ?>" ><?php // echo $rows->contenu_c; ?> -->
 			      	<!-- <a href="http://localhost/gitbilioplus/public_html/forum/cat/<?php // echo $rows->contenu_c; ?>"> </a> -->
-			      </option>
+			      <!-- </option>
 			     
-			       <?php endforeach?>
+			       <?php // endforeach?>
 			    </select>
 			</div>			
-		</div>
+		</div> -->
 
 		<div class="columns large-6 medium-6">
 			
