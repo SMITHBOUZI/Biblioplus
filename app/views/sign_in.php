@@ -3,7 +3,7 @@
   
 
  
-        <?php  echo form_open('login/sing_in', 'class="columns medium-10 large-10"  ' ); ?>
+        <?php  echo form_open('login/sign_in', 'class="columns medium-10 large-10"  ' ); ?>
 
             <div class="columns medium-12 small-12">
                       
@@ -14,14 +14,14 @@
               <p>Acceder a votre compte</p>
 
               <!--  <input type="text" placeholder="Nom d'utilisateur" > -->
-              <?php echo form_input('pseudo','','class="custom_input" id="pseudo" placeholder="Nom d\'utilisateur" '); ?>
+              <?php echo form_input('pseudo','','class="custom_input" name="pseudo" id="pseudo" placeholder="Nom d\'utilisateur" '); ?>
             </div>
 
 
 
             <div class="columns large-12">        
           
-              <?php echo form_password('mot_de_passe','','class="custom_input" id="mot_de_passe" placeholder="Mot de passe" ') ?>
+              <?php echo form_password('mot_de_passe','','class="custom_input" name="mot_de_passe" id="mot_de_passe" placeholder="Mot de passe" ') ?>
             </div>
 
 
@@ -31,21 +31,24 @@
             </div>
 
 
-            <!-- <div class="columns large-12">
-              <input type="submit" id="connecter" class="fill_button" name="sign_in" value="Connecter" /> 
-             <input type="submit" class="fill_button" value="Connecter"> </button> 
-            </div> -->
+             <div class="columns large-12"> 
+            <!-- <a href="<?php // echo base_url('login/sign_up'); ?>"> 
+               <input type="button" id="" class="fill_button" name="sign_in" value="Connecter" />
+            </a> -->
+            <input type="Submit" name="sign_in" value="Valider" class="fill_button" />
+            </div>
               
-              <div class="columns large-12"> 
-             <a href="<?php echo base_url('login/sign_in'); ?>"> 
-              <input type="button" id="connecter" class="fill_button" name="sign_in" value="Connecter"/> </a>
-            </div> 
 
                <div class="columns large-12" style="margin-top:0.4em;"> 
              <a href="<?php echo base_url('login/sign_up'); ?>"> 
               <input type="button" id="" class="fill_button" name="sign_up" value="Nouveau compte"/> </a>
               <!--  <span> <a href="#"> Mot de passe oubli&eacute?</a></span> -->
-            </div>            
+            </div>
+
+
+
+
+            
             
           </div>
         </div> <!-- end of container dropdown -->

@@ -9,8 +9,7 @@
         <link rel="stylesheet" href="<?php echo base_url('assets/css/app.css'); ?> ">
 <link rel="stylesheet" href="<?php echo base_url('assets/css/app.css'); ?> ">
         <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.min.css'); ?> ">
-         <link rel="stylesheet" href="<?php echo base_url
-         ('assets/css/owl.theme.default.min'); ?> ">
+         <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.theme.default.min'); ?> ">
 
         
         <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
@@ -48,11 +47,12 @@
                  <div class="cell small-4  medium-2 large-2">
                   <section class="menu align-center" style="padding:0px;" id="search_login" >
 
-                <li><a href="<?php ?>" id="login"><i class="fas fa-user-circle  ">
+                <li><a href="#" id="login"><i class="fas fa-user-circle  ">
                    
 
               </i></a></li>
 
+<<<<<<< HEAD
               <div  id="authen">
                 <div id="box_authen">
              <a href="<?php echo base_url('account/sign_out'); ?>"> 
@@ -61,8 +61,20 @@
              <a href="<?php echo base_url('account/sign_out'); ?>"> 
               <input type="button" name="account/sign_out" value="nouveau compte" class="fill_button" align="center" />
              </a>                   
+=======
+        <?php if ($this->session->userdata('pseudo') === NULL) : ?>
+              <div  id="xax">
+                <div id="xox">
+                   <a href="<?php echo base_url('login/sign_in'); ?>"> 
+                    <input type="button" name="login/sign_in" value="connecter" class="fill_button" align="center" />
+                   </a> 
+                   <a href="<?php echo base_url('login/sign_up'); ?>"> 
+                    <input type="button" name="login/sign_up" value="nouveau compte" class="fill_button" align="center" />
+                   </a>                   
+>>>>>>> 1015855bf23a5f2df9ac8a66623e7821f54fd28c
                 </div>
               </div>
+        <?php endif ?>
 
 
 
@@ -74,8 +86,8 @@
 
     <div id="user" > <!-- Drop down login_box -->
       <form >
-        <div class="grid-container">
-          <div class="grid-x padding-x">
+       <!--  <div class="grid-container">
+          <div class="grid-x padding-x"> -->
 
             <div class="cell medium-12 ">
               <?php if(empty($_SESSION['photo'] )){ ?>
@@ -92,8 +104,8 @@
              </a> 
             </div> 
 
-          </div>
-        </div> <!-- end of container dropdown -->
+          <!-- </div>
+        </div>  --><!-- end of container dropdown -->
       </form>
     </div>   
   </div><!-- end of dropdown_login  -->
@@ -140,16 +152,17 @@
 
   </div>
 
-  <!--C Moi -->
-    <?php if (isset($_SESSION['flash'])): ?>
-      <?php foreach ($_SESSION['flash'] as $type => $message):?>
-        <div class="callout success<?= $type; ?>" style="position: absolute;">
-          <?= $message; ?>            
-        </div>
-      <?php endforeach ?>
-      <?php unset($_SESSION['flash']) ?>
-    <?php endif ?>
-  <!-- fin MOi -->
+  <?php if (isset($_SESSION['flash'])): ?>
+    <?php foreach ($_SESSION['flash'] as $type => $message):?>
+      <div class="callout <?= $type; ?>" data-closable id="token" style="position: absolute; width: 300px;">
+        <p><?= $message; ?></p>
+         <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+          <span aria-hidden="true">&times;</span>
+        </button>        
+      </div>
+    <?php endforeach ?>
+    <?php unset($_SESSION['flash']) ?>
+  <?php endif ?>
 
 <script src="<?php echo base_url('assets/node_modules/jquery/dist/jquery.js'); ?>  "></script>
 <script src="<?php echo base_url('assets/node_modules/what-input/dist/what-input.js'); ?>  "></script>

@@ -14,7 +14,7 @@ class Login extends CI_Controller {
 
 	function sign_in() {
 
-		if ($this->input->post('sign_in')) {
+		// if ($this->input->post('sign_in')) {
 
 			if ( !empty(trim($this->input->post('pseudo'))) AND !empty(trim($this->input->post('mot_de_passe'))) ) {
 
@@ -24,7 +24,7 @@ class Login extends CI_Controller {
 		    if(!$result) {
 		    	$_SESSION['flash']['danger'] = 'Ce compte n\'est pas actif, merci de verifier votre addresse mail pour la confirmation.';
 				$this->load->view('templates/header');
-				$this->load->view('index');			    
+				$this->load->view('sign_in');			    
 			}else {
 				foreach ($result as $user) {
 			    	if ( !empty($user->pseudo) && $user->mot_de_passe === $pass ) {
@@ -41,20 +41,20 @@ class Login extends CI_Controller {
 			    	} else if( $user->mot_de_passe != $pass ) {
 				    		$_SESSION['flash']['danger'] = 'Connexion incorrect ';
 							$this->load->view('templates/header');
-							$this->load->view('index');
+							$this->load->view('sign_in');
 
 				    	} else {
 				    		$this->load->view('templates/header');
-							$this->load->view('index');
+							$this->load->view('sign_in');
 				    	}
 				    }
 				}	 
 			}  else {
 				$_SESSION['flash']['danger'] = 'Veuillez remplir tous les champs ';
 				$this->load->view('templates/header');
-				$this->load->view('index');
+				$this->load->view('sign_in');
 			}
-		}
+		// }
     }
 
     // function check_if_pseudo_exists($request_pseudo){
@@ -212,7 +212,5 @@ class Login extends CI_Controller {
 				}
 			} 
 		}
-	}
-
-	
+	}	
 }
