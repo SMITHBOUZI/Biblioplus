@@ -53,9 +53,6 @@
 
               </i></a></li>
 
-<<<<<<< HEAD
-        
-=======
               <div  id="xax">
                 <div id="xox">
              <a href="<?php echo base_url('account/sign_out'); ?>"> 
@@ -103,7 +100,6 @@
 
   <!-- end user connect -->
 <?php endif ?>   
->>>>>>> f794ed7201f9c56336fb9f17edf48f26f614d823
 
         <li><a id="search_button" ><i class="fas fa-search" ></i></a></li>
             <div id="search_box" ><!-- Drop down search -->
