@@ -643,11 +643,15 @@ form{
 #espace_de_reaction
 { 
 <<<<<<< HEAD
+<<<<<<< HEAD
   
 =======
   display: ;
 >>>>>>> 0b82c61bd10a607e6a1d58c9445aa1e1effea983
  
+=======
+  display: none; 
+>>>>>>> 3390684b148568c0ea4eb19e21955c55ef6eb6da
   position: relative;
   top: 5px;
   right: 14px;
@@ -657,8 +661,9 @@ form{
   position: relative;
   top: 15px;
   box-shadow: 0px 0.5px #eaeaea;
- 
-  float: left;
+  left: 55px;
+  float: right;
+  width: 90%;
 }
 #valider{
   border:0.7px solid #2e7f4d; 
@@ -738,9 +743,22 @@ input {
      bottom: 0;
      font-size: 50px; /* some huge for cursor pointer hack */
 }
+
 }
 }
 
+#section_evenement{
+
+  background-color: #f4fbf7;
+}
+
+
+.circle_rectangle{
+
+  border-radius: 5%;
+  border:3px solid #47ab6d;
+ 
+}
 
 
 
