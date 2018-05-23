@@ -1,54 +1,7 @@
 
 
    <div class="row" id="inscription" >
-        <div class="columns medium-12 large-12">
-      <h4 style="text-align: center; color: #2e7f4d; text-shadow: 1px 1px #0a0a0a; ">Nouveau sur BiblioPlus!!!</h4>
-    </div>
-    <div class="columns small-12 medium-5 large-5 " style="margin-bottom: 5px;" id="utilinscription">
-  <div class="columns medium-12 small-12"> 
-    <h5  > Utilit&eacute d'etre membre de BiblioPlus</h5>
-  </div>
-
-  <div class="columns medium-12 small-12">
-    <ul>
-      <li><i class="" aria-hidden="true"></i>Pour ajouter un ouvrage</li>
-    </ul>
-  </div>
-
-  <div class="columns medium-12 small-12">
-    <ul>
-      <li><i class="" aria-hidden="true"></i>Pour faire la lecture</li>
-    </ul>
-  </div>
-
-  <div class="columns medium-12 small-12">
-    <ul>
-      <li><i class="" aria-hidden="true"></i>Afin de telecharger un ouvrage</li>
-    </ul>
-  </div>
-
-  <div class="columns medium-12 small-12">
-    <ul>
-      <li><i class="" aria-hidden="true"></i>Besoin de cr&eacuteer un &eacutev&eacutenement</li>
-    </ul>
-  </div>
-
-
-  <div class="columns medium-12 small-12">
-    <ul>
-      <li><i class="" aria-hidden="true"></i>Besoin de discuter sur le FORUM de Biblioplus</li>
-    </ul>
-  </div>
-
-
-  <div class="columns medium-12 small-12">
-    <span>
-      Les connaissances sont dans les livres et faire parti d'un site qui vous les mettent à votre disposition ne serait que vous faciliter la vie. Vous serez à même de satisfaire votre curiosité intellectuelle.  Inscrivez vous,  vous serez plus que satisfaites! !!
-    </span>
-  </div>
-  
-</div>
-<div class="columns small-12 medium-7 large-6 ">  
+<div class="columns small-12 medium-7 large-5 medium-centered">  
 
     <!-- REGISTRATION FORM -->
      <?php if (validation_errors()): ?> 
@@ -69,7 +22,7 @@
    <!-- <form class="columns medium-12 large-12" > -->
     <?php echo form_open_multipart('login/Sign_up','class="columns medium-12 large-12"');?> 
    <div class="columns small-12 medium-12 "> 
-   <h5>Cr&eacuteation de compte</h5>
+   <h5>Nouveau compte</h5>
  </div>
      
      <div class="columns small-12 medium-12 "> 
@@ -140,6 +93,7 @@
     </div>
 <!-- </form> -->
 <?php echo form_close();  ?>
+</div>
 </div>
 
 
