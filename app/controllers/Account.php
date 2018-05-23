@@ -33,6 +33,12 @@ class Account extends CI_Controller {
 		header('Location:index');
     }
 
+     function sign_in() {
+		
+		$this->load->view('templates/header');
+		$this->load->view('templates/sign_in');
+    }
+
     function confirmation(){
     	$user_id = $_GET['id'];
 		$token	 = $_GET['token'];

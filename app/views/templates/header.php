@@ -53,51 +53,7 @@
 
               </i></a></li>
 
-<?php if ($this->session->userdata('pseudo') === NULL) : ?>
 
-  <!-- login connect-->
-
-  <div id="login_box" >
-    <div id="user" > <!-- Drop down login_box -->
-      <?php  echo form_open('login/sign_in', "class='myclass'" ); ?> 
-        <div class="grid-container">
-          <div class="grid-x padding-x">
-
-            <div class="cell medium-12">
-              
-
-              <h6 id="temp">Connexion</h6>
-
-              <!--  <input type="text" placeholder="Nom d'utilisateur" > -->
-              <?php echo form_input('pseudo','','class="custom_input" id="pseudo" placeholder="Nom d\'utilisateur" '); ?>
-            </div>
-            <div class="medium-12 cell">        
-              <!-- <input type="text" placeholder="Mot de Passe" > -->
-              <?php echo form_password('mot_de_passe','','class="custom_input" id="mot_de_passe" placeholder="Mot de passe" ') ?>
-            </div>
-
-            <div class="medium-12 cell">
-              <input type="submit" id="connecter" class="fill_button" name="sign_in" value="Connecter"> </button>
-            <!--  <input type="submit" class="fill_button" value="Connecter"> </button> -->
-            </div>
-
-            <div class="medium-12 cell">
-              <a href="<?php echo base_url('login/sign_up'); ?>">
-                <input type="button" class="fill_button" value="Nouveau compte " />
-              </a> 
-            </div>
-            <div class="medium-9 cell"> 
-              <span> <a href="<?php echo base_url('account/pass_fotgot'); ?>"> Mot de passe oubli&eacute?</a></span>
-              <!--  <span> <a href="#"> Mot de passe oubli&eacute?</a></span> -->
-            </div>
-          </div>
-        </div> <!-- end of container dropdown -->
-      <?php echo form_close(); ?>
-    </div> 
-  </div> <!-- end of dropdown_login  --> 
-
-  <!-- end login connect -->
-<?php endif ?>
 
 <?php if ($this->session->userdata('pseudo') !== NULL) : ?>
 

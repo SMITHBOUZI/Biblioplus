@@ -2,14 +2,14 @@ $(document).ready(function(){
 $(document).foundation();
 
 
-$("#login").click(function(e){
-	$("#nav_menu").hide(10);
+// $("#login").click(function(e){
+// 	$("#nav_menu").hide(10);
 
-$("#search").hide(100);	
+// $("#search").hide(100);	
 
-$("#user").slideToggle(350);
+// $("#user").slideToggle(350);
 
-});
+// });
 
 
 $("#search_button").click(function(e){
@@ -27,7 +27,6 @@ $("#search").slideToggle(500);
 
 $(".menu-icon").click(function(e){
 	$("#search").hide(10);
-	$("#user").hide(10);
 
 
 $("#nav_menu").slideToggle(400);
@@ -49,8 +48,8 @@ $('.owl-carousel').owlCarousel({
     loop:true,
     margin:5,
     nav:true,
-    center:true,
-    dots:true,
+    
+   
     responsive:{
         0:{
             items:1
