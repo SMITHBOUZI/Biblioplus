@@ -53,6 +53,17 @@
 
               </i></a></li>
 
+              <div  id="xax">
+                <div id="xox">
+             <a href="<?php echo base_url('account/sign_out'); ?>"> 
+              <input type="button" name="account/sign_out" value="connecter" class="fill_button" align="center" />
+             </a> 
+             <a href="<?php echo base_url('account/sign_out'); ?>"> 
+              <input type="button" name="account/sign_out" value="nouveau compte" class="fill_button" align="center" />
+             </a>                   
+                </div>
+              </div>
+
 
 
 <?php if ($this->session->userdata('pseudo') !== NULL) : ?>

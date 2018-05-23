@@ -2,14 +2,13 @@ $(document).ready(function(){
 $(document).foundation();
 
 
-// $("#login").click(function(e){
-// 	$("#nav_menu").hide(10);
+$("#login").click(function(e){
 
-// $("#search").hide(100);	
+$("#search").hide(100);	
 
-// $("#user").slideToggle(350);
+ $("#xox").slideToggle(350);
 
-// });
+});
 
 
 $("#search_button").click(function(e){
