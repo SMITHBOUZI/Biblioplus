@@ -750,6 +750,15 @@ input {
 #section_evenement{
 
   background-color: #f4fbf7;
+  h4{
+
+   text-align: center;
+   font-family: barlow condensed;
+  }
+  p{
+
+    color: black;
+  }
 }
 
 
@@ -758,6 +767,21 @@ input {
   border-radius: 5%;
   border:3px solid #47ab6d;
  
+}
+
+#xax{
+  position: relative;
+}
+#xox{
+ position:absolute; 
+width:200px;
+height:200px; 
+top:49px;
+left:-150px;
+background-color:#383737;
+color:white;
+display: none;
+text-align: center;
 }
 
 

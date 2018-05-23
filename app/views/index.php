@@ -102,7 +102,7 @@
 <div id="section_evenement">
   <div class="row">
     <div class="columns large-12 medium-12" style=" margin-top:2em; text-align:center;">
-      <h3>Les l'&eacutev&eacutenements les plus proches</h3>
+      <h3>Les &eacutev&eacutenements les plus proches</h3>
       <p>Amant du livre, vous qui ne voulez pas manquer un &eacutev&eacutenement auxquels vous voudriez prendre part<br/> dans cette section vous resterez informer.</p>
                       
     </div>

@@ -53,7 +53,57 @@
 
               </i></a></li>
 
+<<<<<<< HEAD
         
+=======
+              <div  id="xax">
+                <div id="xox">
+             <a href="<?php echo base_url('account/sign_out'); ?>"> 
+              <input type="button" name="account/sign_out" value="connecter" class="fill_button" align="center" />
+             </a> 
+             <a href="<?php echo base_url('account/sign_out'); ?>"> 
+              <input type="button" name="account/sign_out" value="nouveau compte" class="fill_button" align="center" />
+             </a>                   
+                </div>
+              </div>
+
+
+
+<?php if ($this->session->userdata('pseudo') !== NULL) : ?>
+
+  <!-- user connect -->
+
+  <div id="login_box" >
+
+    <div id="user" > <!-- Drop down login_box -->
+      <form >
+        <div class="grid-container">
+          <div class="grid-x padding-x">
+
+            <div class="cell medium-12 ">
+              <?php if(empty($_SESSION['photo'] )){ ?>
+                <img src="<?php echo base_url('assets/avatar/avatar.png'); ?>" />
+              <?php } else {?>
+                 <img src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" />
+              <?php } ?>
+            </div>
+
+            <div class="medium-12 cell">
+              <h6><?php echo $_SESSION['pseudo']; ?> </h6>
+             <a href="<?php echo base_url('account/sign_out'); ?>"> 
+              <input type="button" name="account/sign_out" value="Deconnexion" class="fill_button" />
+             </a> 
+            </div> 
+
+          </div>
+        </div> <!-- end of container dropdown -->
+      </form>
+    </div>   
+  </div><!-- end of dropdown_login  -->
+
+  <!-- end user connect -->
+<?php endif ?>   
+>>>>>>> f794ed7201f9c56336fb9f17edf48f26f614d823
 
         <li><a id="search_button" ><i class="fas fa-search" ></i></a></li>
             <div id="search_box" ><!-- Drop down search -->
