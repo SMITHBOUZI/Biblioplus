@@ -51,7 +51,7 @@
 	    	</div>
 	    	
 
-	    	<script type="text/javascript">
+	    	<!-- <script type="text/javascript">
 	    		$('#show').click(function() {
 	    			// body...
 	    			$('#espace_de_reaction').show();
@@ -61,27 +61,27 @@
 	    				$('#espace_de_reaction').hide(); 
 	    			} )
 	    		})
-	    	</script>
+	    	</script> -->
 
 	    </div>
 
 	</div>
-	<div class="columns large-12 medium-12" id="espace_de_reaction">
-	<!-- <form > -->
-	<?php echo form_open('forum/comment','class=""');?> 
+	<!-- <div class="columns large-12 medium-12" id="espace_de_reaction">
+	
+	<?php // echo form_open('forum/comment','class=""');?> 
 
 		<div class="columns large-12 medium-12" >
-	     <textarea name="comment" placeholder="Poster votre commentaire ">  </textarea>
+	     <textarea name="comment" id="comment" placeholder="Poster votre commentaire "></textarea>
 			   <script>
 				CKEDITOR.replace( 'comment' );
-			</script>  
+			</script>    
 		</div>
 	    <div class="columns large-12 medium-12">
 	    	<input type="button" id="valider" name="post" value="valider">
 	    </div>
-	    <?php echo form_close();  ?>
-	<!-- </form> -->
-	</div>
+	    <?php // echo form_close();  ?>
+	  </form> 
+	</div> -->
 
 	<div class="columns large-12 medium-12">
 		<h5 id="text"> Faites de vos exp&eacuteriences d'engrais pour augmenter <br/> l'app&eacutetit des autres a la lecture</h5>
@@ -107,6 +107,7 @@
     </div>    
 	</div>
 	</div>
+
 </div>
 </body>
 </html>

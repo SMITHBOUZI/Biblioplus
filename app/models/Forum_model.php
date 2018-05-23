@@ -111,10 +111,22 @@ class Forum_model extends CI_Model {
 		}
 	}
 
-	function comment($id, $comment){
-		$sql = 'UPDATE f_messages SET contenu_m = ?, date_hres_edition = CURRENT_TIMESTAMP() WHERE id_sujet = ? ';
-		$id = $rows->id_sujet;
-		$this->db->query($sql, array($comment, $id));
+	function comment($comment, $id){
+		// $req = 'SELECT f_messages.id_sujet, f_sujets.id, membre.pseudo, f_sujets.id_createur, f_sujets.sujet, f_sujets.contenu_s, f_sujets.date_hres_creation, f_categorie.contenu_c, f_messages.contenu_m FROM f_sujets INNER JOIN f_messages, f_categorie, membre WHERE membre.idmembre = f_sujets.id_createur AND f_sujets.id = f_messages.id_sujet  AND f_categorie.id = f_sujets.id_categorie GROUP BY f_messages.id DESC LIMIT 5 ';
+
+		// $query = $this->db->query($req );
+
+		// if ($query->num_rows() === 1  ) {
+			// return $req->result();
+			// foreach ($query as $rows) {
+				$sql = 'UPDATE f_messages SET contenu_m = ?, date_hres_edition = CURRENT_TIMESTAMP() WHERE id_sujet = ? ';
+				// $id = $rows->id_sujet;
+				$this->db->query($sql, array($comment, $id));
+		// 	}
+		// } else {
+		// 	// false;
+		// 	return $query->result();
+		// }
 	}
 
 	function update($user_id, $ts, $tc){
