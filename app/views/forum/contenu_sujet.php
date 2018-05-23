@@ -6,6 +6,12 @@
 		<h3 >Forum Biblioplus</h3>
 </div>
 
+<div class="columns large-12 medium-12">
+		<h5 id="text"> Faites de vos exp&eacuteriences d'engrais pour augmenter <br/> l'app&eacutetit des autres a la lecture</h5>
+	</div>
+
+
+
          <div class="columns large-12 medium-12" id="box_sujet_poster">
 	    <div class=" columns large-12 medium-12" id="sujet">
 		  <h3 id="sujet"> Le Sujet</h3>
@@ -67,13 +73,6 @@
 	</form>
 	</div>
 
-	<div class="columns large-12 medium-12">
-		<h5 id="text"> Faites de vos exp&eacuteriences d'engrais pour augmenter <br/> l'app&eacutetit des autres a la lecture</h5>
-	</div>
-
-
-
-
 	<div class="columns large-12 medium-12" id="reaction">
 	    	<div class="columns large-1 medium-1"style="padding: 0px; text-align: center; font-style: italic; color: gray;">
 	    	<div class="columns large-12 medium-12" >
@@ -91,6 +90,8 @@
     </div>    
 	</div>
 	</div>
+</div>
+<div>
 </div>
 </body>
 </html>
