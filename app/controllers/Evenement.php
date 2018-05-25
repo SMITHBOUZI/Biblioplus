@@ -77,4 +77,9 @@ class Evenement extends CI_Controller {
 		$this->load->view('templates/header');
 		$this->load->view('evenement/suprimer');
 	}
+
+	   function nouveau_evenement()	{
+		$this->load->view('templates/header');
+		$this->load->view('nouveau_evenement');
+	}
 }

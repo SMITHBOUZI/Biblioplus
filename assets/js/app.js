@@ -3,23 +3,23 @@ $(document).foundation();
 
 
 $("#login").click(function(e){
-	$("#nav_menu").hide(10);
+
+
+$("#nav_menu").hide(10);
+
 
 $("#search").hide(100);	
 
 $("#user").slideToggle(350);
 
-$("#search").hide(100);	
-
- $("#xox").slideToggle(350);
-
+$("#box_authen").slideToggle(500);
 });
 
 
 $("#search_button").click(function(e){
 $("#user").hide(100);
 $("#nav_menu").hide(10);
-$("#xox").hide(100);
+$("#box_authen").hide(100);
 $("#search").slideToggle(500);
 
 $
@@ -34,9 +34,18 @@ $
 
 $(".menu-icon").click(function(e){
 	$("#search").hide(10);
+<<<<<<< HEAD
 $("#xox").hide(100);
     $("#user").hide(10);
 
+=======
+
+$("#box_authen").hide(100);
+
+    $("#user").hide(10);
+
+
+>>>>>>> b3f73dd46379afb752a1a27b0789d37bb48c28ec
 
 $("#nav_menu").slideToggle(400);
 
