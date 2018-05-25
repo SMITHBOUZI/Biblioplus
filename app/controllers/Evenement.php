@@ -65,12 +65,13 @@ class Evenement extends CI_Controller {
 					'photo'  => $key->photo,
 					'nom'  => $key->nom,
 					'lieuEvenement'  => $key->lieuEvenement,
-					'dateEvenement'  => $key->dateEvenement
+					'dateEvenement'  => $key->dateEvenement,
+					'description'  => $key->description
 				);
 			}
-		}
-		$this->load->view('templates/header');
-		$this->load->view('evenement/lister', $data);
+			$this->load->view('templates/header');
+			$this->load->view('evenement/lister',$data);
+		} 
 	}
 
 	function modifier()	{
