@@ -51,27 +51,18 @@
                    
 
               </i></a></li>
+                   
 
-<<<<<<< HEAD
+        <?php if ($this->session->userdata('pseudo') === NULL) : ?>
               <div  id="authen">
                 <div id="box_authen">
-             <a href="<?php echo base_url('account/sign_out'); ?>"> 
-              <input type="button" name="account/sign_out" value="connecter" class="fill_button" align="center" />
-             </a> 
-             <a href="<?php echo base_url('account/sign_out'); ?>"> 
-              <input type="button" name="account/sign_out" value="nouveau compte" class="fill_button" align="center" />
-             </a>                   
-=======
-        <?php if ($this->session->userdata('pseudo') === NULL) : ?>
-              <div  id="xax">
-                <div id="xox">
                    <a href="<?php echo base_url('login/sign_in'); ?>"> 
                     <input type="button" name="login/sign_in" value="connecter" class="fill_button" align="center" />
                    </a> 
                    <a href="<?php echo base_url('login/sign_up'); ?>"> 
                     <input type="button" name="login/sign_up" value="nouveau compte" class="fill_button" align="center" />
                    </a>                   
->>>>>>> 1015855bf23a5f2df9ac8a66623e7821f54fd28c
+
                 </div>
               </div>
         <?php endif ?>

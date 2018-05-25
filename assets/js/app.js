@@ -3,25 +3,16 @@ $(document).foundation();
 
 
 $("#login").click(function(e){
-<<<<<<< HEAD
+
 
 $("#nav_menu").hide(10);
-=======
-	$("#nav_menu").hide(10);
+
 
 $("#search").hide(100);	
 
 $("#user").slideToggle(350);
 
-$("#search").hide(100);	
->>>>>>> 1015855bf23a5f2df9ac8a66623e7821f54fd28c
-
-$("#search").hide(100);
-
-<<<<<<< HEAD
 $("#box_authen").slideToggle(500);
-=======
->>>>>>> 1015855bf23a5f2df9ac8a66623e7821f54fd28c
 });
 
 
