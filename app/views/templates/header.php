@@ -73,10 +73,10 @@
 
   <div id="login_box" >
 
-    <div id="user" > <!-- Drop down login_box -->
+    <div id="user" style="position: absolute; top: -15px; left: -150px; background-color: #383737; color: white; display: none; text-align: center;"> <!-- Drop down login_box -->
       <form >
-       <!--  <div class="grid-container">
-          <div class="grid-x padding-x"> -->
+        <div class="grid-container">
+          <div class="grid-x padding-x">
 
             <div class="cell medium-12 ">
               <?php if(empty($_SESSION['photo'] )){ ?>
@@ -93,8 +93,8 @@
              </a> 
             </div> 
 
-          <!-- </div>
-        </div>  --><!-- end of container dropdown -->
+          </div>
+        </div> <!-- end of container dropdown -->
       </form>
     </div>   
   </div><!-- end of dropdown_login  -->

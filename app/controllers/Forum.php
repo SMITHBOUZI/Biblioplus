@@ -89,53 +89,6 @@ class Forum extends CI_Controller {
 		}
 	}
 
-	function comment(){
-		// $id  = $_GET['id'];
-		if ($this->input->post('post') ){
-			if(empty($this->input->post('com_contenue')) && empty($this->input->post('id'))) {
-				// $this->load->view('templates/header');
-				$_SESSION['flash']['danger'] =  'Remplir';
-				$this->load->view('forum/discussions/new'); 
-			} else {
-			// 	$this->load->view('templates/header');
-				$r = $this->input->post('com_contenue');
-				$u = $this->input->post('id');
-				$req = $this->forum->comment($r, $u);
-				if ($req) {
-					$_SESSION['flash']['danger'] =  'Merci';
-					$this->load->view('forum/discussions/new');
-				} else {
-					echo "NOt ";
-				}
-			}
-
-		}
-
-
-		$this->load->view('templates/header');
-		// $_SESSION['flash']['danger'] =  'OKOOKKKKKKKOKOO';
-		$this->load->view('forum/discussions/new'); 	
-	}
-
-	function cat(){
-		$cat = $this->input->post('categorie');
-		if ($cat) {
-			$req = $this->forum->sujet_cat($cat);
-			if ($req) {
-				foreach ($req as $key) {
-					$data = array(
-						'sujet' 	=> $key->sujet,
-						'contenu_c' => $key->contenu_c
-					);
-				}
-			// $this->load->view('templates/header');
-			// $this->load->view('forum/categories',$data);
-			}
-		}var_dump($data);
-		$this->load->view('templates/header');
-		$this->load->view('forum/categories',$data);
-	}
-
 }
  
 

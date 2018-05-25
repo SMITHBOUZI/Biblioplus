@@ -34,12 +34,9 @@ $
 
 $(".menu-icon").click(function(e){
 	$("#search").hide(10);
-<<<<<<< HEAD
 $("#xox").hide(100);
-=======
     $("#user").hide(10);
 
->>>>>>> 2cc538611bcf5c06b6c3e60f9c619dd89d5a4024
 
 $("#nav_menu").slideToggle(400);
 
