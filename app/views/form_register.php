@@ -10,14 +10,17 @@
        </div>
       <?php endif ?>
 
-      <?php if (isset($_SESSION['flash'])): ?>
-        <?php foreach ($_SESSION['flash'] as $type => $message):?>
-           <div class="alert alert-<?= $type; ?>">
-              <?= $message; ?>            
-           </div>
-        <?php endforeach ?>
-        <?php unset($_SESSION['flash']) ?>
-      <?php endif ?>
+<?php if (isset($_SESSION['flash'])): ?>
+    <?php foreach ($_SESSION['flash'] as $type => $message):?>
+      <div class="callout <?= $type; ?>" data-closable id="token" style="position: relative; margin:auto; width: 400px;">
+        <p><?= $message; ?></p>
+         <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+          <span aria-hidden="true">&times;</span>
+        </button>        
+      </div>
+    <?php endforeach ?>
+  <?php unset($_SESSION['flash']) ?>
+<?php endif ?>
 
    <!-- <form class="columns medium-12 large-12" > -->
     <?php echo form_open_multipart('login/Sign_up','class="columns medium-12 large-12"');?> 

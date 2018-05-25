@@ -50,12 +50,6 @@ class Account extends CI_Controller {
 		header('Location:index');
     }
 
-     function sign_in() {
-		
-		$this->load->view('templates/header');
-		$this->load->view('templates/sign_in');
-    }
-
     function confirmation(){
     	$user_id = $_GET['id'];
 		$token	 = $_GET['token'];
@@ -65,24 +59,24 @@ class Account extends CI_Controller {
 				if ($user && $user->confirm_token === $token) {
 					$_SESSION['flash']['info'] = 'Votre compté a étè confirmé avec succés' ;
 					$this->load->view('templates/header');
-					$this->load->view('index');
+					$this->load->view('sign_in');
 				}
 				else{
 					$this->load->view('templates/header');
 					$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
-					$this->load->view('index');
+					$this->load->view('sign_in');
 				}				
 			}			
 		} else {
 			$this->load->view('templates/header');
 			$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
-		    $this->load->view('index');
+		    $this->load->view('sign_in');
 		}
     }
 
     function pass_fotgot() {
 
-    	if (!empty(trim($this->input->post('email')))) {	
+    	if (!empty(trim($this->input->post('email')))) {
 
 			$email = trim($this->input->post('email'));
 			$reset_token = $this->security->get_csrf_hash();
@@ -105,9 +99,9 @@ class Account extends CI_Controller {
 				if ($this->email->send()) {
 					$this->load->view('templates/header');
 					$_SESSION['flash']['success'] = 'Un mail de réinitialisation vous a étè envoyer ';
-					$this->load->view('index');
+					$this->load->view('sign_in');
 				}else{
-					show_error($this->email->print_debugger());
+					// show_error($this->email->print_debugger());
 					$_SESSION['flash']['danger'] = 'Une erreur se produit .. ';	
 				}
 			} else{

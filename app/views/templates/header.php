@@ -141,17 +141,7 @@
 
   </div>
 
-  <?php if (isset($_SESSION['flash'])): ?>
-    <?php foreach ($_SESSION['flash'] as $type => $message):?>
-      <div class="callout <?= $type; ?>" data-closable id="token" style="position: absolute; width: 300px;">
-        <p><?= $message; ?></p>
-         <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
-          <span aria-hidden="true">&times;</span>
-        </button>        
-      </div>
-    <?php endforeach ?>
-    <?php unset($_SESSION['flash']) ?>
-  <?php endif ?>
+  
 
 <script src="<?php echo base_url('assets/node_modules/jquery/dist/jquery.js'); ?>  "></script>
 <script src="<?php echo base_url('assets/node_modules/what-input/dist/what-input.js'); ?>  "></script>
