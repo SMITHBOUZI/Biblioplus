@@ -12,7 +12,7 @@ class Collection extends CI_Controller {
     		$nom = trim($this->input->post('nom'));
     		$req = $this->event->add($nom);
     		if ($req) {
-    			$_SESSION['flash']['success'] = 'L\'evenement a ete mise a jour.'
+    			$_SESSION['flash']['success'] = 'L\'evenement a ete mise a jour.';
     			$this->load->view('templates/header');
 				$this->load->view('collection/ajouter');
     		}
@@ -29,5 +29,10 @@ class Collection extends CI_Controller {
 	function enlever()	{
 		$this->load->view('templates/header');
 		$this->load->view('collection/suprimer');
+	}
+
+	function lister(){
+		$this->load->view('templates/header');
+		$this->load->view('collection/lister');
 	}
 }

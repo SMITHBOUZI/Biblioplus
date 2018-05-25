@@ -34,18 +34,15 @@ $
 
 $(".menu-icon").click(function(e){
 	$("#search").hide(10);
-<<<<<<< HEAD
 $("#xox").hide(100);
     $("#user").hide(10);
 
-=======
 
 $("#box_authen").hide(100);
 
     $("#user").hide(10);
 
 
->>>>>>> b3f73dd46379afb752a1a27b0789d37bb48c28ec
 
 $("#nav_menu").slideToggle(400);
 

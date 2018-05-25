@@ -10,14 +10,15 @@
  		parent::__construct();
  	}
 
- 	function add($nom,$user_id,$lieuEvent,$dateEvent)	{
+ 	function add($nom,$user_id,$lieuEvent,$dateEvent,$descEvent) {
  		
     	$data = array(
     		// 'photo'				=> $photo,
     		'nom'				=> $nom,
     		'idmembre'			=> $user_id,
-    		'lieuEvenement'		=> $lieuEvenement,
-    		'dateEvenement'		=> $dateEvenement
+    		'lieuEvenement'		=> $lieuEvent,
+    		'dateEvenement'		=> $dateEvent,
+    		'description'		=> $descEvent
     	);
     	$this->db->insert('evenement', $data);
 	}

@@ -33,12 +33,10 @@
 
                   <ul class="  menu align-center"  id="nav_menu">
                     <li><a href="<?php echo base_url('login/index'); ?>"><i class="fas fa-home " ></i></a></li>
-                    <li><a href="<?php echo base_url('Collection/collection'); ?>">Collection</a></li>
-                    <li><a href="#">Auteurs</a></li>
-                    <li><a href="<?php echo base_url('Evenement/evenement'); ?>">Evenements</a></li>
+                    <li><a href="<?php echo base_url('collection/lister'); ?>">Collection</a></li>
+                    <li><a href="<?php echo base_url('auteur/lister'); ?>">Auteurs</a></li>
+                    <li><a href="<?php echo base_url('evenement/ajouter'); ?>">Evenements</a></li>
                     <li><a href="<?php echo base_url('forum/index'); ?>">Forum</a></li>
-                    
-                    
                   </ul>
                   
                 </nav>
@@ -61,8 +59,7 @@
                    </a> 
                    <a href="<?php echo base_url('login/sign_up'); ?>"> 
                     <input type="button" name="login/sign_up" value="nouveau compte" class="fill_button" align="center" />
-                   </a>                   
-
+                   </a>
                 </div>
               </div>
         <?php endif ?>
