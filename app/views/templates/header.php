@@ -35,7 +35,7 @@
                     <li><a href="<?php echo base_url('login/index'); ?>"><i class="fas fa-home " ></i></a></li>
                     <li><a href="<?php echo base_url('collection/lister'); ?>">Collection</a></li>
                     <li><a href="<?php echo base_url('auteur/lister'); ?>">Auteurs</a></li>
-                    <li><a href="<?php echo base_url('evenement/ajouter'); ?>">Evenements</a></li>
+                    <li><a href="<?php echo base_url('event/index'); ?>">Evenements</a></li>
                     <li><a href="<?php echo base_url('forum/index'); ?>">Forum</a></li>
                   </ul>
                   
@@ -51,7 +51,7 @@
               </i></a></li>
                    
 
-        <?php if ($this->session->userdata('pseudo') === NULL) : ?>
+        <?php // if ($this->session->userdata('pseudo') === NULL) : ?>
               <div  id="authen">
                 <div id="box_authen">
                    <a href="<?php echo base_url('login/sign_in'); ?>"> 
@@ -62,7 +62,7 @@
                    </a>
                 </div>
               </div>
-        <?php endif ?>
+        <?php // endif ?>
 
 
 

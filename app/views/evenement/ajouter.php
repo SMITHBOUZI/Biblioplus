@@ -1,3 +1,10 @@
+<?php 
+if ($this->session->userdata('pseudo') === NULL) {
+	$_SESSION['flash']['danger'] = 'Connecter pour creer un enevenement ';
+	redirect('event/index');
+}
+?>
+
 <?php if (isset($_SESSION['flash'])): ?>
 	<?php foreach ($_SESSION['flash'] as $type => $message):?>
 	   <div class="alert alert-<?= $type; ?>">
@@ -11,7 +18,7 @@
 	<div class="columns large-6 medium-6 large-centered medium-centered" id="nouveau_evenement">
 	<div class=" columns large-12 medium-12">
 		<!-- <form > -->
-			<?php echo form_open_multipart('evenement/ajouter','class="columns medium-12 large-12"');?> 
+			<?php echo form_open_multipart('event/ajouter','');?> 
 			<div class="columns large-6 medium-6">
 				<img src="http://via.placeholder.com/280x180" class="circle_rectangle">	
 			</div>

@@ -1,10 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Evenement extends CI_Controller {
+class Event extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
+	}
+
+	function index() {
+		$this->load->view('templates/header');
+		$this->load->view('evenement/index');
 	}
 
     function ajouter()	{
@@ -14,7 +19,8 @@ class Evenement extends CI_Controller {
 
 	    		// $photo = trim($this->input->post('photo'));
 	    		$nom = trim($this->input->post('nomEvent'));
-	 			$user_id = $this->db->insert_id();
+				$user_id = $this->session->userdata('idmembre');
+
 	    		$lieuEvent = trim($this->input->post('lieuEvent'));
 	    		$dateEvent = trim($this->input->post('dateEvent'));
 	    		$descEvent = trim($this->input->post('descEvent'));
@@ -45,7 +51,8 @@ class Evenement extends CI_Controller {
 				}
 	    			$_SESSION['flash']['success'] = 'L\'evenement a ete mise a jour.';
 	    			$this->load->view('templates/header');
-					$this->load->view('evenement/ajouter');	    	
+					$this->load->view('evenement/index');	  
+					// redirect('evenement/lister');  
     		} else { 
     			$_SESSION['flash']['danger'] = 'Veuille remplir tous les champs';
 				$this->load->view('templates/header');
@@ -57,22 +64,25 @@ class Evenement extends CI_Controller {
     	}
 	}
 
-	function lister() {
-		$req = $this->event->lister();
-		if ($req) {
-			foreach ($req as $key) {
-				$data = array(
-					'photo'  => $key->photo,
-					'nom'  => $key->nom,
-					'lieuEvenement'  => $key->lieuEvenement,
-					'dateEvenement'  => $key->dateEvenement,
-					'description'  => $key->description
-				);
-			}
-			$this->load->view('templates/header');
-			$this->load->view('evenement/lister',$data);
-		} 
-	}
+	// function lister() {
+	// 	$req = $this->event->lister();
+	// 	if ($req) {
+	// 		foreach ($req as $key) {
+	// 			$data = array(
+	// 				'photo'  		 => $key->photo,
+	// 				'nom'    		 => $key->nom,
+	// 				'lieuEvenement'  => $key->lieuEvenement,
+	// 				'dateEvenement'  => $key->dateEvenement,
+	// 				'description'    => $key->description,
+	// 				'pseudo'    	 => $key->pseudo
+	// 			);
+	// 		}
+	// 		$this->load->view('templates/header');
+	// 		$this->load->view('evenement/lister',$data);
+	// 	} else {
+	// 		echo 'pas de nouvelle evenement ';
+	// 	}
+	// }
 
 	function modifier()	{
 		$this->load->view('templates/header');

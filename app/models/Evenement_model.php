@@ -11,7 +11,7 @@
  	}
 
  	function add($nom,$user_id,$lieuEvent,$dateEvent,$descEvent) {
- 		
+
     	$data = array(
     		// 'photo'				=> $photo,
     		'nom'				=> $nom,
@@ -24,10 +24,10 @@
 	}
 
 	function lister() {
-		$sql = 'SELECT * FROM evenement';
+		$sql = 'SELECT * FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement LIMIT 5';
 		$req = $this->db->query($sql);
 
-		if ($req->num_rows() === 1) {
+		if ($req->num_rows() > 0) {
 			return $req->result_object();
 		} else {
 			return 'pas de nouvelle evenement';

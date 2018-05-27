@@ -1,4 +1,4 @@
-<div class="row" id="user">
+<div class="row" >
 
 <?php if (isset($_SESSION['flash'])): ?>
     <?php foreach ($_SESSION['flash'] as $type => $message):?>
@@ -54,10 +54,6 @@
               <input type="button" id="" class="fill_button" name="sign_up" value="Nouveau compte"/> </a>
               <!--  <span> <a href="#"> Mot de passe oubli&eacute?</a></span> -->
             </div>
-
-
-
-
             
             
           </div>
