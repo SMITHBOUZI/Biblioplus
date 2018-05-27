@@ -27,7 +27,8 @@
 				<?php if($req): ?>
 			<div class="columns large-6 medium-6">
 				<?php foreach ($req as $key ): ?>
-			<img src="http://via.placeholder.com/350x200" class="circle_rectangle">	
+					<a href="event/desc">
+			<img src="http://via.placeholder.com/350x200" class="circle_rectangle">	</a>
 			</div>
 			<div class="columns large-6 medium-6">
                    <div class="columns large-12 medium-12">
