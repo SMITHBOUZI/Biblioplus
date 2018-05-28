@@ -20,13 +20,14 @@
 				<a href="<?php echo base_url('event/ajouter');?>"><i class="fa fa-plus-square"></i> Ajouter un nouvel &eacutev&eacutenement</a>
 			</div>
 		</div>
-
+		<?php $req = $this->event->lister(); ?>
+			<?php if($req): ?>
+				<?php foreach ($req as $key ): ?>
 		<div class="columns large-12 medium-12" style="position: relative; top: 35px;">
 		<div class="columns large-6 medium-6 small-12">
-			<?php $req = $this->event->lister(); ?>
-				<?php if($req): ?>
+			
 			<div class="columns large-6 medium-6">
-				<?php foreach ($req as $key ): ?>
+				
 					<a href="event/desc">
 			<img src="http://via.placeholder.com/350x200" class="circle_rectangle">	</a>
 			</div>
@@ -52,13 +53,13 @@
              <img src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" class="circle_round_evenement" />
           <?php } ?>
         </div>
-
-			
-				<?php endforeach ?>
-			<?php endif ?>
+				
 		</div>
 		</div>
 	</div>
+
+		<?php endforeach ?>
+			<?php endif ?>
 </div>
 </body>
 </html>
