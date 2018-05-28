@@ -115,6 +115,12 @@
                        une petite description de l'&eacutev&eacutenement a venir
                      </p>
                      <span style="position: relative; float: left; font-style: italic; font-size: 12px;">date</span>
+                     <span style="position: relative; float: right; font-style: italic; font-size: 12px;">Lieu/Adresse</span>
+                     <div class="columns large-12 medium-12"style="position: relative; left:15px;">
+             <input style="width: 30px; position: relative; float: right; font-size: 10px;  outline: none;" type="text" name=""  >
+                  
+             <input style="position: relative; float: right; font-size: 10px; outline: none;" type="button" name="" value="Interresé" >
+                   </div>  
                    </div>
             </div>
 
@@ -126,6 +132,12 @@
                        une petite description de l'&eacutev&eacutenement a venir
                      </p>
                      <span style="position: relative; float: left; font-style: italic; font-size: 12px;">Date</span>
+                     <span style="position: relative; float: right; font-style: italic; font-size: 12px;">Lieu/Adresse</span>
+                     <div class="columns large-12 medium-12"style="position: relative; left:15px;">
+             <input style="width: 30px; position: relative; float: right; font-size: 10px;  outline: none;" type="text" name=""  >
+                  
+             <input style="position: relative; float: right; font-size: 10px; outline: none;" type="button" name="" value="Interresé" >
+                   </div>  
                    </div>
             </div>
 
@@ -137,6 +149,12 @@
                        une petite description de l'&eacutev&eacutenement a venir
                      </p>
                      <span style="position: relative; float: left; font-style: italic; font-size: 12px;">date</span>
+                     <span style="position: relative; float: right; font-style: italic; font-size: 12px;">Lieu/Adresse</span>
+                      <div class="columns large-12 medium-12"style="position: relative; left:15px;">
+             <input style="width: 30px; position: relative; float: right; font-size: 10px;  outline: none;" type="text" name=""  >
+                  
+             <input style="position: relative; float: right; font-size: 10px; outline: none;" type="button" name="" value="Interresé" >
+                   </div>   
                    </div>
             </div>
     </div>
