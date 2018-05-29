@@ -87,10 +87,31 @@ class Forum extends CI_Controller {
 				$this->load->view('forum/discussions/view', $data); 
 			}		
 		}
+		// $id  = $_GET['id'];
+		if ($_GET['id'] === true ) {
+			echo "Id on";
+		}
+		// if ($this->input->post('poster')) {
+		//     // $id  = $_GET['id'];
+		// 	echo "Franck .."; 
+		// 	$cm = $this->input->post('tcontenue'); 
+		// 	$req = $this->forum->comment($id, $cm);
+		// }		
 	}
 
+	// function comment (){
+	// 	$id_sujet  = $_GET['id'];
+	// 	$contenu_m = $this->input->post('contenu_m'); 
+	// 	$req = $this->forum->comment($id_sujet, $contenu_m);
+		
+	// 	if ($req) {
+	// 		echo "comment added";
+	// 	} else {
+	// 		echo "Error de comment ";
+	// 	}
+	// }
+
 }
- 
 
 			
 

@@ -81,7 +81,24 @@
 	    </div>
 	    <?php // echo form_close();  ?>
 	  </form> 
+			<input type="submit" class="btn btn-primary" name="comment" value="Comment">
 	</div> -->
+
+		<?php echo form_open_multipart('forum/view','class="columns medium-12 large-12"');?> 
+
+			<div class=" columns large-12 medium-12 ">
+				<div class="columns large-3 medium-3"> 
+					<label> Contenu</label>		
+				</div>
+				<div class="columns large-9 medium-9">					
+			<textarea  rows="6" cols="40" placeholder="" name="tcontenue" class="tcontenue"></textarea>	
+			<!-- <input type="text" name="tcontenue" id="tcontenue" />				 -->
+				</div>				
+			</div>
+			<div class="columns large-12 medium-12">
+				<input type="submit" name="poster" value="poster" id="custom_input_post" />
+			</div>
+			<?php echo form_close();  ?>
 
 	<div class="columns large-12 medium-12">
 		<h5 id="text"> Faites de vos exp&eacuteriences d'engrais pour augmenter <br/> l'app&eacutetit des autres a la lecture</h5>

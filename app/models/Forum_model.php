@@ -140,4 +140,14 @@ class Forum_model extends CI_Model {
 			}
 		}
 	}
+
+	// UPDATE f_messages SET id_sujet = 1 , date_hres_edition = NOW(), contenu_m = 'Lolo'
+	function comment($id_sujet, $cm) {		
+		// $cm = $this->input->post('tcontenue');
+
+		$user_id = $this->session->userdata('idmembre');
+	 	$sql = "UPDATE f_messages SET date_hres_edition = NOW(), contenu_m = ? , id_poster_comment = ? WHERE id_sujet = ? ";
+
+	 	$this->db->query($sql, array($cm, $user_id, $id_sujet));
+	}
 }
