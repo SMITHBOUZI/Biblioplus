@@ -103,29 +103,37 @@
   <div class="row">
     <div class="columns large-12 medium-12" style=" margin-top:2em; text-align:center;">
       <h3>Les &eacutev&eacutenements les plus proches</h3>
-      <p>Amant du livre, vous qui ne voulez pas manquer un &eacutev&eacutenement auxquels vous voudriez prendre part<br/> dans cette section vous resterez informer.</p>
-                      
+      <p>Amant du livre, vous qui ne voulez pas manquer un &eacutev&eacutenement auxquels vous voudriez prendre part<br/> dans cette section vous resterez informer.</p>                      
     </div> 
     <?php $req = $this->event->lister(); ?>
       <?php if($req): ?>
         <?php foreach ($req as $key ): ?>
-    <div class="columns large-12 medium-12">
+   
             <div class="columns large-4 medium-6 small-12 " >    
                    <img src="http://via.placeholder.com/350x200" class="circle_rectangle" />
-                   <h4 style="text-align: center;"><?php echo $key->nom; ?></h4>
                    <div class="columns large-12 medium-12">
-                     <p>
-                      <?php echo $key->description; ?>
-                     </p>
+                   <div class="columns large-6 medium-6">
+                   <h4 style="text-align:left;"><?php echo $key->nom; ?></h4>
+                   </div>
+                   <div class="columns large-6 medium-6 ">
+      <a href="">
+          <?php if(empty($_SESSION['photo'] )){ ?>
+            <img style="position: relative; border-radius: 50%; float: right;" src="<?php echo base_url('assets/avatar/avatar.png'); ?>" width="30px" title="<?php echo $key->pseudo; ?>"  alter="photo utilisateur" />
+          <?php } else {?>
+             <img  style="border-radius: 50%;"src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" class="circle_round_evenement" />
+          <?php } ?>
+          </a>
+</div>  
+                   </div>
+                   <div class="columns large-12 medium-12">
+
+
+
                      <span style="position: relative; float: left; font-style: italic; font-size: 12px;"><?php echo $key->dateEvenement; ?></span>
                      <span style="position: relative; float: right; font-style: italic; font-size: 12px;"><?php echo $key->lieuEvenement; ?></span>
-                     <div class="columns large-12 medium-12"style="position: relative; left:15px;">
-             <input style="width: 30px; position: relative; float: right; font-size: 10px;  outline: none;" type="text" name=""  >
-                  
-             <input style="position: relative; float: right; font-size: 10px; outline: none;" type="button" name="" value="Interresé" >
-                   </div>  
+
                    </div>
-            </div>
+            
     </div>
     <?php endforeach ?>
       <?php endif ?>
