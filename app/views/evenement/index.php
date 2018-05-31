@@ -43,21 +43,31 @@
 			</div>
 			<div class="columns large-6 medium-6">
                    <div class="columns large-12 medium-12">
+                   	<div class="columns large-12 medium-12">
                    	<p>
                        <?php echo $key->nom; ?>
                      </p>
+                 </div>
+                 <div class="columns large-12 medium-12">
                      <p>
                        <?php echo $key->description; ?>
                      </p>
+                 </div>
+                 <div class="columns large-12 medium-12">
+                 	<div class="columns large-6 medium-6 small-6">
                      <span style="position: relative; float: left; font-style: italic; font-size: 12px;">
                      	<?php echo $key->dateEvenement; ?>
                      </span>
+                 </div>
+                 <div class="columns large-6 medium-6 small-6">
                      <span style="position: relative; float: right; font-style: italic; font-size: 12px;">
                      	<?php echo $key->lieuEvenement; ?>
-                     </span>                                    
+                     </span> 
+                     </div> 
+                     </div>                                  
                    </div>
                    <div class="columns large-12 medium-12">
-                   <a style="position: relative; float: right; font-size: 10px;"><i class="fa fa-plus"></i> Info plus</a>
+                   <a href="<?php echo base_url('event/ficheEvenement');?>" style="position: relative; float: right; font-size: 10px;"><i class="fa fa-plus"></i> Info plus</a>
                    </div>
                    <div class="columns large-12 medium-12">
              <input style="width: 30px; position: relative; float: right; font-size: 10px;  outline: none;" type="text" name=""  >

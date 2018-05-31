@@ -84,6 +84,11 @@ class Event extends CI_Controller {
 	// 	}
 	// }
 
+	function ficheEvenement()	{
+		$this->load->view('templates/header');
+		$this->load->view('evenement/ficheEvenement');
+	}
+
 	function modifier()	{
 		$this->load->view('templates/header');
 		$this->load->view('evenement/modifier');
