@@ -105,59 +105,30 @@
       <h3>Les &eacutev&eacutenements les plus proches</h3>
       <p>Amant du livre, vous qui ne voulez pas manquer un &eacutev&eacutenement auxquels vous voudriez prendre part<br/> dans cette section vous resterez informer.</p>
                       
-    </div>
+    </div> 
+    <?php $req = $this->event->lister(); ?>
+      <?php if($req): ?>
+        <?php foreach ($req as $key ): ?>
     <div class="columns large-12 medium-12">
             <div class="columns large-4 medium-6 small-12 " >    
                    <img src="http://via.placeholder.com/350x200" class="circle_rectangle" />
-                   <h4 style="text-align: center;">Nom de l'&eacutev&eacutenement </h4>
+                   <h4 style="text-align: center;"><?php echo $key->nom; ?></h4>
                    <div class="columns large-12 medium-12">
                      <p>
-                       une petite description de l'&eacutev&eacutenement a venir
+                      <?php echo $key->description; ?>
                      </p>
-                     <span style="position: relative; float: left; font-style: italic; font-size: 12px;">date</span>
-                     <span style="position: relative; float: right; font-style: italic; font-size: 12px;">Lieu/Adresse</span>
+                     <span style="position: relative; float: left; font-style: italic; font-size: 12px;"><?php echo $key->dateEvenement; ?></span>
+                     <span style="position: relative; float: right; font-style: italic; font-size: 12px;"><?php echo $key->lieuEvenement; ?></span>
                      <div class="columns large-12 medium-12"style="position: relative; left:15px;">
              <input style="width: 30px; position: relative; float: right; font-size: 10px;  outline: none;" type="text" name=""  >
                   
              <input style="position: relative; float: right; font-size: 10px; outline: none;" type="button" name="" value="Interresé" >
                    </div>  
-                   </div>
-            </div>
-
-            <div class="columns large-4 medium-6 small-12" >
-                   <img src="http://via.placeholder.com/350x200" class="circle_rectangle"">
-                    <h4 style="text-align: center;">Nom de l'&eacutev&eacutenement </h4>
-                   <div class="columns large-12 medium-12">
-                     <p>
-                       une petite description de l'&eacutev&eacutenement a venir
-                     </p>
-                     <span style="position: relative; float: left; font-style: italic; font-size: 12px;">Date</span>
-                     <span style="position: relative; float: right; font-style: italic; font-size: 12px;">Lieu/Adresse</span>
-                     <div class="columns large-12 medium-12"style="position: relative; left:15px;">
-             <input style="width: 30px; position: relative; float: right; font-size: 10px;  outline: none;" type="text" name=""  >
-                  
-             <input style="position: relative; float: right; font-size: 10px; outline: none;" type="button" name="" value="Interresé" >
-                   </div>  
-                   </div>
-            </div>
-
-            <div class="columns large-4 medium-6 small-12" >
-                   <img src="http://via.placeholder.com/350x200" class="circle_rectangle">
-                    <h4 style="text-align: center;">Nom de l'&eacutev&eacutenement </h4>
-                   <div class="columns large-12 medium-12">
-                     <p>
-                       une petite description de l'&eacutev&eacutenement a venir
-                     </p>
-                     <span style="position: relative; float: left; font-style: italic; font-size: 12px;">date</span>
-                     <span style="position: relative; float: right; font-style: italic; font-size: 12px;">Lieu/Adresse</span>
-                      <div class="columns large-12 medium-12"style="position: relative; left:15px;">
-             <input style="width: 30px; position: relative; float: right; font-size: 10px;  outline: none;" type="text" name=""  >
-                  
-             <input style="position: relative; float: right; font-size: 10px; outline: none;" type="button" name="" value="Interresé" >
-                   </div>   
                    </div>
             </div>
     </div>
+    <?php endforeach ?>
+      <?php endif ?>
   </div>
 </div>
 

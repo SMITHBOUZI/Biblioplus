@@ -83,10 +83,10 @@
 									<td>
 										<p><?php echo $rows->pseudo; ?></p>
 									</td>
-								</div>
+								</div> 
 								<div class=" columns large-3 medium-3 small-3">
 									<td>
-										<p><?php // echo $rows->repons; ?></p>
+										<p><?php // echo $rows->rep; ?></p>
 									</td>
 								</div>
 								<div class=" columns large-3 medium-3 small-3">

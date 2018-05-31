@@ -30,7 +30,8 @@
 		if ($req->num_rows() > 0) {
 			return $req->result_object();
 		} else {
-			return 'pas de nouvelle evenement';
+			return $req->result_object();
+			// return 'pas de nouvelle evenement';
 		}		
 	}
 

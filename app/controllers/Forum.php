@@ -45,7 +45,7 @@ class Forum extends CI_Controller {
 		}
 	}
 
-	function view(){
+	function view() {
 		if ( (isset($_GET['s']) === true) && (isset($_GET['id']) === true) ) {
 			$s   = $_GET['s'];
 		    $id  = $_GET['id'];
@@ -58,17 +58,20 @@ class Forum extends CI_Controller {
 						'contenu_c'			 => $key->contenu_c,
 						'contenu_s'			 => $key->contenu_s,
 						'date_hres_creation' => $key->date_hres_creation,
-						'contenu_m' 		 => $key->contenu_m,
-						'pseudo'			 => $key->pseudo
+						//'contenu_m' 		 => $key->contenu_m,
+						'pseudo'			 => $key->pseudo,
+						'id'			 => $key->id
 					);
 				}
 				$this->load->view('templates/header');
 				$this->load->view('forum/discussions/view', $data);
+
 			} else {
 				$_SESSION['flash']['info'] = 'Desole aucun sujet trouver ';
 				$this->load->view('templates/header');
 				$this->load->view('forum/discussions/view');
 			}
+			
 		} else if ( (isset($_GET['s']) === false) && (isset($_GET['id']) === false) ){
 			
 			$req = $this->forum->lister_sujet();
@@ -79,18 +82,31 @@ class Forum extends CI_Controller {
 						'contenu_c'			 => $key->contenu_c,
 						'contenu_s'			 => $key->contenu_s,
 						'date_hres_creation' => $key->date_hres_creation,
-						'contenu_m' 		 => $key->contenu_m,
+						// 'contenu_m' 		 => $key->contenu_m,
 						'pseudo'			 => $key->pseudo
 					);
 				}
 				$this->load->view('templates/header');
 				$this->load->view('forum/discussions/view', $data); 
 			}		
+		}		
+	}
+
+	function comment (){
+
+		if ($this->input->post('poster')) {
+			
+			$cm = $this->input->post('tcontenue');
+			$id = $this->input->post('id');
+			// $cm = $this->input->post('tcontenue');
+			$req = $this->forum->comment($id, $cm);
+			
+			$this->load->view('templates/header');
+			$this->load->view('forum/discussions/view'); 
 		}
 	}
 
 }
- 
 
 			
 
