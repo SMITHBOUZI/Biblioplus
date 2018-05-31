@@ -81,6 +81,7 @@
         </div>				
 		
 		</div>
+		
 	</div>
 
 		<?php endforeach ?>
