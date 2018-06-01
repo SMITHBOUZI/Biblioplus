@@ -24,7 +24,7 @@
 	}
 
 	function lister() {
-		$sql = 'SELECT * FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement LIMIT 5';
+		$sql = 'SELECT * FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement';
 		$req = $this->db->query($sql);
 
 		if ($req->num_rows() > 0) {

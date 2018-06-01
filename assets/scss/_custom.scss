@@ -187,6 +187,7 @@ background-color:#383737;
 color:white;
 display: none;
 text-align: center;
+z-index: 1000;
 
 form{
   border-top:3px solid #2e7f4d;
@@ -790,6 +791,7 @@ background-color:#383737;
 color:white;
 display: none;
 text-align: center;
+z-index: 1000;
 }
 #nouveau_evenement{
   position: relative; 
