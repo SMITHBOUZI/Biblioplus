@@ -135,5 +135,6 @@ $autoload['language'] = array();
 $autoload['model'] = array(
 							'login_model'  => 'login',
 							'forum_model'  => 'forum',
-							'account_model'  => 'account'
+							'account_model'  => 'account',
+							'Evenement_model'  => 'event'
 							);

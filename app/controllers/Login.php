@@ -14,7 +14,7 @@ class Login extends CI_Controller {
 
 	function sign_in() {
 
-		// if ($this->input->post('sign_in')) {
+		if ($this->input->post('sign_in')) {
 
 			if ( !empty(trim($this->input->post('pseudo'))) AND !empty(trim($this->input->post('mot_de_passe'))) ) {
 
@@ -53,8 +53,11 @@ class Login extends CI_Controller {
 				$_SESSION['flash']['danger'] = 'Veuillez remplir tous les champs ';
 				$this->load->view('templates/header');
 				$this->load->view('sign_in');
-			}
-		// }
+			}		
+		} else {
+			$this->load->view('templates/header');
+			$this->load->view('sign_in');
+		}
     }
 
     // function check_if_pseudo_exists($request_pseudo){
@@ -195,6 +198,7 @@ class Login extends CI_Controller {
 					$this->email->message("Cliquez sur ce lien pour valider votre compte.:   ".$url);
 					if ($this->email->send()) {
 					  	$_SESSION['flash']['success'] = 'Un email de confirmation vous a étè envoyé';
+					  	redirect('login/sign_in');
 					}else{
 					  	show_error($this->email->print_debugger());
 					  	$_SESSION['flash']['success'] = 'Une erreur se produit .. ';	

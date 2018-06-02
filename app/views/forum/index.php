@@ -65,8 +65,8 @@
 			<div class="columns large-12 medium-12 small-12">
 			<tbody>
 				<div class="columns large-12 medium-12 small-12">
-					<?php $req = $this->forum->lister_sujet(); ?>
-						<?php foreach ($req as $rows): ?> <?php // var_dump($rows->repons); ?>
+					<?php $req = $this->forum->lister_sujet(); ?> 
+						<?php foreach ($req as $rows): ?> 
 							<tr>
 								<div class=" columns large-6 medium-6 small-6">
 									<td>
@@ -83,10 +83,10 @@
 									<td>
 										<p><?php echo $rows->pseudo; ?></p>
 									</td>
-								</div>
+								</div> 
 								<div class=" columns large-3 medium-3 small-3">
 									<td>
-										<p><?php // echo $rows->repons; ?></p>
+										<p><?php // echo $rows->rep; ?></p>
 									</td>
 								</div>
 								<div class=" columns large-3 medium-3 small-3">

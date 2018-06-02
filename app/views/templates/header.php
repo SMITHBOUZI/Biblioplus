@@ -33,12 +33,10 @@
 
                   <ul class="  menu align-center"  id="nav_menu">
                     <li><a href="<?php echo base_url('login/index'); ?>"><i class="fas fa-home " ></i></a></li>
-                    <li><a href="<?php echo base_url('Collection/collection'); ?>">Collection</a></li>
-                    <li><a href="#">Auteurs</a></li>
-                    <li><a href="<?php echo base_url('Evenement/evenement'); ?>">Evenements</a></li>
+                    <li><a href="<?php echo base_url('collection/lister'); ?>">Collection</a></li>
+                    <li><a href="<?php echo base_url('auteur/lister'); ?>">Auteurs</a></li>
+                    <li><a href="<?php echo base_url('event/index'); ?>">Evenements</a></li>
                     <li><a href="<?php echo base_url('forum/index'); ?>">Forum</a></li>
-                    
-                    
                   </ul>
                   
                 </nav>
@@ -51,19 +49,20 @@
                    
 
               </i></a></li>
+                   
 
-        <?php if ($this->session->userdata('pseudo') === NULL) : ?>
-              <div  id="xax">
-                <div id="xox">
+        <?php // if ($this->session->userdata('pseudo') === NULL) : ?>
+              <div  id="authen">
+                <div id="box_authen">
                    <a href="<?php echo base_url('login/sign_in'); ?>"> 
                     <input type="button" name="login/sign_in" value="connecter" class="fill_button" align="center" />
                    </a> 
                    <a href="<?php echo base_url('login/sign_up'); ?>"> 
                     <input type="button" name="login/sign_up" value="nouveau compte" class="fill_button" align="center" />
-                   </a>                   
+                   </a>
                 </div>
               </div>
-        <?php endif ?>
+        <?php // endif ?>
 
 
 
@@ -73,10 +72,10 @@
 
   <div id="login_box" >
 
-    <div id="user" > <!-- Drop down login_box -->
+    <div id="user"> <!-- Drop down login_box -->
       <form >
-       <!--  <div class="grid-container">
-          <div class="grid-x padding-x"> -->
+        <div class="grid-container">
+          <div class="grid-x padding-x">
 
             <div class="cell medium-12 ">
               <?php if(empty($_SESSION['photo'] )){ ?>
@@ -93,8 +92,8 @@
              </a> 
             </div> 
 
-          <!-- </div>
-        </div>  --><!-- end of container dropdown -->
+          </div>
+        </div> <!-- end of container dropdown -->
       </form>
     </div>   
   </div><!-- end of dropdown_login  -->
@@ -141,17 +140,7 @@
 
   </div>
 
-  <?php if (isset($_SESSION['flash'])): ?>
-    <?php foreach ($_SESSION['flash'] as $type => $message):?>
-      <div class="callout <?= $type; ?>" data-closable id="token" style="position: absolute; width: 300px;">
-        <p><?= $message; ?></p>
-         <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
-          <span aria-hidden="true">&times;</span>
-        </button>        
-      </div>
-    <?php endforeach ?>
-    <?php unset($_SESSION['flash']) ?>
-  <?php endif ?>
+  
 
 <script src="<?php echo base_url('assets/node_modules/jquery/dist/jquery.js'); ?>  "></script>
 <script src="<?php echo base_url('assets/node_modules/what-input/dist/what-input.js'); ?>  "></script>

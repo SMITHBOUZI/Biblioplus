@@ -196,13 +196,26 @@ opacity: 0.8;
 background-color: #2e7f4d;
 }
 
-
+#login_box{
+position: relative;
+}
 
 #user{
-
-  margin-top: 4em;
+/*position: absolute;
+margin-top: 4em;
 border-radius: 4px;
-padding: 15px;
+padding: 15px;*/
+
+position:absolute; 
+width:200px;
+height:250px; 
+top:49px;
+left:-150px;
+background-color:#383737;
+color:white;
+display: none;
+text-align: center;
+z-index: 1000;
 
 form{
   border-top:3px solid #2e7f4d;
@@ -319,6 +332,15 @@ margin-bottom:  10px;
 
     color: black;
   }
+}
+
+.circle_round_evenement{
+
+  border-radius: 50%;
+  border:3px solid #47ab6d;
+ /* padding: 7px;*/
+  width: 50px;
+  height: 50px;
 }
 
 .circle_round{
@@ -694,6 +716,7 @@ form{
   text-align: left;
 }
 
+<<<<<<< HEAD
 /*#espace_de_reaction
 { 
 
@@ -705,6 +728,12 @@ form{
   right: 14px;
   
    }*/
+=======
+#espace_de_reaction
+{
+  display: none; 
+}
+>>>>>>> c802d5d17295ec8efe74388ec1606319e938dfc9
 #reaction{
   position: relative;
   top: 15px;
@@ -817,10 +846,10 @@ input {
  
 }
 
-#xax{
+#authen{
   position: relative;
 }
-#xox{
+#box_authen{
  position:absolute; 
 width:200px;
 height:200px; 
@@ -830,9 +859,35 @@ background-color:#383737;
 color:white;
 display: none;
 text-align: center;
+z-index: 1000;
 }
+#nouveau_evenement{
+  position: relative; 
+  top: 100px;
+.custom_input_evenement{
+ padding: 12px; 
+ border:0.7px solid #2e7f4d;
+ outline: none;
+ border-radius: 5px;
+ margin: 2px;
+}
+textarea{
+  width: 100%;
+  padding:10px;
+  margin-top: 15px;
+  outline: none;
+  border:0.7px solid #2e7f4d;  
+  border-radius: 5px;
+  letter-spacing: 0.2px;
+  font-family: arial;
+  font-size: 0.90em;
+}
+label{
 
-
-
-
-
+  padding:10px;
+  font-size: 16px;
+  font-style: italic;
+  color: gray;
+  text-align: right;
+}
+}
