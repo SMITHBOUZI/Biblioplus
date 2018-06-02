@@ -132,7 +132,7 @@ class Login extends CI_Controller {
 
 	public function sign_up() {
 		$this->form_validation->set_rules('nom_prenom', 'nom complet', 'trim|required|htmlspecialchars|callback_ckeck_format_nom_prenom');
-		$this->form_validation->set_rules('pseudo', 'nom d\'utilisateur', 'trim|required|min_length[6]|max_length[12]|htmlspecialchars|callback_ckeck_format_pseudo');
+		$this->form_validation->set_rules('pseudo', 'nom d\'utilisateur','trim|required|min_length[6]|max_length[12]|htmlspecialchars|callback_ckeck_format_pseudo');
 		$this->form_validation->set_rules('mot_de_passe', 'mot de passe', 'trim|required|min_length[8]|htmlspecialchars');
 		$this->form_validation->set_rules('mot_de_passe_c', 'mot de passe de confirmation', 'trim|min_length[8]|htmlspecialchars|matches[mot_de_passe]');
 		$this->form_validation->set_rules('pseudo', 'nom d\'utilisateur', 'trim|required|min_length[6]|max_length[12]|htmlspecialchars|callback_ckeck_format_pseudo');

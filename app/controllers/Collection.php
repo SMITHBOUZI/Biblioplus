@@ -10,5 +10,18 @@ class Collection extends CI_Controller {
     function collection()	{
 		$this->load->view('templates/header');
 		$this->load->view('collection');
+		$this->load->view('templates/footer');
+	}
+
+	function ouvrage()	{
+		$this->load->view('templates/header');
+		$this->load->view('templates/ouvrage');
+		 $this->load->view('templates/footer');
+	}
+
+	function auteurs()	{
+		$this->load->view('templates/header');
+		$this->load->view('auteurs');
+		 $this->load->view('templates/footer');
 	}
 }

@@ -4,8 +4,36 @@ header{
 
 }
 
-/*#banner{
+#banner{
   position: relative;
+  height: 350px;
+  background-image: url(../../assets/img/Biblio.jpg);
+text-align: center;
+  
+  /*  -webkit-filter: brightness(0.73);*/
+    color: white;
+h2{
+letter-spacing: -1px;
+font-weight:bolder;
+opacity: 0.85;
+
+margin-top: 2em;
+/*font-size: 2em;*/
+/*text-transform: uppercase;*/
+}
+p{
+font-family: arial;
+/*font-style: italic;*/
+  font-size: 20px;
+  font-weight: lighter;
+  margin: 0.2em;
+}
+h3{
+
+  font-weight: lighter;
+  font-family: arial;
+  letter-spacing: -4px;
+}
 }
 
 
@@ -15,7 +43,7 @@ color: red;
 position: absolute;
 top: 4em;
 }
-*/
+
 #logo{
     
 
@@ -421,15 +449,39 @@ small{
   text-align: center;
 
 }
+.collection_header{
+padding: 4px;
+ background: #309958;
+z-index: 1000;
+text-align: center;
+display: block;
+color: white;
+font-size: 1em;
+margin: auto;
+border-top: 2px solid white;
+
+/*margin-bottom: 0.4em;*/
+width: 15em;
+
+
+font-weight: bolder;
+
+
+}
+
+.reveal{
+
+  .custom_input{
+
+   padding: 10px;
+  }
+}
 
 
 
+/*typographie*/
 
 
-/*article .thumbnail{
-border-radius: 50%;
-
-}*/
 
 
 
@@ -491,6 +543,8 @@ top:0px;
 
 
 }
+
+
 
 /* Medium and up */
 @media screen and (min-width: 40em) {
@@ -640,7 +694,7 @@ form{
   text-align: left;
 }
 
-#espace_de_reaction
+/*#espace_de_reaction
 { 
 
   display: ;
@@ -650,7 +704,7 @@ form{
   top: 5px;
   right: 14px;
   
-   }
+   }*/
 #reaction{
   position: relative;
   top: 15px;
