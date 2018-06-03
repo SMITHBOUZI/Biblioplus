@@ -3,12 +3,18 @@ $(document).foundation();
 
 
 $("#login").click(function(e){
+<<<<<<< HEAD
+	$("#nav_menu").hide();
+
+$("#search").hide();	
+=======
 
 
 $("#nav_menu").hide(10);
 
 
 $("#search").hide(100);	
+>>>>>>> c802d5d17295ec8efe74388ec1606319e938dfc9
 
 $("#user").slideToggle(350);
 
@@ -17,12 +23,9 @@ $("#box_authen").slideToggle(500);
 
 
 $("#search_button").click(function(e){
-$("#user").hide(100);
 $("#nav_menu").hide(10);
 $("#box_authen").hide(100);
 $("#search").slideToggle(500);
-
-$
 
 });
 
@@ -34,6 +37,13 @@ $
 
 $(".menu-icon").click(function(e){
 	$("#search").hide(10);
+<<<<<<< HEAD
+
+$("#xox").hide(100);
+    
+
+
+=======
 $("#xox").hide(100);
     $("#user").hide(10);
 
@@ -43,6 +53,7 @@ $("#box_authen").hide(100);
     $("#user").hide(10);
 
 
+>>>>>>> c802d5d17295ec8efe74388ec1606319e938dfc9
 
 $("#nav_menu").slideToggle(400);
 
@@ -63,7 +74,7 @@ $('.owl-carousel').owlCarousel({
     loop:true,
     margin:5,
     nav:true,
-    
+    autoplay:true,
    
     responsive:{
         0:{
@@ -86,8 +97,9 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
-
 });
+
+
 
 
 

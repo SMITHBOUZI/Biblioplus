@@ -18,6 +18,22 @@ class Collection extends CI_Controller {
     		}
     	}
 		$this->load->view('templates/header');
+<<<<<<< HEAD
+		$this->load->view('collection');
+		$this->load->view('templates/footer');
+	}
+
+	function ouvrage()	{
+		$this->load->view('templates/header');
+		$this->load->view('templates/ouvrage');
+		 $this->load->view('templates/footer');
+	}
+
+	function auteurs()	{
+		$this->load->view('templates/header');
+		$this->load->view('auteurs');
+		 $this->load->view('templates/footer');
+=======
 		$this->load->view('collection/ajouter');
 	}
 
@@ -34,5 +50,6 @@ class Collection extends CI_Controller {
 	function lister(){
 		$this->load->view('templates/header');
 		$this->load->view('collection/lister');
+>>>>>>> c802d5d17295ec8efe74388ec1606319e938dfc9
 	}
 }
