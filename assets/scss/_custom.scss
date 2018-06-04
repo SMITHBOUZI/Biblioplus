@@ -851,11 +851,11 @@ input {
 }
 
 
-.circle_rectangle{
-
-  border-radius: 5%;
-  border:3px solid #47ab6d;
- 
+.evenement_rectangle_box{
+  /*border:1px solid #191b19;*/   
+  position: relative; 
+  top: 80px;
+  box-shadow: 0px 0px 3px 0.4px #888888;
 }
 
 #authen{

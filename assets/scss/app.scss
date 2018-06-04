@@ -8,11 +8,15 @@
 
 
 @include foundation-grid;
-// @include foundation-flex-grid;
+@include foundation-flex-grid;
 @include foundation-xy-grid-classes;
 @include foundation-typography;
+<<<<<<< HEAD
 @include foundation-button;
 //@include foundation-forms; 
+=======
+@include foundation-button@include foundation-forms;
+>>>>>>> 0badf502237fe7c75a9f782822de0b870844bac3
 @include foundation-range-input;
 @include foundation-accordion;
 @include foundation-accordion-menu;
