@@ -134,7 +134,6 @@ text-transform: uppercase;
    margin-bottom:5px;
    margin-top:5px;
 width: 80%;
- 
  border: 1px solid gray;
  /*background-color: transparent;*/
 /* color: white;*/
@@ -567,6 +566,19 @@ top:0px;
 }
 
 
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+
+
+
+
 
 /* Medium and up */
 @media screen and (min-width: 40em) {
@@ -716,7 +728,7 @@ form{
   text-align: left;
 }
 
-<<<<<<< HEAD
+
 /*#espace_de_reaction
 { 
 
@@ -728,12 +740,12 @@ form{
   right: 14px;
   
    }*/
-=======
+
 #espace_de_reaction
 {
   display: none; 
 }
->>>>>>> c802d5d17295ec8efe74388ec1606319e938dfc9
+
 #reaction{
   position: relative;
   top: 15px;

@@ -160,19 +160,26 @@ padding-top:10px;">
    
   </div>
 <div class="columns medium-6">
+<div class="columns medium-12">
+<input type="file" name="file" id="file" class="inputfile" />
+<label for="file" class="fill_button" style="display:inline:block;">Charg&eacute l'ouvrage</label>
+</div>
+
+
+<div class="columns medium-12">
+
+
 <textarea  style="width:100%;" >  
 
 
 </textarea>
 </div>
-
-
-
+</div>
   
 
 
 
-  	  <div class="columns medium-12" ">
+  	  <div class="columns medium-12" >
   	<!--   <hr/> -->
         <input type="submit" name="ajout_ouvrage" class="fill_button" value="Ajouter"/>
 </div>

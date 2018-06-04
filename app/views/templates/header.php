@@ -8,6 +8,7 @@
         <title>BiBlioPlus</title>
         <link rel="stylesheet" href="<?php echo base_url('assets/css/app.css'); ?> ">
 <link rel="stylesheet" href="<?php echo base_url('assets/css/app.css'); ?> ">
+<link rel="stylesheet" href="<?php echo base_url('assets/css/croppie.css'); ?> ">
         <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.min.css'); ?> ">
          <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.theme.default.min'); ?> ">
 
@@ -146,5 +147,6 @@
 <script src="<?php echo base_url('assets/node_modules/what-input/dist/what-input.js'); ?>  "></script>
 <script src="<?php echo base_url('assets/node_modules/foundation-sites/dist/js/foundation.js'); ?>  "></script>
 <script src="<?php echo base_url('assets/js/app.js'); ?> "></script>
+<script src="<?php echo base_url('assets/js/cropper.min.js'); ?> "></script>
 <script src="<?php echo base_url('assets/js/owl.carousel.min.js'); ?> "> 
 </script>
