@@ -65,7 +65,6 @@ class Forum extends CI_Controller {
 				}
 				$this->load->view('templates/header');
 				$this->load->view('forum/discussions/view', $data);
-
 			} else {
 				$_SESSION['flash']['info'] = 'Desole aucun sujet trouver ';
 				$this->load->view('templates/header');
@@ -95,14 +94,21 @@ class Forum extends CI_Controller {
 	function comment (){
 
 		if ($this->input->post('poster')) {
-			
-			$cm = $this->input->post('tcontenue');
-			$id = $this->input->post('id');
-			// $cm = $this->input->post('tcontenue');
-			$req = $this->forum->comment($id, $cm);
-			
-			$this->load->view('templates/header');
-			$this->load->view('forum/discussions/view'); 
+			if (!empty($this->input->post('tcontenue')) ) {
+				$cm = $this->input->post('tcontenue');
+				$id = $this->input->post('id');
+
+				$req = $this->forum->comment($id, $cm);
+				
+				// $this->load->view('templates/header');
+				// $this->load->view('forum/index'); 
+				header('Location:view');
+			} else {
+				
+				$_SESSION['flash']['info'] = 'Saisir le comment ';
+				// $this->load->view('forum/index');
+				header('Location:view');				
+			}				
 		}
 	}
 

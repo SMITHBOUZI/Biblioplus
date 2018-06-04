@@ -85,9 +85,9 @@
 	<?php echo form_open_multipart('forum/comment','class="columns medium-12 large-12"');?> 
 		<div class=" columns large-12 medium-12 ">
 			<div class="columns large-3 medium-3"> 
-			<!-- 	<label> Id </label>	 -->
+			<!-- 	<label> Id </label>	 --><?php if(isset($id)): ?>
 				<input type="hidden" name="id" id="id" value="<?php echo $id ?>" />	 	
-			</div>
+			</div> <?php endif; ?>
 			<div class="columns large-3 medium-3"> 
 				<label> Contenu </label> 		
 			</div>
