@@ -13,7 +13,9 @@
 
 	<div class="columns large-12 medium-12" style="position: relative; bottom: 10px; padding:0px;" >
 		<div class="columns large-3 medium-3">
-			<a href="<?php echo base_url('forum/nouveau_sujet'); ?>">Nouveau sujet</a> 
+			<?php //if($_SESSION['pseudo'] === true) { ?>
+				<a href="<?php echo base_url('forum/nouveau_sujet'); ?>">Nouveau sujet</a> 
+			<?php //} ?>
 		</div>
 
 		<!-- <div class="columns large-3 medium-3">
@@ -65,28 +67,28 @@
 			<div class="columns large-12 medium-12 small-12">
 			<tbody>
 				<div class="columns large-12 medium-12 small-12">
-					<?php $req = $this->forum->lister_sujet(); ?> 
-						<?php foreach ($req as $rows): ?> 
+						<?php foreach ($forums as $rows): ?> <pre><?php // var_dump($rows)?></pre>
 							<tr>
 								<div class=" columns large-6 medium-6 small-6">
 									<td>
 										<p> <?php //echo $rows->sujet; ?></p>
-										<a href="http://localhost/gitbiblioplus/public_html/forum/view?s=<?php echo $rows->sujet ; ?>&id=<?php echo $rows->id; ?>"><?php echo $rows->sujet; ?> </a> 
+										<!-- <a href="http://localhost/gitbiblioplus/public_html/forum/view?s=<?php //echo $rows->sujet ; ?>&id=<?php //echo $rows->id; ?>"><?php //echo $rows->sujet; ?> </a> --> 
+										<a href="http://localhost/gitbiblioplus/public_html/forum/view/<?php echo $rows->sujet ; ?>/<?php echo $rows->id; ?>"><?php echo $rows->sujet; ?> </a>
+									</td>
+								</div>
+								<div class=" columns large-3 medium-3 small-3">
+									<td> 
+										<h6 style="font-weight: bold;"><?php echo $rows->topics_cat->contenu_c; ?></h6>
 									</td>
 								</div>
 								<div class=" columns large-3 medium-3 small-3">
 									<td>
-										<h6 style="font-weight: bold;"><?php echo $rows->contenu_c; ?></h6>
-									</td>
-								</div>
-								<div class=" columns large-3 medium-3 small-3">
-									<td>
-										<p><?php echo $rows->pseudo; ?></p>
+										<p><?php echo $rows->topics_mem->pseudo; ?></p>
 									</td>
 								</div> 
 								<div class=" columns large-3 medium-3 small-3">
 									<td>
-										<p><?php // echo $rows->rep; ?></p>
+										<p><?php  echo $rows->count_posts; ?></p>
 									</td>
 								</div>
 								<div class=" columns large-3 medium-3 small-3">
@@ -96,10 +98,10 @@
 								</div>						
 							</tr>
 						<?php endforeach ?>
-					<?php // endif ?>
 				</div>				
 			</tbody>
 			</div>
         </table>
 	</div>
+ 
 </div>

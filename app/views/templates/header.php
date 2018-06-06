@@ -87,8 +87,8 @@
 
             <div class="medium-12 cell">
               <h6><?php echo $_SESSION['pseudo']; ?> </h6>
-             <a href="<?php echo base_url('account/sign_out'); ?>"> 
-              <input type="button" name="account/sign_out" value="Deconnexion" class="fill_button" />
+             <a href="<?php echo base_url('account/logout'); ?>"> 
+              <input type="button" name="account/logout" value="Deconnexion" class="fill_button" />
              </a> 
             </div> 
 
@@ -105,7 +105,7 @@
             <div id="search_box" ><!-- Drop down search -->
 
    <div id="search" > 
-<?php  echo form_open('account/search_bar','');?> 
+<?php  // echo form_open('account/search_bar','');?> 
 
     <div class="grid-container">
       <div class="grid-x padding-x">
@@ -119,8 +119,8 @@
         
 
       </div>
-    </div>
-<?php echo form_close();  ?>
+    </div> 
+<?php  // echo form_close();  ?>
 
  </div>   
     

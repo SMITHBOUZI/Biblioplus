@@ -1,22 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Account_model extends CI_Model {	
+class Account_model extends CI_Model {
 
- 	function check_for_like($get_t, $get_id){
- 		
- 		$sql = "SELECT idmembre FROM membre WHERE idmembre = ? ";
- 		$req = $this->db->query($sql, array($get_id));
-
- 		if ($req->num_rows() == 1) {
- 			if ($get_t == 1) {
- 				$sql = "INSERT INTO likes (idmembre) value (?) ";
- 				$this->db->query($sql, array($get_id));
- 			}else if($get_t == 2){
- 				$sql = "INSERT INTO dislikes (idmembre) value (?) ";
- 				$this->db->query($sql, array($get_id));
- 			}
- 		}
+	/**
+	 * __construct function.
+	 * 
+	 * @access public
+	 * @return void
+	 */
+	public function __construct() {
+		
+		parent::__construct();
+		$this->load->database();		
 	}
 
 	function search_bar($search){
@@ -45,8 +41,9 @@ class Account_model extends CI_Model {
 	}
 
     function confirmation(){
-    	$user_id = $_GET['id'];
-		$token	 = $_GET['token'];
+
+		$user_id = $this->uri->segment(3);
+		$token = $this->uri->segment(4);
 
 		$req = $this->db->SELECT('*');
 		$req = $this->db->from('inscription');
@@ -78,7 +75,7 @@ class Account_model extends CI_Model {
 		}
     }
 
-    function password_fotgot($email, $reset_token){
+    function password_fotgot($reset_token, $email){
 		$req = $this->db->SELECT('*');
 		$req = $this->db->from('membre');
 		$req = $this->db->where('email', $email);
@@ -89,7 +86,11 @@ class Account_model extends CI_Model {
 			foreach ($req->result() as $user) {
 				if ($user && $user->email === $email) {
 					$sql = 'UPDATE membre SET reset_token = ? WHERE email = ?';
-					$this->db->query($sql, array($reset_token ,$email) );
+					// $this->db->query($sql, array($reset_token ,$email) );
+
+					if ( $this->db->query($sql, array($reset_token ,$email) ) ) {
+						return $this->send_confirmation_pass($reset_token, $email);
+					}
 				}else{
 					// echo "pas ok";
 				}				
@@ -127,45 +128,44 @@ class Account_model extends CI_Model {
 		}
 	}
 
-	function form_uploaded_doc($data){
-		$cat 	= $this->input->post('categorie');
-		$tr 	= $this->input->post('titre');
-		$is 	= $this->input->post('isbn');
-		$pages  = $this->input->post('pages');
-		$file   = $this->upload->file_name;
+    /**
+	 * send_confirmation_email function.
+	 * 
+	 * @access private
+	 * @param string $username
+	 * @param string $email
+	 * @return bool
+	 */
+	public function send_confirmation_pass($reset_token, $email) {
 		
-		$data = array(
-			'idouvrage'		=> '',
-			'categorie' 	=> $cat,
-			'titre' 		=> $tr,
-			'isbn' 			=> $is,
-			'nombrePage'	=> $pages,
-			'file_name'		=> $file
-		);
-		$this->db->insert('ouvrage', $data);
+		// load email library and url helper
+		$this->load->library('email');
+		$this->load->helper('url');
+		
+		// get the site email address
+		$email_address = $this->config->item('site_email');
+
+		// initialize the email configuration
+		$this->email->initialize(array(
+			'mailtype' => 'html',
+			'charset'  => 'utf-8'
+		));
+		
+		// get user registration date
+		$registration_date = $this->db->select('reset_token')->from('membre')->where('email', $email)->get()->row('reset_token');
+		
+		// prepare the email
+		$this->email->from($email_address, $email_address);
+		$this->email->to($email);
+		$this->email->subject('Email de réinitialisation de mot de passe.');
+		$message  = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>';
+		// $message .= "Hi " . $pseudo . ",<br><br>";
+		// $message .= "Cliquez sur ce lien pour valider la réinitialisation votre mot de passe " . base_url() . "<br><br>";
+		$message .= "Cliquez sur ce lien: <a href=\"" . base_url() . "account/password_reset/" . $reset_token . "\">pour confirme votre email et réinitialiser votre mot de passe</a>";
+		$message .= "</body></html>";
+		$this->email->message($message);
+		
+		// send the email and return status
+		return $this->email->send();		
 	}
-
-	// function get_livres(){
-	// 	$sql = 'SELECT * FROM inscription';
-	// 	$req = $this->db->query($sql);
-	// 	// var_dump($req);
-
-	// 	if ($req->num_rows() == 1) {
-	// 		echo "OK";
-	// 		return $req->result();
-	// 	} else {
-	// 		echo "Pas bon ";
-	// 		return false;
-	// 	}
-	// }
-
-	function profil_up($pseudo, $email){
-		$query = $this->session->get_userdata('logged_in');
-		$idmembre = $query['idmembre'];
-
-		$req = " UPDATE membre SET pseudo = ?, email = ? WHERE idmembre = ? ";
-		$sql =  $this->db->query($req, array($pseudo, $email, $idmembre));
-
-
-    }
 }

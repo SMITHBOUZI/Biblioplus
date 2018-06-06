@@ -48,7 +48,7 @@
 				</div>
 				
 				<div class="columns large-9 medium-9">
-					<?php $req = $this->forum->get_sujet_cat(); ?>
+					<?php $req = $this->forum_model->get_sujet_cat(); ?>
 				    <select id="categorie" name="categorie">
 				    	<option> Categorie </option>
 				    	<?php foreach ($req as $rows) :?>
