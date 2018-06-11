@@ -1,9 +1,9 @@
 <?php 
 	if ($this->session->userdata('pseudo') === NULL) {
-		// $_SESSION['flash']['info'] = 'Veuiller vous connecter s\'il vous plaît !';
-		echo 'Veuiller vous connecter s\'il vous plaît !';
-		// redirect(base_url('forum/index'));
-		header('Location://localhost/gitbiblioplus/public_html/forum/index');
+		 $_SESSION['flash']['info'] = 'Veuiller vous connecter s\'il vous plaît !';
+		// echo 'Veuiller vous connecter s\'il vous plaît !';
+		redirect(base_url('forum/index'));
+		// header('Location://localhost/gitbiblioplus/public_html/forum/index');
 	}
 ?>
 

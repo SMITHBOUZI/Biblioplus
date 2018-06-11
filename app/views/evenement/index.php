@@ -5,7 +5,7 @@
      </div>
    <?php endforeach ?>
    <?php unset($_SESSION['flash']) ?>
-  <?php endif ?>
+  <?php endif ?> 
 
   <div class="row"> 
 
@@ -24,9 +24,9 @@
     <?php foreach ($req as $key ): ?>
 
       <div class="columns large-3 medium-4 small-12  evenement_rectangle_box "  > 
-        <div class="row">                   
+        <div class="row">                 
                   
-           <img align="center" src="http://via.placeholder.com/350x200" class="thumbnail" />
+           <img align="center" src="<?php echo base_url('assets/img/'.$key->photo); ?>" width = "300"  class="thumbnail" />
        
          <div class="columns large-12 medium-12 small-12">
            <div class="columns large-6 medium-6 small-6" >
@@ -47,7 +47,9 @@
          <span style="position: relative; left: 100px;  font-style: italic; font-size: 12px;"><?php echo $key->lieuEvenement; ?></span>
        </div>
        <div class="columns large-12 medium-12 small-12">
-         <span style="position: relative; left: 150px; font-style: italic; font-size: 12px;"><a data-open="modal_voir_evenement" href="#"><i class="fa fa-plus"></i> Voir plus</a></span>
+         <span style="position: relative; left: 150px; font-style: italic; font-size: 12px;">
+          <a data-open="modal_voir_evenement" href="#">
+            <i class="fa fa-plus"></i> Voir plus</a></span>
        </div>
 
      </div>   
@@ -82,7 +84,15 @@
         <?php echo form_open_multipart('event/index','class=""');?> 
         <div class="columns large-6 medium-6" align="center">
           <div class=" columns large-12 medium-12">
-            <img src="http://via.placeholder.com/350x200"  class="thumbnail" >
+            <div class="col-sm-3 text-center">
+              <img class="avatar" src="<?php echo base_url('assets/img/index.jpeg') ?>">
+              <br><br>
+              <div class="form-group">
+                <label for="avatar">Ajouter une image descriptif .. </label>
+                <input type="file" id="avatar" name="userfile" style="word-wrap: break-word">
+              </div>
+            </div>
+            <!-- <img src="http://via.placeholder.com/350x200"  class="thumbnail" > -->
           </div>
         <div class="columns large-12 medium-12">
           <label>Description
@@ -141,10 +151,9 @@
       <div class="columns large-12 medium-12">
         <div class="columns large-12 medium-12">
           <h3>Evenement a ne pas rater</h3>
-        </div>
-        
-        <div class="columns large-8 medium-8">
-          <img src="http://via.placeholder.com/350x200"  class="thumbnail" >
+        </div> 
+        <div class="columns large-8 medium-8"> 
+          <img src="<?php echo base_url('assets/img/'.$key->photo); ?>" width ="200px"; class="thumbnail" >
         </div>
         <div class="columns large-4 medium-4" style="text-align: left;">
           <div class=" columns large-12 medium-12">
@@ -154,7 +163,9 @@
            <h3><?php echo $key->titre; ?></h3>         
           </div>
           <div class=" columns large-12 medium-12">
-           <h5> Ceer par <?php echo $key->pseudo; ?></h5>         
+           <h5> Ceer par <?php echo $key->pseudo; ?></h5> 
+           <span>Contact</span>
+           <h6>Email : <?php echo $key->email; ?></h6>        
           </div>
         </div>
         <div class="columns large-9 medium-9">
@@ -182,14 +193,14 @@
   </div>
 
 
-  <div id="pagination">
+ <!--  <div id="pagination">
     <ul class="tsc_pagination">
       
-    <!-- Show pagination links -->
+    Show pagination links
     <?php foreach ($links as $link) {
-      echo "<li>". $link."</li>";
+      //echo "<li>". $link."</li>";
     } ?>
-  </div>
+  </div> -->
 
 
 </body>

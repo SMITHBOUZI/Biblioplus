@@ -3,7 +3,7 @@
  * 
  */
  class Evenement_model extends CI_Model
- {
+ { 
  	
  	function __construct()
  	{
@@ -14,10 +14,9 @@
  		$this->load->library('form_validation');
  	}
 
- 	function add($nom,$user_id,$lieuEvent,$dateEvent,$descEvent,  $datedebutEvent,$datefinEvent,$Activites,$prix,$pointDevente) {
- 	
+ 	function add($nom,$user_id,$lieuEvent,$dateEvent,$descEvent,  $datedebutEvent,$datefinEvent,$Activites,$prix,$pointDevente,$r ) {
+		
     	$data = array(
-    		// 'photo'				=> $photo,
     		'titre'				=> $nom,
     		'idmembre'			=> $user_id,
     		'lieuEvenement'		=> $lieuEvent,
@@ -28,14 +27,17 @@
     		'activite'			=> $Activites,
     		'prix'				=> $prix,
     		'point_de_vente'	=> $pointDevente,
-    		// 'date_creation'		=> NOW()
+    		'photo'				=> $r,
+			'date_creation'	=>  date('Y-m-j H:i:s')
 
     	);
     	$this->db->insert('evenement', $data);
 	}
 
 	function lister() {
-		$sql = 'SELECT * FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement';
+		// SELECT evenement.photo, evenement.titre, evenement.lieuEvenement, evenement.description, evenement.date_creation, evenement.date_debut, evenement.date_fin, evenement.prix, evenement.point_de_vente, membre.pseudo, membre.email FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement
+		// $sql = 'SELECT * FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement';
+		$sql = 'SELECT evenement.idevenement, evenement.photo, evenement.titre, evenement.lieuEvenement, evenement.description, evenement.date_creation, evenement.date_debut, evenement.date_fin, evenement.prix, evenement.point_de_vente, membre.pseudo, membre.email FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement';
 		$req = $this->db->query($sql);
 
 		if ($req->num_rows() > 0) {
@@ -44,14 +46,6 @@
 			return $req->result_object();
 			// return 'pas de nouvelle evenement';
 		}		
-	}
-
-	function update()	{
-		
-	}
-
-	function del()	{
-		
 	}
 
 	// Count all record of table "contact_info" in database.
