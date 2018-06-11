@@ -5,6 +5,9 @@ class Login extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
+		$this->load->library(array('session'));
+		$this->load->helper(array('url'));
+		$this->load->model('login_model');
 	}
 
     function index()	{
@@ -13,6 +16,12 @@ class Login extends CI_Controller {
 	}
 
 	function sign_in() {
+		// create the data object
+		$data = new stdClass();
+
+		// load form helper and validation library
+		$this->load->helper('form');
+		$this->load->library('form_validation');
 
 		if ($this->input->post('sign_in')) {
 
@@ -20,7 +29,7 @@ class Login extends CI_Controller {
 
 		 	$pseudo =  trim($this->input->post('pseudo'));	
 			$pass   =  sha1(trim($this->input->post('mot_de_passe')));
-		    $result =  $this->login->sign_in($pseudo, $pass);
+		    $result =  $this->login_model->sign_in($pseudo, $pass);
 		    if(!$result) {
 		    	$_SESSION['flash']['danger'] = 'Ce compte n\'est pas actif, merci de verifier votre addresse mail pour la confirmation.';
 				$this->load->view('templates/header');
@@ -45,7 +54,7 @@ class Login extends CI_Controller {
 
 				    	} else {
 				    		$this->load->view('templates/header');
-							$this->load->view('sign_in');
+							$this->load->view('sign_in', $data);
 				    	}
 				    }
 				}	 
@@ -70,7 +79,7 @@ class Login extends CI_Controller {
     // }
 
     function check_if_email_exists($request_email){
-    	$email_available = $this->login->check_if_email_exists($request_email);
+    	$email_available = $this->login_model->check_if_email_exists($request_email);
     	if ($email_available) {
     		return TRUE;
     	}else {
@@ -134,6 +143,14 @@ class Login extends CI_Controller {
     }
 
 	public function sign_up() {
+		// create the data object
+		$data = new stdClass();
+
+		// load form helper and validation library
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		// set validation rules
 		$this->form_validation->set_rules('nom_prenom', 'nom complet', 'trim|required|htmlspecialchars|callback_ckeck_format_nom_prenom');
 		$this->form_validation->set_rules('pseudo', 'nom d\'utilisateur','trim|required|min_length[6]|max_length[12]|htmlspecialchars|callback_ckeck_format_pseudo');
 		$this->form_validation->set_rules('mot_de_passe', 'mot de passe', 'trim|required|min_length[8]|htmlspecialchars');
@@ -145,8 +162,10 @@ class Login extends CI_Controller {
 
 
 		if ($this->form_validation->run() === FALSE) {
-				$this->load->view('templates/header');
-				$this->load->view('form_register');
+
+			// validation not ok, send validation errors to the view
+			$this->load->view('templates/header');
+			$this->load->view('form_register', $data);
 		} else {
 		
 			if($this->input->post('save')) {
@@ -157,10 +176,19 @@ class Login extends CI_Controller {
 					 AND !empty(trim($this->input->post('mot_de_passe_c'))) AND !empty(trim($this->input->post('mem')))  )  {
 
 					$config['upload_path']          = 'assets/avatar/';
-					$config['allowed_types']        = 'gif|jpg|png|jpeg';
-					$config['max_size']             = 0;
-					$config['max_width']            = 180;
-					$config['max_height']           = 240;
+					// $config['allowed_types']        = 'gif|jpg|png|jpeg';
+					// $config['max_size']             = 0;
+					// $config['max_width']            = 180;
+					// $config['max_height']           = 240;
+
+					$config['allowed_types']    = 'gif|jpg|png';
+					$config['max_size']         = 2048;
+					$config['max_width']        = 1024;
+					$config['max_height']       = 1024;
+					$config['file_ext_tolower'] = true;
+					$config['encrypt_name']     = true;
+
+					$this->load->library('upload', $config);
 
 					// $this->load->library('upload', $config);
 					$this->upload->initialize($config);
@@ -176,38 +204,14 @@ class Login extends CI_Controller {
 						$data =  $this->upload->data();					
 					}
 					if (!empty($data)) {
-					    $this->login->sign_up($data);
+					    $this->login_model->sign_up($data);
 					}else {
-						$this->login->sign_up();
+						$this->login_model->sign_up();
 					}
 
-					$user_id = $this->db->insert_id();
-					$token 	 = $this->security->get_csrf_hash();
-					$email 	 = trim($this->input->post('email'));
-
-					//https://expertcloudplus.000webhostapp.com/
-					$url = "http://localhost/gitbiblioplus/public_html/account/confirmation?id=".$user_id ."&token=".$token; 
-
-					// mail($email, "Email de confirmation", "Cliquez sur ce lien pour valider votre compte.:  ".$url);
-					// $_SESSION['flash']['success'] = 'Un email de confirmation vous a étè envoyer';
-					// header('Location:https://expertcloudplus.000webhostapp.com/login/index');
-
-					$this->email->from('expertcloudplus@gmail.com', 'Biblioplus');
-					$this->email->to($email);
-					$this->email->subject('Email de confirmation');
-					$this->email->message("Cliquez sur ce lien pour valider votre compte.:   ".$url);
-					if ($this->email->send()) {
-					  	$_SESSION['flash']['success'] = 'Un email de confirmation vous a étè envoyé';
-					  	redirect('login/sign_in');
-					}else{
-					  	show_error($this->email->print_debugger());
-					  	$_SESSION['flash']['success'] = 'Une erreur se produit .. ';	
-					}					
-					redirect('login/index');
-
-				  // 		$this->load->view('templates/header');
-						// $_SESSION['flash']['danger'] = 'Success';
-						// $this->load->view('form_register');
+					$_SESSION['flash']['success'] = 'Un mail de confirmation vous a été envoyé ';		
+					$this->load->view('templates/header');
+					$this->load->view('sign_in');
 
 				}else {				
 					$this->load->view('templates/header');
@@ -216,5 +220,5 @@ class Login extends CI_Controller {
 				}
 			} 
 		}
-	}	
+	}
 }

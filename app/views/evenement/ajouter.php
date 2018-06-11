@@ -23,7 +23,7 @@ if ($this->session->userdata('pseudo') === NULL) {
 				<img src="http://via.placeholder.com/280x180" class="circle_rectangle">	
 			</div>
 			<div class="columns large-6 medium-6">
-				<input type="text" name="nomEvent" placeholder="Entrez le nom " class="custom_input_evenement">
+				<input type="text" name="titreEvent" placeholder="Entrez le nom " class="custom_input_evenement">
 				<input type="text" name="lieuEvent" placeholder="Lieux/Adresse de " class="custom_input_evenement">
 				<input type="date" name="dateEvent" class="custom_input_evenement">
 			</div>

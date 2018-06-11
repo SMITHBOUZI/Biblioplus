@@ -1,1 +1,1 @@
-lister.php
+<?php echo $titre; ?>

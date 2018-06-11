@@ -13,24 +13,10 @@
 
 	<div class="columns large-12 medium-12" style="position: relative; bottom: 10px; padding:0px;" >
 		<div class="columns large-3 medium-3">
-			<a href="<?php echo base_url('forum/nouveau_sujet'); ?>">Nouveau sujet</a> 
+			<?php if ($this->session->userdata('pseudo') !== NULL) : ?>
+				<a href="<?php echo base_url('forum/nouveau_sujet'); ?>">Nouveau sujet</a> 
+			<?php endif ?>
 		</div>
-
-		<!-- <div class="columns large-3 medium-3">
-			<div class="columns large-9 medium-9">
-				<?php //$req = $this->forum->get_sujet_cat(); ?>
-
-			    <select id="categorie" name="categorie">
-			    	<option> Lister par cat&eacutegorie </option>
-			    	<?php //foreach ($req as $rows) :?>
-			      <option value="<?php //echo $rows->contenu_c; ?>" ><?php // echo $rows->contenu_c; ?> -->
-			      	<!-- <a href="http://localhost/gitbilioplus/public_html/forum/cat/<?php // echo $rows->contenu_c; ?>"> </a> -->
-			      <!-- </option>
-			     
-			       <?php // endforeach?>
-			    </select>
-			</div>			
-		</div> -->
 
 		<div class="columns large-6 medium-6">
 			
@@ -65,28 +51,28 @@
 			<div class="columns large-12 medium-12 small-12">
 			<tbody>
 				<div class="columns large-12 medium-12 small-12">
-					<?php $req = $this->forum->lister_sujet(); ?> 
-						<?php foreach ($req as $rows): ?> 
+						<?php foreach ($forums as $rows): ?> <pre><?php // var_dump($rows)?></pre>
 							<tr>
 								<div class=" columns large-6 medium-6 small-6">
 									<td>
-										<p> <?php //echo $rows->sujet; ?></p>
-										<a href="http://localhost/gitbiblioplus/public_html/forum/view?s=<?php echo $rows->sujet ; ?>&id=<?php echo $rows->id; ?>"><?php echo $rows->sujet; ?> </a> 
+										<p>
+											<a href="http://localhost/gitbiblioplus/public_html/forum/view/<?php echo $rows->sujet ; ?>/<?php echo $rows->id; ?>"><?php echo $rows->sujet; ?> </a>
+										</p>
+									</td>
+								</div>
+								<div class=" columns large-3 medium-3 small-3">
+									<td> 
+										<h6 style="font-weight: bold;"><?php echo $rows->topics_cat->contenu_c; ?></h6>
 									</td>
 								</div>
 								<div class=" columns large-3 medium-3 small-3">
 									<td>
-										<h6 style="font-weight: bold;"><?php echo $rows->contenu_c; ?></h6>
-									</td>
-								</div>
-								<div class=" columns large-3 medium-3 small-3">
-									<td>
-										<p><?php echo $rows->pseudo; ?></p>
+										<p><?php echo $rows->topics_mem->pseudo; ?></p>
 									</td>
 								</div> 
 								<div class=" columns large-3 medium-3 small-3">
 									<td>
-										<p><?php // echo $rows->rep; ?></p>
+										<p><?php  echo $rows->count_posts; ?></p>
 									</td>
 								</div>
 								<div class=" columns large-3 medium-3 small-3">
@@ -96,10 +82,10 @@
 								</div>						
 							</tr>
 						<?php endforeach ?>
-					<?php // endif ?>
 				</div>				
 			</tbody>
 			</div>
         </table>
 	</div>
+ 
 </div>

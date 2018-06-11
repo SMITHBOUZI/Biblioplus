@@ -16,41 +16,42 @@
 		<?php unset($_SESSION['flash']) ?>
 	<?php endif ?>
 	    <div class=" columns large-12 medium-12" id="sujet">
-	    	<?php if (isset($sujet)): ?>
-		  <h3 id="sujet" style="font-family: Times new roman"> <?php echo $sujet ; ?>  </h3>
+	    	<?php foreach ($forums as $rows): ?> <pre><?php // var_dump($rows); ?></pre> <?php // echo var_dump($rows->sujet_info[0]->id); ?>
+		  <h3 id="sujet" style="font-family: Times new roman"> <?php echo $rows->sujet; ?>  </h3>
 	    </div>
 
 	    <div class="columns large-12 medium-12" id="categorie">
-	    	<h6><?php echo $contenu_c ; ?> </h6>
+	    	<h6><?php echo $rows->contenu_c ; ?> </h6>
 	    </div>
 	  
 	    <div class="columns large-12 medium-12" style="padding: 0px;">
 
 	    	<div class="columns large-1 medium-1" style="padding: 0px; text-align: center; font-style: italic; color: gray;">
 	    	<div class="columns large-12 medium-12" >
-		    	<?php if(empty($_SESSION['photo'] )){ ?>
+		    	<?php if(empty($rows->sujet_membre->photo )){ ?>
 	                <img src="<?php echo base_url('assets/avatar/avatar.png'); ?>" class="thumbnail" alt="" style="border-radius: 50%" />
 	              <?php } else {?>
 	                 <img src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" class="thumbnail" alt="" style="border-radius: 50%" />
 	            <?php } ?>
 	    	</div>
 	    	<div class="columns large-12 medium-12">
-	    	<small><span><?php echo $pseudo; ?></span></small>	
+	    	<small><span><?php echo $rows->sujet_membre->pseudo; ?></span></small>	
 	    	</div>
 	    	</div>
 
 	    	<div class="columns large-11 medium-11" id="contenu_sujet">
 	    	<p style="text-align: justify;">
-	    		<?php echo $contenu_s; ?>
-	    	<?php // endif ?>
+	    		<?php echo $rows->contenu_s; ?>
+	    	<?php //endforeach ?>
 	    	</p>
 	    	</div>
+	    	<?php if ($this->session->userdata('pseudo') !== null): ?>
+	    		<div class="columns large-12 medium-12">
+		    		<input type="button" id="show" value="réagir" />
+		    	</div>
+	    	<?php endif ?>
 
-	    	<div class="columns large-12 medium-12">
-	    		<input type="button" id="show" value="réagir">
-	    	</div>
-
-	    	<!-- <script type="text/javascript">
+	    	<script type="text/javascript">
 	    		$('#show').click(function() {
 	    			// body...
 	    			$('#espace_de_reaction').show();
@@ -60,66 +61,56 @@
 	    				$('#espace_de_reaction').hide(); 
 	    			} )
 	    		})
-	    	</script> -->
+	    	</script>
 
 	    </div>
 
-	</div>
-	<!-- <div class="columns large-12 medium-12" id="espace_de_reaction">
-	
-	<?php // echo form_open('forum/comment','class=""');?> 
-
+	</div> 
+	<div class="columns large-12 medium-12" id="espace_de_reaction">
+	<?php if(isset($rows->sujet_valid)) :?>
+		<?php $i = $rows->sujet_valid; ?>
+		<?php foreach ($i as $key => $value): ?> <pre><?php // var_dump($rows->sujet_valid); ?></pre>
+	<?php echo form_open_multipart('forum/comment','class=""'); ?>  
+			<input type="hidden" name="id" id="id" value="<?php echo $rows->sujet_valid[$key]->id; ?>" />
+			<input type="hidden" name="s" id="s" value="<?php echo $this->uri->segment(3); ?>" /> 
+		<?php endforeach ?> <?php endif ?>		
 		<div class="columns large-12 medium-12" >
-	     <textarea name="comment" id="comment" placeholder="Poster votre commentaire "></textarea>
-			   <script>
+	     <textarea placeholder="" name="tcontenue" class="tcontenue"></textarea>	
+			<script>
 				CKEDITOR.replace( 'comment' );
 			</script>    
 		</div>
 	    <div class="columns large-12 medium-12">
-	    	<input type="button" id="valider" name="post" value="valider">
-	    </div>
-	    <?php // echo form_close();  ?>
-	  </form> 
-			<input type="submit" class="btn btn-primary" name="comment" value="Comment">
-	</div> -->
-	<?php echo form_open_multipart('forum/comment','class="columns medium-12 large-12"');?> 
-		<div class=" columns large-12 medium-12 ">
-			<div class="columns large-3 medium-3"> 
-			<!-- 	<label> Id </label>	 --><?php if(isset($id)): ?>
-				<input type="hidden" name="id" id="id" value="<?php echo $id ?>" />	 	
-			</div> <?php endif; ?>
-			<div class="columns large-3 medium-3"> 
-				<label> Contenu </label> 		
-			</div>
-			<div class="columns large-9 medium-9">					
-				<textarea  rows="6" cols="40" placeholder="" name="tcontenue" class="tcontenue"></textarea>	
-				<!-- <input type="text" name="tcontenue" id="tcontenue" />	 --> 
-			</div>				
-		</div>
-		<div class="columns large-12 medium-12">
 			<input type="submit" name="poster" value="poster" id="custom_input_post" />
-		</div>
-	<?php echo form_close();  ?>
-	<div class="columns large-12 medium-12">
-		<h5 id="text"> Faites de vos exp&eacuteriences d'engrais pour augmenter <br/> l'app&eacutetit des autres a la lecture</h5>
+	    </div> 
+	    <?php echo form_close();  ?>
+
 	</div>
 
-<?php endif ?>
+	<?php if(isset($rows->sujet_post)) :?>
+		<?php $i = $rows->sujet_post; ?>
+		<?php foreach ($i as $key => $value): ?> 
 
 	<div class="columns large-12 medium-12" id="reaction">
     	<div class="columns large-1 medium-1"style="padding: 0px; text-align: center; font-style: italic; color: gray;">
     	<div class="columns large-12 medium-12" >
-    	<img src="https://placehold.it/50x50" class="thumbnail" alt="" style="border-radius: 50%">
-    	</div>
+		    	<?php if(empty($rows->sujet_membre->photo )){ ?>
+	                <img src="<?php echo base_url('assets/avatar/avatar.png'); ?>" class="thumbnail" alt="" style="border-radius: 50%" />
+	              <?php } else {?>
+	                 <img src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" class="thumbnail" alt="" style="border-radius: 50%" />
+	            <?php } ?>
+	    	</div>
     	<div class="columns large-12 medium-12">
-    		<small><span>nom posteur</span></small>	
+    		<small><span><?php echo $rows->sujet_post[$key]->pseudo_poster; ?></span></small>	
     	</div>
-    	</div>
+    	</div> 
     <div class="columns large-11 medium-11 " style="text-align: justify; padding: 0px; position: relative; top: 10px;"> 
-    	<div class="columns large-12 medium-12" style="text-align: right; font-style: italic; color: gray;">date de r&eacuteponse</div>
+    	<div class="columns large-12 medium-12" style="text-align: right; font-style: italic; color: gray;"><?= $rows->sujet_post[$key]->date_hres_edition; ?> </div>
         <div class="columns large-12 medium-12">
-    	<p>Les navigateurs peuvent utiliser ces éléments pour activer le défilement du corps de la table indépendamment de l'en-tête et du pied de page.</p>
-    	</div>
+    	<p> <?php echo $rows->sujet_post[$key]->contenu_m  ?> </p>
+    	</div> <?php endforeach ?>
+    <?php endif ?>
+    <?php endforeach ?>
     </div>    
 	</div>
 	</div>
