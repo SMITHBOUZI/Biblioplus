@@ -54,7 +54,7 @@ class Event extends CI_Controller {
 				{
 					// $data = array('upload_data' => $this->upload->data());
 					$data =  $this->upload->data();	
-					$r = $data['file_name'];
+					$r 	  = $data['file_name'];
 					$this->evenement_model->add($nom,$user_id,$lieuEvent,$dateEvent,$descEvent, $datedebutEvent,$datefinEvent,$Activites,$prix,$pointDevente,$r );				
 				}
 				
@@ -142,34 +142,34 @@ class Event extends CI_Controller {
 	}
 
 	// Set array for PAGINATION LIBRARY, and show view data according to page.
-	public function contact_info(){
-		$config = array();
-		$config["base_url"] = base_url() . "event/index";
-		$total_row = $this->evenement_model->record_count();
-		$config["total_rows"] = $total_row;
-		$config["per_page"] = 1;
-		$config['use_page_numbers'] = TRUE;
-		$config['num_links'] = $total_row;
-		$config['cur_tag_open'] = '&nbsp;<a class="current">';
-		$config['cur_tag_close'] = '</a>';
-		$config['next_link'] = 'Next';
-		$config['prev_link'] = 'Previous';
+	// public function contact_info(){
+	// 	$config = array();
+	// 	$config["base_url"] = base_url() . "event/index";
+	// 	$total_row = $this->evenement_model->record_count();
+	// 	$config["total_rows"] = $total_row;
+	// 	$config["per_page"] = 1;
+	// 	$config['use_page_numbers'] = TRUE;
+	// 	$config['num_links'] = $total_row;
+	// 	$config['cur_tag_open'] = '&nbsp;<a class="current">';
+	// 	$config['cur_tag_close'] = '</a>';
+	// 	$config['next_link'] = 'Next';
+	// 	$config['prev_link'] = 'Previous';
 
-		$this->pagination->initialize($config);
+	// 	$this->pagination->initialize($config);
 		
-		if($this->uri->segment(2)){
-			$page = ($this->uri->segment(2)) ;
-		}
-		else{
-			$page = 1;
-		}
+	// 	if($this->uri->segment(2)){
+	// 		$page = ($this->uri->segment(2)) ;
+	// 	}
+	// 	else{
+	// 		$page = 1;
+	// 	}
 		
-		$data["results"] = $this->evenement_model->fetch_data($config["per_page"], $page);
-		$str_links = $this->pagination->create_links();
-		$data["links"] = explode('&nbsp;',$str_links );
+	// 	$data["results"] = $this->evenement_model->fetch_data($config["per_page"], $page);
+	// 	$str_links = $this->pagination->create_links();
+	// 	$data["links"] = explode('&nbsp;',$str_links );
 
-		// View data according to array.
-		$this->load->view("evenement/index", $data);
-	}
+	// 	// View data according to array.
+	// 	$this->load->view("evenement/index", $data);
+	// }
 
 }

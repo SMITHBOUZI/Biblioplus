@@ -14,7 +14,7 @@ class Collection extends CI_Controller
  		$this->load->model('Collection_model');
  	}
 
- 	function lister(){
+ 	public function index() {
 		$req = $this->Collection_model->lister();
 
 		if ($req) {
@@ -24,9 +24,12 @@ class Collection extends CI_Controller
 					'titre'		=> $key->titre
 				);
 			}
-		$this->load->view('templates/header');
-		$this->load->view('collection/lister', $data);
+			// $this->load->view('templates/header');
+			// $this->load->view('collection/lister', $data);
 		}
+		$this->load->view('templates/header');
+		$this->load->view('collection/lister');
+		
 	}
 
 	public function form_uploaded_doc() {

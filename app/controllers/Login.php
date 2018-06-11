@@ -69,14 +69,14 @@ class Login extends CI_Controller {
 		}
     }
 
-    // function check_if_pseudo_exists($request_pseudo){
-    // 	$pseudo_available = $this->login->check_if_pseudo_exists($request_pseudo);
-    // 	if ($pseudo_available) {
-    // 		return TRUE;
-    // 	}else {
-    // 		return FALSE ;
-    // 	}
-    // }
+    function check_if_pseudo_exists($request_pseudo){
+    	$pseudo_available = $this->login->check_if_pseudo_exists($request_pseudo);
+    	if ($pseudo_available) {
+    		return TRUE;
+    	}else {
+    		return FALSE ;
+    	}
+    }
 
     function check_if_email_exists($request_email){
     	$email_available = $this->login_model->check_if_email_exists($request_email);

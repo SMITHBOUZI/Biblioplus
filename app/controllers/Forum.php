@@ -42,11 +42,20 @@ class Forum extends CI_Controller {
         $this->load->view('forum/index', $data);
 	}
 
+	function cat_valide(){
+		if ( (trim($this->input->post('categorie')) === 'Categorie') ){
+			return FALSE;
+		} else {
+			return TRUE ;
+		}
+    }
+
 	public function nouveau_sujet(){
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('tsujet', 'Sujet', 'trim|required');
+		$this->form_validation->set_rules('categorie', 'Categorie', 'trim|required|callback_cat_valide');
 		$this->form_validation->set_rules('tcontenue', 'Contenue', 'trim|required');
 		
 		if($this->form_validation->run() === false){

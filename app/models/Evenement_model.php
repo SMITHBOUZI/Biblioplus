@@ -28,7 +28,7 @@
     		'prix'				=> $prix,
     		'point_de_vente'	=> $pointDevente,
     		'photo'				=> $r,
-			'date_creation'	=>  date('Y-m-j H:i:s')
+			'date_creation'		=>  date('Y-m-j H:i:s')
 
     	);
     	$this->db->insert('evenement', $data);

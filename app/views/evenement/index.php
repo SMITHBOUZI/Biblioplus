@@ -14,10 +14,15 @@
       <h3 style="font-size:28px;">Le calendrier des &eacutev&eacutenements litteraires</h3>
     </div>
 
+ 
     <div class="columns large-6 medium-6" style="text-align: right;">        
-      <a  data-open="modal_ajout_evenement" ><i class="fa fa-plus-square"></i> Ajouter un nouvel &eacutev&eacutenement</a>
+      <a  data-open="modal_ajout_evenement" >
+        <?php if ($this->session->userdata('pseudo') !== NULL) : ?>
+        <i class="fa fa-plus-square"></i> Ajouter un nouvel &eacutev&eacutenement
+      <?php endif ?>
+      </a>
     </div>
-
+ 
   </div>
   <?php $req = $this->evenement_model->lister(); ?>
   <?php if($req): ?>
@@ -58,8 +63,6 @@
   <?php endif ?>
 
   </div>
-
-
 
 
 
@@ -138,8 +141,7 @@
       <button class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div>
-  
+    </div>  
   </div>
 
   <!-- Fin modal ajout_evenement -->
@@ -157,7 +159,7 @@
         </div>
         <div class="columns large-4 medium-4" style="text-align: left;">
           <div class=" columns large-12 medium-12">
-           <h4><?php echo $key->date_debut; ?></h4>         
+           <span><?php echo $key->date_debut; ?></span>         
           </div>
           <div class=" columns large-12 medium-12">
            <h3><?php echo $key->titre; ?></h3>         

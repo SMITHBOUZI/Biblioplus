@@ -33,7 +33,7 @@
 
                   <ul class="  menu align-center"  id="nav_menu">
                     <li><a href="<?php echo base_url('login/index'); ?>"><i class="fas fa-home " ></i></a></li>
-                    <li><a href="<?php echo base_url('collection/lister'); ?>">Collection</a></li>
+                    <li><a href="<?php echo base_url('collection/index'); ?>">Collection</a></li>
                     <li><a href="<?php echo base_url('auteur/lister'); ?>">Auteurs</a></li>
                     <li><a href="<?php echo base_url('event/index'); ?>">Evenements</a></li>
                     <li><a href="<?php echo base_url('forum/index'); ?>">Forum</a></li>

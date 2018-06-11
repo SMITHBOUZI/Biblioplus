@@ -1,1 +1,4 @@
-<?php echo $titre; ?>
+<?php // echo $titre; ?>
+
+
+Collection ..
