@@ -5,9 +5,14 @@ $(document).foundation();
 
 $("#nav_menu").hide();
 $("#search").hide();
+<<<<<<< HEAD
 $("#nav_menu").hide(10);
 $("#search").hide(100);	
 // $("#user").slideToggle(350);
+=======
+	
+$("#user").slideToggle(350);
+>>>>>>> 025237a1cb94d027882ff6740bb7838bfae3dc2a
 $("#box_authen").slideToggle(500);
 });
 

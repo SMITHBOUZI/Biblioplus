@@ -1,9 +1,9 @@
 <?php 
 	if ($this->session->userdata('pseudo') === NULL) {
-		// $_SESSION['flash']['info'] = 'Veuiller vous connecter s\'il vous plaît !';
-		echo 'Veuiller vous connecter s\'il vous plaît !';
-		// redirect(base_url('forum/index'));
-		header('Location://localhost/gitbiblioplus/public_html/forum/index');
+		 $_SESSION['flash']['info'] = 'Veuiller vous connecter s\'il vous plaît !';
+		// echo 'Veuiller vous connecter s\'il vous plaît !';
+		redirect(base_url('forum/index'));
+		// header('Location://localhost/gitbiblioplus/public_html/forum/index');
 	}
 ?>
 
@@ -48,7 +48,7 @@
 				</div>
 				
 				<div class="columns large-9 medium-9">
-					<?php $req = $this->forum->get_sujet_cat(); ?>
+					<?php $req = $this->forum_model->get_sujet_cat(); ?>
 				    <select id="categorie" name="categorie">
 				    	<option> Categorie </option>
 				    	<?php foreach ($req as $rows) :?>
