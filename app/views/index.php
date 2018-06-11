@@ -125,33 +125,38 @@
     <?php $req = $this->event->lister(); ?>
       <?php if($req): ?>
         <?php foreach ($req as $key ): ?>
-   
-            <div class="columns large-4 medium-6 small-12 " >    
-                   <img src="http://via.placeholder.com/350x200" class="circle_rectangle" />
-                   <div class="columns large-12 medium-12">
-                   <div class="columns large-6 medium-6">
-                   <h4 style="text-align:left;"><?php echo $key->nom; ?></h4>
-                   </div>
-                   <div class="columns large-6 medium-6 ">
-      <a href="">
-          <?php if(empty($_SESSION['photo'] )){ ?>
-            <img style="position: relative; border-radius: 50%; float: right;" src="<?php echo base_url('assets/avatar/avatar.png'); ?>" width="30px" title="<?php echo $key->pseudo; ?>"  alter="photo utilisateur" />
-          <?php } else {?>
-             <img  style="border-radius: 50%;"src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" class="circle_round_evenement" />
-          <?php } ?>
-          </a>
-</div>  
-                   </div>
-                   <div class="columns large-12 medium-12">
+    <div class="columns large-4 medium-6 small-12   evenement_rectangle_box_index" align="center"  > 
+                          
+                    
+             <img src="http://via.placeholder.com/350x200" class="thumbnail" />
+         
+           <div class="columns large-12 medium-12 " align="center">
+             <div class="columns large-6 medium-6 small-6" >
+               <h4 style="text-align:left;"><?php echo $key->titre; ?></h4>
+             </div>
+             <div class="columns large-6 medium-6 small-6 " align="right">
+              <a data-open="modal_voir_user" href="#">
+                <?php if(empty($_SESSION['photo'] )){ ?>
+                  <img style="  border-radius: 50%; " src="<?php echo base_url('assets/avatar/avatar.png'); ?>" width="30px" title="<?php echo $key->pseudo; ?>"  alter="photo utilisateur" />
+                <?php } else {?>
+                 <img  style="border-radius: 50%;"src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" class="circle_round_evenement" />
+               <?php } ?>
+             </a>
+           </div>  
+         </div>
+         <div class="columns large-12 medium-12 small-12">
+         <div class="columns large-6 medium-6 small-6" align="left">      
+           <span style="  font-style: italic; font-size: 12px;"><?php echo $key->date_debut; ?></span>
+          </div>
+           <div class="columns large-6 medium-6 small-6" align="right">
+           <span style="  font-style: italic; font-size: 12px;"><?php echo $key->lieuEvenement; ?></span>
+         </div>
+         </div>
+         <div class="columns large-12 medium-12" align="right">
+         <span style="font-style: italic; font-size: 12px;"><a data-open="modal_voir_evenement" href="#"><i class="fa fa-plus"></i> Voir plus</a></span>
+       </div>
+     </div>
 
-
-
-                     <span style="position: relative; float: left; font-style: italic; font-size: 12px;"><?php echo $key->dateEvenement; ?></span>
-                     <span style="position: relative; float: right; font-style: italic; font-size: 12px;"><?php echo $key->lieuEvenement; ?></span>
-
-                   </div>
-            
-    </div>
     <?php endforeach ?>
       <?php endif ?>
   </div>
