@@ -24,11 +24,23 @@ class Collection extends CI_Controller
 					'titre'		=> $key->titre
 				);
 			}
+
 			// $this->load->view('templates/header');
 			// $this->load->view('collection/lister', $data);
 		}
 		$this->load->view('templates/header');
 		$this->load->view('collection/lister');
+	}
+
+	function ouvrage()	{
+		$this->load->view('templates/header');
+		$this->load->view('templates/ouvrage');
+		 $this->load->view('templates/footer');
+	}
+
+	function auteurs()	{
+		$this->load->view('templates/header');
+		$this->load->view('auteurs');
 		
 	}
 
@@ -47,6 +59,7 @@ class Collection extends CI_Controller
 				$config['upload_path']          = 'assets/livres/';
 				$config['allowed_types']        = 'doc|pdf|docx';
 				$config['max_size']             = 0;
+
 
 				$this->upload->initialize($config);
 				
@@ -68,5 +81,13 @@ class Collection extends CI_Controller
 		}		     
     }
 
+    function collection(){
+		$this->load->view('templates/header');
+		$this->load->view('collection/lister');
+		$this->load->view('templates/footer');
+
+	}
+
     
+
 }

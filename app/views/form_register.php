@@ -1,4 +1,4 @@
-
+  
 
    <div class="row" id="inscription" >
 <div class="columns small-12 medium-7 large-5 medium-centered">  
@@ -59,7 +59,7 @@
       <div class="columns small-12 medium-12">
         <select id="sexe" name="sexe">                     
           <option value="Masculin" <?php echo  set_select('sexe', 'Masculin', FALSE); ?>>Masculin</option>
-          <option value="Feminin" <?php echo  set_select('sexe', 'Feminin', FALSE); ?>>Feminin</option>
+          <option value="Feminin" <?php echo  set_select('sexe', 'Feminin', FALSE); ?> >Feminin</option>
         </select>
     </div>
 

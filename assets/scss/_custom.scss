@@ -4,8 +4,36 @@ header{
 
 }
 
-/*#banner{
+#banner{
   position: relative;
+  height: 350px;
+  background-image: url(../../assets/img/Biblio.jpg);
+text-align: center;
+  
+  /*  -webkit-filter: brightness(0.73);*/
+    color: white;
+h2{
+letter-spacing: -1px;
+font-weight:bolder;
+opacity: 0.85;
+
+margin-top: 2em;
+/*font-size: 2em;*/
+/*text-transform: uppercase;*/
+}
+p{
+font-family: arial;
+/*font-style: italic;*/
+  font-size: 20px;
+  font-weight: lighter;
+  margin: 0.2em;
+}
+h3{
+
+  font-weight: lighter;
+  font-family: arial;
+  letter-spacing: -4px;
+}
 }
 
 
@@ -15,7 +43,7 @@ color: red;
 position: absolute;
 top: 4em;
 }
-*/
+
 #logo{
     
 
@@ -106,7 +134,6 @@ text-transform: uppercase;
    margin-bottom:5px;
    margin-top:5px;
 width: 80%;
- 
  border: 1px solid gray;
  /*background-color: transparent;*/
 /* color: white;*/
@@ -443,15 +470,39 @@ small{
   text-align: center;
 
 }
+.collection_header{
+padding: 4px;
+ background: #309958;
+z-index: 1000;
+text-align: center;
+display: block;
+color: white;
+font-size: 1em;
+margin: auto;
+border-top: 2px solid white;
+
+/*margin-bottom: 0.4em;*/
+width: 15em;
+
+
+font-weight: bolder;
+
+
+}
+
+.reveal{
+
+  .custom_input{
+
+   padding: 10px;
+  }
+}
 
 
 
+/*typographie*/
 
 
-/*article .thumbnail{
-border-radius: 50%;
-
-}*/
 
 
 
@@ -513,6 +564,21 @@ top:0px;
 
 
 }
+
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+
+
+
+
 
 /* Medium and up */
 @media screen and (min-width: 40em) {
@@ -662,10 +728,24 @@ form{
   text-align: left;
 }
 
+
+/*#espace_de_reaction
+{ 
+
+  display: ;
+ 
+  display: none; 
+  position: relative;
+  top: 5px;
+  right: 14px;
+  
+   }*/
+
 #espace_de_reaction
 {
   display: none; 
 }
+
 #reaction{
   position: relative;
   top: 15px;
@@ -771,11 +851,12 @@ input {
 }
 
 
-.circle_rectangle{
-
-  border-radius: 5%;
-  border:3px solid #47ab6d;
+.evenement_rectangle_box{
+  /*border:1px solid #191b19;*/   
  
+  box-shadow: 0px 0px 1px 0.4px #888888;
+  margin:15px;
+  padding: 0px
 }
 
 #authen{

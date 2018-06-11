@@ -5,8 +5,7 @@
  class Evenement_model extends CI_Model
  { 
  	
- 	function __construct()
- 	{
+ 	function __construct() {
 		$this->load->database();		
  		parent::__construct();
 
@@ -14,8 +13,9 @@
  		$this->load->library('form_validation');
  	}
 
- 	function add($nom,$user_id,$lieuEvent,$dateEvent,$descEvent,  $datedebutEvent,$datefinEvent,$Activites,$prix,$pointDevente,$r ) {
-		
+
+ 	function add($nom,$user_id,$lieuEvent,$dateEvent,$descEvent,  $datedebutEvent,$datefinEvent,$Activites,$prix,$pointDevente,$foto) {
+
     	$data = array(
     		'titre'				=> $nom,
     		'idmembre'			=> $user_id,
@@ -27,7 +27,7 @@
     		'activite'			=> $Activites,
     		'prix'				=> $prix,
     		'point_de_vente'	=> $pointDevente,
-    		'photo'				=> $r,
+    		'photo'				=> $foto,
 			'date_creation'		=>  date('Y-m-j H:i:s')
 
     	);
@@ -35,9 +35,7 @@
 	}
 
 	function lister() {
-		// SELECT evenement.photo, evenement.titre, evenement.lieuEvenement, evenement.description, evenement.date_creation, evenement.date_debut, evenement.date_fin, evenement.prix, evenement.point_de_vente, membre.pseudo, membre.email FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement
-		// $sql = 'SELECT * FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement';
-		$sql = 'SELECT evenement.idevenement, evenement.photo, evenement.titre, evenement.lieuEvenement, evenement.description, evenement.date_creation, evenement.date_debut, evenement.date_fin, evenement.prix, evenement.point_de_vente, membre.pseudo, membre.email FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement';
+		$sql = 'SELECT  DATE_FORMAT(evenement.date_debut, "%d %M %Y") as event_mois, DATE_FORMAT(evenement.date_debut, "%a %d %M %Y %r") as event_deb, DATE_FORMAT(evenement.date_debut, "%a %d %M %Y %r") as event_fin, evenement.idevenement, evenement.photo, evenement.titre, evenement.lieuEvenement, evenement.description, evenement.date_creation, evenement.activite, evenement.date_debut, evenement.date_fin, evenement.prix, evenement.point_de_vente, membre.pseudo, membre.email FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement';
 		$req = $this->db->query($sql);
 
 		if ($req->num_rows() > 0) {
@@ -65,5 +63,10 @@
 			return $data;
 		}
 		return false;
+	}
+
+	function delete ($idevenement) {
+		$sql = 'DELETE FROM evenement WHERE idevenement = ?';
+		$this->db->query($sql, array($idevenement));
 	}
 }
