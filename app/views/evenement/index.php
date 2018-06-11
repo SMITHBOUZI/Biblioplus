@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
           <?php if (isset($_SESSION['flash'])): ?>
             <?php foreach ($_SESSION['flash'] as $type => $message):?>
               <div class="alert alert-<?= $type; ?>">
@@ -252,7 +252,7 @@
 
         </body>
         </html>
-=======
+
   <?php if (isset($_SESSION['flash'])): ?>
     <?php foreach ($_SESSION['flash'] as $type => $message):?>
       <div class="alert alert-<?= $type; ?>">
@@ -460,4 +460,3 @@
 
 </body>
 </html>
->>>>>>> 57e09379c2799e1330bc880566e9070b14de7e2e

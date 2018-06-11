@@ -14,7 +14,7 @@
  		$this->load->library('form_validation');
  	}
 
-<<<<<<< HEAD
+
  	function add($nom,$user_id,$lieuEvent,$dateEvent,$descEvent,  $datedebutEvent,$datefinEvent,$Activites,$prix,$pointDevente) {
  	
     	$data = array(
@@ -23,7 +23,7 @@
     		'idmembre'			=> $user_id,
     		'lieuEvenement'		=> $lieuEvent,    		
     		'description'		=> $descEvent,
-=======
+
  	function add($nom,$user_id,$lieuEvent,$dateEvent,$descEvent,  $datedebutEvent,$datefinEvent,$Activites,$prix,$pointDevente,$r ) {
 		
     	$data = array(
@@ -32,19 +32,19 @@
     		'lieuEvenement'		=> $lieuEvent,
     		'description'		=> $descEvent,
 
->>>>>>> 57e09379c2799e1330bc880566e9070b14de7e2e
+
     		'date_debut'		=> $datedebutEvent,
     		'date_fin'			=> $datefinEvent,
     		'activite'			=> $Activites,
     		'prix'				=> $prix,
     		'point_de_vente'	=> $pointDevente,
-<<<<<<< HEAD
+
     		'date_creation'		=>NOW()
-=======
+
     		'photo'				=> $r,
 			'date_creation'	=>  date('Y-m-j H:i:s')
 
->>>>>>> 57e09379c2799e1330bc880566e9070b14de7e2e
+
     	);
     	$this->db->insert('evenement', $data);
 	}

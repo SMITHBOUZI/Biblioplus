@@ -123,10 +123,10 @@
       <h3>Les &eacutev&eacutenements les plus proches</h3>
       <p>Amant du livre, vous qui ne voulez pas manquer un &eacutev&eacutenement auxquels vous voudriez prendre part<br/> dans cette section vous resterez informer.</p>                      
     </div> 
-<<<<<<< HEAD
-    <?php $req = $this->event->lister(); ?>
+
+   <!--  <?php $req = $this->event->lister(); ?>
       <?php if($req): ?>
-        <?php foreach ($req as $key ): ?>
+        <?php foreach ($req as $key ): ?> -->
     <div class="columns large-4 medium-6 small-12   evenement_rectangle_box_index" align="center"  > 
                           
                     
@@ -161,7 +161,7 @@
 
     <?php endforeach ?>
       <?php endif ?>
-=======
+
     <?php //$req = $this->event->lister(); ?>
       <?php //if($req): ?>
         <?php //foreach ($req as $key ): ?>
@@ -194,7 +194,6 @@
     </div>
     <?php //endforeach ?>
       <?php //endif ?>
->>>>>>> 57e09379c2799e1330bc880566e9070b14de7e2e
   </div>
 </div>
 

@@ -5,9 +5,8 @@ $(document).foundation();
 
 $("#nav_menu").hide();
 $("#search").hide();
-$("#nav_menu").hide(10);
-$("#search").hide(100);	
-// $("#user").slideToggle(350);
+	
+$("#user").slideToggle(350);
 $("#box_authen").slideToggle(500);
 });
 
