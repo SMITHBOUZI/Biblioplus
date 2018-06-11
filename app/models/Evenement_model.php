@@ -7,18 +7,27 @@
  	
  	function __construct()
  	{
+		$this->load->database();		
  		parent::__construct();
+
+ 		$this->load->helper('form');
+ 		$this->load->library('form_validation');
  	}
 
- 	function add($nom,$user_id,$lieuEvent,$dateEvent,$descEvent) {
-
+ 	function add($nom,$user_id,$lieuEvent,$dateEvent,$descEvent,  $datedebutEvent,$datefinEvent,$Activites,$prix,$pointDevente) {
+ 	
     	$data = array(
     		// 'photo'				=> $photo,
-    		'nom'				=> $nom,
+    		'titre'				=> $nom,
     		'idmembre'			=> $user_id,
-    		'lieuEvenement'		=> $lieuEvent,
-    		'dateEvenement'		=> $dateEvent,
-    		'description'		=> $descEvent
+    		'lieuEvenement'		=> $lieuEvent,    		
+    		'description'		=> $descEvent,
+    		'date_debut'		=> $datedebutEvent,
+    		'date_fin'			=> $datefinEvent,
+    		'activite'			=> $Activites,
+    		'prix'				=> $prix,
+    		'point_de_vente'	=> $pointDevente,
+    		'date_creation'		=>NOW()
     	);
     	$this->db->insert('evenement', $data);
 	}

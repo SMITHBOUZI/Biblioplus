@@ -5,8 +5,7 @@
       jhdjfhjdhfjkhbfjcbdfjbdsjkfbej
     </div>
 
-    <div class="columns medium 6">
-      
+    <div class="columns medium 6">    
 
 
     </div>
