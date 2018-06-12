@@ -100,7 +100,6 @@
            <?php endforeach ?>
            <?php unset($_SESSION['flash']) ?>
           <?php endif ?>
-               <!-- <form > --> 
                 <?php echo form_open_multipart('event/index','class=""');?> 
                 <div class="columns large-6 medium-6" align="center">
                   <div class="col-sm-3 text-center">
@@ -136,7 +135,6 @@
                     <input type="radio" name="Activites" id="gratuit" align="right"> Gratuit</input>
                   </div>
                    </div>
-                  <!-- <div class="columns large-12 medium-12" style=" padding: 0px;"> -->
                   <div class=" columns large-4 medium-4 small-4" >
                     <label>Prix</label>
                     <input type="number" name="prix" placeholder="gdes">
@@ -145,13 +143,11 @@
                     <label>Point de vente</label>
                     <input type="text" name="pointDevente" placeholder="Entrez un Point de vente">
                   </div>
-                  <!-- </div>  -->   
                   <input class="fill_button" type="submit" id="addEvent" name="addEvent" value="Ajouter"/> 
                 </div>
                 </div>
 
                 <?php echo form_close();  ?>
-             <!--  </form> -->
               <button class="close-button" data-close aria-label="Close modal" type="button">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -166,7 +162,8 @@
           <div class="reveal small" id="modal_voir_evenement" data-reveal style="border-radius: 3%;">
             <div class="rows"> 
               <div class="columns large-12 medium-12" style="margin: 0px">
-            <div class="columns large-12 medium-12" style=" margin: 0px; background-color: #f3f1f1;  box-shadow: 0px 0px 3px 0.4px #888888; border-radius: 3%;">       
+            <div class="columns large-12 medium-12" style=" margin: 0px; background-color: #f3f1f1;  
+            box-shadow: 0px 0px 3px 0.4px #888888; border-radius: 3%;">       
                 <div class="columns large-8 medium-8" style="margin-bottom: -15px; position: relative; right: 30px;" >
                   <!-- <img src="http://via.placeholder.com/350x200"  class="thumbnail" > -->
                    <?php if(empty($key->photo )){ ?>
@@ -233,10 +230,10 @@
                     </div>
                     <div class=" columns large-12 medium-12 small-12" style="margin-top: 5px;">
                     <div class="columns large-8 medium-8 small-8">
-                    <?php if (($key->activite) === 0) { ?>
-                    <h5>Activité: <?php echo 'Payant'; ?> </h5>
+                    <?php if ( $key->activite == 1) { ?>
+                    <h5>Activité <?php echo 'Payant'; ?> </h5>
                     <?php } else { ?>
-                    <h5>Activité: <?php echo 'Gratuit'; ?> </h5>
+                    <h5>Activité <?php echo 'Gratuit'; ?> </h5>
                       <?php } ?>
                     </div>  
                     

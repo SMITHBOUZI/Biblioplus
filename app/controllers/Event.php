@@ -89,12 +89,9 @@ class Event extends CI_Controller {
 			$this->load->view('evenement/index');
 			// $this->load->view('templates/footer');
     	}
-		
 	}
 
- 
-
-	function ficheEvenement()	{
+ 	function ficheEvenement()	{
 		$this->load->view('templates/header');
 		$this->load->view('evenement/ficheEvenement');
 	}
@@ -109,10 +106,18 @@ class Event extends CI_Controller {
 		$this->load->view('evenement/suprimer');
 	}
 
+	function lister () {
+		$data = new stdClass();
+		$notifications = $this->evenement_model->notification();
 
+		foreach ($notifications as $notification ) {
+			$notification->event_notify = $this->evenement_model->count_notify();  // var_dump($notification);
+		}
 
+		$data->$notifications = $notification;
 
-	
-
+		$this->load->view('templates/header');
+		$this->load->view('evenement/modifier');
+	}
 
 }

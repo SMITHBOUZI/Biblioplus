@@ -3,3 +3,6 @@
 		<h1>auteur</h1>
 	</div>
 </div>
+
+
+<span><?php var_dump($notification); ?></span>

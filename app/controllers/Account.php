@@ -46,12 +46,6 @@ class Account extends CI_Controller {
 		}
 	}
 
-    /**
-	 * logout function.
-	 * 
-	 * @access public
-	 * @return void
-	 */
 	public function logout() {
 		$this->session->unset_userdata('logged_in');
 		$this->session->sess_destroy();

@@ -13,7 +13,6 @@
  		$this->load->library('form_validation');
  	}
 
-
  	function add($nom,$user_id,$lieuEvent,$dateEvent,$descEvent,  $datedebutEvent,$datefinEvent,$Activites,$prix,$pointDevente,$foto) {
 
     	$data = array(
@@ -35,7 +34,7 @@
 	}
 
 	function lister() {
-		$sql = 'SELECT  DATE_FORMAT(evenement.date_debut, "%d %M %Y") as event_mois, DATE_FORMAT(evenement.date_debut, "%a %d %M %Y %r") as event_deb, DATE_FORMAT(evenement.date_debut, "%a %d %M %Y %r") as event_fin, evenement.idevenement, evenement.photo, evenement.titre, evenement.lieuEvenement, evenement.description, evenement.date_creation, evenement.activite, evenement.date_debut, evenement.date_fin, evenement.prix, evenement.point_de_vente, membre.pseudo, membre.email FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement';
+		$sql = 'SELECT  DATE_FORMAT(evenement.date_debut, "%d %M %Y") as event_mois, DATE_FORMAT(evenement.date_debut, "%a %d %M %Y %r") as event_deb, DATE_FORMAT(evenement.date_fin, "%a %d %M %Y %r") as event_fin, evenement.idevenement, evenement.photo, evenement.titre, evenement.lieuEvenement, evenement.description, evenement.date_creation, evenement.activite, evenement.date_debut, evenement.date_fin, evenement.prix, evenement.point_de_vente, membre.pseudo, membre.email FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement';
 		$req = $this->db->query($sql);
 
 		if ($req->num_rows() > 0) {
@@ -68,5 +67,23 @@
 	function delete ($idevenement) {
 		$sql = 'DELETE FROM evenement WHERE idevenement = ?';
 		$this->db->query($sql, array($idevenement));
+	}
+
+	function notification () {
+		$sql = 'SELECT * FROM notification WHERE status = 1';
+		$req = $this->db->query($sql);
+
+		if ($req->num_rows() > 0) {
+
+			return $req->result();
+		} else {
+
+			return false ;
+		}
+	}
+
+	function count_notify () {
+		$sql = 'SELECT count(*) FROM notification WHERE status = 1';
+		return $this->db->query($sql);
 	}
 }
