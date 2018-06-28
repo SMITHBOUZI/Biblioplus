@@ -4,5 +4,9 @@
   </div>
 </div>
 
+<?php foreach ($notifications as $key ): ?>
+	<?php echo $key->nbr_notify; ?>
+	<?php echo $key->event_notify[0]->titre; ?>
+<?php endforeach ?>
 
-<span><?php // var_dump($notification); ?></span>
+<span><pre><?php var_dump($notifications); ?></pre></span>

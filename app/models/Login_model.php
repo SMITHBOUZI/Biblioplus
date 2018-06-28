@@ -3,12 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login_model extends CI_Model {
 
-	/**
-	 * __construct function.
-	 * 
-	 * @access public
-	 * @return void
-	 */
 	public function __construct() {
 		
 		parent::__construct();
@@ -60,6 +54,7 @@ class Login_model extends CI_Model {
 		$ema = $this->input->post('email'); 
 		$sta = $this->input->post('mem');
 		$desc = $this->input->post('desc');
+		$telephone = $this->input->post('telephone');
 		
 		$co = $this->security->get_csrf_hash();
 		$to = $this->input->post('token_confirmed');
@@ -73,6 +68,7 @@ class Login_model extends CI_Model {
 			'pseudo'		 	=> $pseu,
 			'mot_de_passe' 	 	=> $pass,
 			'email'   		 	=> $ema,
+			'telephone'   		=> $telephone,
 			'status'			=> $sta,
 			'description'		=> $desc,
 
@@ -85,20 +81,11 @@ class Login_model extends CI_Model {
 		if ($this->db->insert('inscription', $data)) {
 			$user_id = $this->db->insert_id();
 			$token 	 = $this->security->get_csrf_hash();
-
 			//send confirmation email
 			return $this->send_confirmation_email($ema, $user_id, $token);			
 		}
 	}
 
-	/**
-	 * send_confirmation_email function.
-	 * 
-	 * @access private
-	 * @param string $username
-	 * @param string $email
-	 * @return bool
-	 */
 	private function send_confirmation_email($ema, $user_id, $token) {
 		
 		// load email library and url helper
@@ -133,14 +120,6 @@ class Login_model extends CI_Model {
 		$this->email->send();		
 	}
 
-	/**
-	 * confirm_account function.
-	 * 
-	 * @access public
-	 * @param string $username
-	 * @param string $hash
-	 * @return bool
-	 */
 	public function confirm_account($pseudo, $hash) {		
 		// find the email for the given user
 		$email = $this->db->select('email')
@@ -149,19 +128,17 @@ class Login_model extends CI_Model {
 			->get()
 			->row('email');
 		
-		// find the registration date for the given user
-		$registration_date = $this->db->select('token_confirmed')
+		$token_confirmation = $this->db->select('token_confirmed')
 			->from('inscription')
 			->where('pseudo', $pseudo)
 			->get()
 			->row('token_confirmed');
 
 		// if the user from the url exists
-		if ($email && $registration_date) {
+		if ($email && $token_confirmation) {
 			
-			if (sha1($email . $registration_date) === $hash) {
+			if (sha1($email . $token_confirmation) === $hash) {
 				
-				// values from the url are good, we can validate the account
 				$data = array('token_confirmed' => date('Y-m-j H:i:s'));
 				$this->db->where('pseudo', $pseudo);
 				return $this->db->update('inscription', $data);				
@@ -169,5 +146,28 @@ class Login_model extends CI_Model {
 			return false;			
 		}
 		return false;		
+	}
+
+	function visiteurs () {
+		$select = "SELECT adresse_ip FROM visiteurs WHERE adresse_ip='".$_SERVER['REMOTE_ADDR']."';";
+	    $stmt_entrees = $this->db->query($select);
+
+	    if($stmt_entrees->num_rows() == 0)  {
+	        // On insere une nouvelle ligne en base de données
+	        $requete = "INSERT INTO visiteurs (adresse_ip, temps) VALUES ('".$_SERVER['REMOTE_ADDR']."','".date('Y-m-j H:i:s')."');";
+    	} else {
+    		// On met a jour le temps du visiteur en base de données
+      		$requete = "UPDATE visiteurs SET temps='".date('Y-m-j H:i:s')."'WHERE adresse_ip = '".$_SERVER['REMOTE_ADDR']."';"."\n";
+    	}
+    	$this->db->query($requete);
+
+    	$timestamp_5min = date('Y-m-j H:i:s') - (60 * 5); // Etat du timestamp il y a 5 minutes
+	    $requete = "DELETE FROM visiteurs WHERE temps < ". $timestamp_5min.";"; 
+	    $stmt = $this->db->query($requete);
+	}
+
+	function count_nbr_visiteur() {
+		$sql = "SELECT count(id) AS nbr_visiteurs FROM visiteurs";
+		return $this->db->query($sql)->result();
 	}
 }

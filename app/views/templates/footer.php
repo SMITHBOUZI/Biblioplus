@@ -40,7 +40,15 @@
     <li><a href="#">Aide</a></li>
     <li><a href="<?php echo base_url('forum/index'); ?>">Forum</a></li>              
 </div>
-<div class="columns medium-12">  <small>Copyright 2018 tout droit reserves</small></div>
+<div class="columns medium-12">  <small>Copyright 2018 tout droit reserves <br />
+  <?php if(site_url('account/')){ ?>
+    <?php // echo 'Le moi'; ?>
+    <?php $v = $this->login_model->count_nbr_visiteur(); echo  $v[0]->nbr_visiteurs." vues "; ?>
+  <?php } else {
+    echo " LAla ..";
+  } ?>
+  
+</small></div>
   
 
 </div>

@@ -31,7 +31,7 @@
 		    	<?php if(empty($rows->sujet_membre->photo )){ ?>
 	                <img src="<?php echo base_url('assets/avatar/avatar.png'); ?>" class="thumbnail" alt="" style="border-radius: 50%" />
 	              <?php } else {?>
-	                 <img src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" class="thumbnail" alt="" style="border-radius: 50%" />
+	                 <img src="<?php echo base_url('assets/avatar/'.$rows->sujet_membre->photo ); ?>" class="thumbnail" alt="" style="border-radius: 50%" />
 	            <?php } ?>
 	    	</div>
 	    	<div class="columns large-12 medium-12">
@@ -67,7 +67,7 @@
 
 	</div> 
 	<div class="columns large-12 medium-12" id="espace_de_reaction">
-	<?php if(isset($rows->sujet_valid)) :?>
+	<?php if(isset($rows->sujet_valid)) :?><pre><?php var_dump($rows); ?></pre>
 		<?php $i = $rows->sujet_valid; ?>
 		<?php foreach ($i as $key => $value): ?> <pre><?php // var_dump($rows->sujet_valid); ?></pre>
 	<?php echo form_open_multipart('forum/comment','class=""'); ?>  
@@ -94,10 +94,10 @@
 	<div class="columns large-12 medium-12" id="reaction">
     	<div class="columns large-1 medium-1"style="padding: 0px; text-align: center; font-style: italic; color: gray;">
     	<div class="columns large-12 medium-12" >
-		    	<?php if(empty($rows->sujet_membre->photo )){ ?>
+		    	<?php if(empty($rows->sujet_post[$key]->photo )){ ?>
 	                <img src="<?php echo base_url('assets/avatar/avatar.png'); ?>" class="thumbnail" alt="" style="border-radius: 50%" />
 	              <?php } else {?>
-	                 <img src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" class="thumbnail" alt="" style="border-radius: 50%" />
+	                 <img src="<?php echo base_url('assets/avatar/'.$rows->sujet_post[$key]->photo); ?>" class="thumbnail" alt="" style="border-radius: 50%" />
 	            <?php } ?>
 	    	</div>
     	<div class="columns large-12 medium-12">
@@ -108,11 +108,15 @@
     	<div class="columns large-12 medium-12" style="text-align: right; font-style: italic; color: gray;"><?= $rows->sujet_post[$key]->date_hres_edition; ?> </div>
         <div class="columns large-12 medium-12">
     	<p> <?php echo $rows->sujet_post[$key]->contenu_m  ?> </p>
-    	</div> <?php endforeach ?>
+    	</div> 
+    </div>  
+
+	</div>
+	<?php endforeach ?>
+	<?php else : ?>
+	<?php echo "Aucun sujet trouve"; ?>
     <?php endif ?>
     <?php endforeach ?>
-    </div>    
-	</div>
 	</div>
 
 </div>

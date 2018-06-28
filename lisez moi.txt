@@ -1,0 +1,38 @@
+## Une fois le projet clone 
+1- Creer une base de donnees appeller biblioplus
+2- Dans phpmyadmin impoter le fichier biblioplus.sql dans la base de donne biblioplus
+3- Allez dans le dossier app/config puis editer le fichier database.php
+	- Modifier le password, le username et le database.
+
+4- Dans votre navigateur tapez http://localhost/gitbiblioplus/public_html/ 
+
+
+
+ 
+Apres avoir aporte une modification quelconque  dans le projet 
+Aller dans le terminal git sur le projet tapez :
+
+  # pour ajouter les modification dans le depot local 
+  	git add *
+
+  # pour valide les modification dans le depot local
+  	git commit -m"message de mise a jour"
+
+  # pour partage le projet avec les autres developpeurs
+  # poussez le projet sur le web
+  	git push origin master
+
+  # Pour obtenir les modifications des autres developpeurs
+  	git pull
+
+  ## Note :
+  Il faut toujours tenir compte des mise a jour des collaborateurs avant de travailler sur le projet en local
+  c'est a dire faire un "git pull" avant de commencer.
+
+
+#-------------------------------------------------
+# Instalation de php Unit pour les test unitaire
+#-------------------------------------------------
+
+# Allez au site 
+https://phpunit.de/getting-started/phpunit-7.html

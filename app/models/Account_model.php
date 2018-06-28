@@ -3,32 +3,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Account_model extends CI_Model {
 
-	/**
-	 * __construct function.
-	 * 
-	 * @access public
-	 * @return void
-	 */
 	public function __construct() {
 		
 		parent::__construct();
 		$this->load->database();		
 	}
 
-	function search_bar($search){
-		if ($search) {
-			// SELECT * FROM inscription WHERE nom_prenom LIKE 'b%' OR pseudo LIKE 'd%'  // LIKE "b%" OR nom_prenom LIKE "b%" 
-			$sql = 'SELECT * FROM inscription WHERE pseudo = ? ';
-			$query = $this->db->query($sql, array($search));
+	// function search_bar(){
+		
+	// 	if ($_GET['search_bar']) {
+	// 		// SELECT * FROM inscription WHERE nom_prenom LIKE 'b%' OR pseudo LIKE 'd%'  // LIKE "b%" OR nom_prenom LIKE "b%"
+	// 		$search = $_GET['search_bar']; 
+	// 		$sql = 'SELECT * FROM inscription WHERE pseudo = ? ';
+	// 		$query = $this->db->query($sql, array($search));
 
-			if ($query->num_rows() === 1 ) {
-				return $query->result_object();
-			} else {
-				echo "Data not found ..";
-				return false;
-			}
-		}
-	}
+	// 		if ($query->num_rows() === 1 ) {
+	// 			return $query->result_object();
+	// 		} else {
+	// 			echo "Data not found ..";
+	// 			return false;
+	// 		}
+	// 	}
+	// }
 
 	function fetch($user_id){
 		$sql = "SELECT * FROM membre WHERE idmembre = ? ";
@@ -57,12 +53,18 @@ class Account_model extends CI_Model {
 					$this->db->query('UPDATE inscription SET confirm_token = NULL, token_confirmed = NOW() WHERE idinscription ='. $user_id);
 
 					$data = array(
-						'idmembre' 		=> '', 
-						'pseudo' 		=> $user->pseudo,
-						'photo' 		=> $user->photo,
+						'idmembre' 			=> '', 
+						'pseudo' 			=> $user->pseudo,
+						'photo' 			=> $user->photo,
+						'nom_prenom' 		=> $user->nom_prenom,
 						
-						'mot_de_passe'  => $user->mot_de_passe,
-						'email' 		=> $user->email
+						'mot_de_passe'  	=> $user->mot_de_passe,
+						'email' 			=> $user->email,
+						'telephone' 			=> $user->telephone,
+						'date_naissance' 	=> $user->date_naissance,
+						'status' 			=> $user->status,
+						'description' 		=> $user->description,
+						'actif'				=> '1'
 						);
 					$this->db->insert('membre', $data);
 				}else{
@@ -101,7 +103,7 @@ class Account_model extends CI_Model {
 		}
 	} 
 
-	function password_reset( $reset_token){
+	function password_reset( $reset_token ){
  	
 		$req = $this->db->SELECT('*');
 		$req = $this->db->from('membre');
@@ -128,14 +130,6 @@ class Account_model extends CI_Model {
 		}
 	}
 
-    /**
-	 * send_confirmation_email function.
-	 * 
-	 * @access private
-	 * @param string $username
-	 * @param string $email
-	 * @return bool
-	 */
 	public function send_confirmation_pass($reset_token, $email) {
 		
 		// load email library and url helper
@@ -167,5 +161,11 @@ class Account_model extends CI_Model {
 		
 		// send the email and return status
 		return $this->email->send();		
+	}
+
+	function desactive_compte() {
+		$idmembre = $_GET['idmembre'];
+		$sql = "UPDATE membre SET actif = 0 WHERE idmembre = ?";
+		$req = $this->db->query($sql, array($idmembre));
 	}
 }
