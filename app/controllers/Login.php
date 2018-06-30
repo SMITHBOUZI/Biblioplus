@@ -8,18 +8,71 @@ class Login extends CI_Controller {
 		$this->load->library(array('session'));
 		$this->load->helper(array('url'));
 		$this->load->model('login_model');
+		$this->load->model('Notification_model');
+		$this->load->model('Collection_model');
+		$this->load->model('Recherche_model');
 	}
 
-    function index()	{
-		$this->load->view('templates/header');
-		$this->load->view('index');
+	function notify () {
+ 		$data = new stdClass();
+
+ 		if (isset($_GET['notify_id'])) {
+ 			$notify_id = $this->uri->segment(3);
+			$this->Notification_model->vue_notify($notify_id);
+ 		}			
+
+		$notifications = $this->Notification_model->count_notify();
+		
+		foreach ($notifications as $notification ) {
+			$notification->event_notify = $this->Notification_model->notification();
+		}
+
+		$data->notifications = $notifications;
+
+		$this->load->view('templates/header', $data);
+	}
+
+    function index() {
+    	if ( isset( $_GET['search'] ) ) {
+  			$this->search_x();
+ 		} else {
+	    	$this->load->model('evenement_model');
+	    	$this->load->model('Auteur_model');
+	    	$data = new stdClass();
+			$auteurs = $this->Auteur_model->info_auteur_acc();
+
+			foreach ($auteurs as $auteur ) { 
+				$auteur->nbr_ouvrage = $this->Auteur_model->count_ouvrage_auteur($auteur->idmembre); 
+				$auteur->nbr_event = $this->Auteur_model->count_event_auteur($auteur->idmembre); 
+				$auteur->nbr_post = $this->Auteur_model->count_post_auteur($auteur->idmembre);
+			}
+		    $this->notify();
+
+			$data->auteurs  = $auteurs;
+			// $this->load->view('templates/header');
+			$this->load->view('index', $data);
+			$this->load->view('templates/footer');
+		}
+	}
+
+	function search_x(){
+		$data = new stdClass();	
+		if ($_GET['search']) {
+			$search = $_GET['search'];
+			$fetch = $this->Recherche_model->search($search); var_dump($fetch);
+			
+			$data->fetch = $fetch;
+			$this->notify();
+			$this->load->view('search', $data); 
+		} else {
+			redirect('login/index');
+		}
 	}
 
 	function sign_in() {
 		// create the data object
 		$data = new stdClass();
 
-		// load form helper and validation library
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
@@ -32,15 +85,18 @@ class Login extends CI_Controller {
 		    $result =  $this->login_model->sign_in($pseudo, $pass);
 		    if(!$result) {
 		    	$_SESSION['flash']['danger'] = 'Ce compte n\'est pas actif, merci de verifier votre addresse mail pour la confirmation.';
-				$this->load->view('templates/header');
-				$this->load->view('sign_in');			    
+		    	$this->notify();
+				// $this->load->view('templates/header');
+				$this->load->view('compte/connexion');
+				$this->load->view('templates/footer');			    
 			}else {
 				foreach ($result as $user) {
-			    	if ( !empty($user->pseudo) && $user->mot_de_passe === $pass ) {
-			    		$sess_array = array( 
-						    'pseudo' => $pseudo,
-						    'idmembre' => $user->idmembre,
-						    'photo' => $user->photo,
+			    	if ( !empty($user->pseudo) && $user->mot_de_passe === $pass && $user->actif === '1') {
+			    		$sess_array = array(
+			    			'status' 		=> $user->status,
+						    'pseudo' 		=> $pseudo,
+						    'idmembre' 		=> $user->idmembre,
+						    'photo' 		=> $user->photo,
 						    'is_logged_in ' => TRUE 
 						); 
 						$this->session->set_userdata($sess_array);	
@@ -49,23 +105,36 @@ class Login extends CI_Controller {
 						redirect('account');
 			    	} else if( $user->mot_de_passe != $pass ) {
 				    		$_SESSION['flash']['danger'] = 'Connexion incorrect ';
-							$this->load->view('templates/header');
-							$this->load->view('sign_in');
+				    		$this->notify();
+							// $this->load->view('templates/header');
+							$this->load->view('compte/connexion');
+							$this->load->view('templates/footer');
 
+				    	} elseif (!empty($user->pseudo) && $user->actif === '0' ) {
+				    		$_SESSION['flash']['info'] = 'Cet compte n\'est plus actif ';
+				    		$this->notify();
+				    		// $this->load->view('templates/header');
+							$this->load->view('compte/connexion');
 				    	} else {
-				    		$this->load->view('templates/header');
-							$this->load->view('sign_in', $data);
+				    		$this->notify();
+				    		// $this->load->view('templates/header');
+							$this->load->view('compte/connexion', $data);
+							$this->load->view('templates/footer');
 				    	}
 				    }
 				}	 
 			}  else {
 				$_SESSION['flash']['danger'] = 'Veuillez remplir tous les champs ';
-				$this->load->view('templates/header');
-				$this->load->view('sign_in');
+				// $this->load->view('templates/header');
+				$this->notify();
+				$this->load->view('compte/connexion');
+				$this->load->view('templates/footer');
 			}		
 		} else {
-			$this->load->view('templates/header');
-			$this->load->view('sign_in');
+			// $this->load->view('templates/header');
+			$this->notify();
+			$this->load->view('compte/connexion');
+			$this->load->view('templates/footer');
 		}
     }
 
@@ -134,6 +203,7 @@ class Login extends CI_Controller {
     		return TRUE ;
     	}
     }
+
     function ckeck_datenaiss_found($date_naissance){
     	if (empty(trim($this->input->post('date_naissance')))) {
     		return FALSE ;    		
@@ -142,15 +212,12 @@ class Login extends CI_Controller {
     	}
     }
 
-	public function sign_up() {
-		// create the data object
+	function sign_up() {
 		$data = new stdClass();
 
-		// load form helper and validation library
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
-		// set validation rules
 		$this->form_validation->set_rules('nom_prenom', 'nom complet', 'trim|required|htmlspecialchars|callback_ckeck_format_nom_prenom');
 		$this->form_validation->set_rules('pseudo', 'nom d\'utilisateur','trim|required|min_length[6]|max_length[12]|htmlspecialchars|callback_ckeck_format_pseudo');
 		$this->form_validation->set_rules('mot_de_passe', 'mot de passe', 'trim|required|min_length[8]|htmlspecialchars');
@@ -162,10 +229,10 @@ class Login extends CI_Controller {
 
 
 		if ($this->form_validation->run() === FALSE) {
-
-			// validation not ok, send validation errors to the view
-			$this->load->view('templates/header');
-			$this->load->view('form_register', $data);
+			 $this->notify();
+			// $this->load->view('templates/header');
+			$this->load->view('compte/inscription', $data);
+			$this->load->view('templates/footer');
 		} else {
 		
 			if($this->input->post('save')) {
@@ -176,31 +243,22 @@ class Login extends CI_Controller {
 					 AND !empty(trim($this->input->post('mot_de_passe_c'))) AND !empty(trim($this->input->post('mem')))  )  {
 
 					$config['upload_path']          = 'assets/avatar/';
-					// $config['allowed_types']        = 'gif|jpg|png|jpeg';
-					// $config['max_size']             = 0;
-					// $config['max_width']            = 180;
-					// $config['max_height']           = 240;
-
-					$config['allowed_types']    = 'gif|jpg|png';
-					$config['max_size']         = 2048;
-					$config['max_width']        = 1024;
-					$config['max_height']       = 1024;
+					$config['allowed_types']    = 'gif|jpg|png|GIF|JPG|PNG';
+					$config['max_size']         = '2048';
+					$config['max_width']        = '1024';
+					$config['max_height']       = '1024';
 					$config['file_ext_tolower'] = true;
 					$config['encrypt_name']     = true;
 
 					$this->load->library('upload', $config);
 
-					// $this->load->library('upload', $config);
 					$this->upload->initialize($config);
 
-					if ( ! $this->upload->do_upload('userfile') )
-					{
+					if ( ! $this->upload->do_upload('userimage') ) {
 						// $_SESSION['flash']['danger'] = 'l\'images n\'a pas pu etre upload il faut un format : gif | jpg | png | jpeg ' ;
 						$error = array('error' => $this->upload->display_errors());
 					}
-					else
-					{
-						// $data = array('upload_data' => $this->upload->data());
+					else {
 						$data =  $this->upload->data();					
 					}
 					if (!empty($data)) {
@@ -210,13 +268,16 @@ class Login extends CI_Controller {
 					}
 
 					$_SESSION['flash']['success'] = 'Un mail de confirmation vous a été envoyé ';		
-					$this->load->view('templates/header');
-					$this->load->view('sign_in');
+					// $this->load->view('templates/header');
+					 $this->notify();
+					$this->load->view('compte/connexion');
 
 				}else {				
-					$this->load->view('templates/header');
+					// $this->load->view('templates/header');
+					 $this->notify();
 					$_SESSION['flash']['danger'] = 'Remplir tous les champs ';
-					$this->load->view('form_register');
+					$this->load->view('compte/inscription');
+					$this->load->view('templates/footer');
 				}
 			} 
 		}

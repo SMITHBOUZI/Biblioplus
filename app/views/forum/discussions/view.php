@@ -17,7 +17,7 @@
 	<?php endif ?>
 	    <div class=" columns large-12 medium-12" id="sujet">
 	    	<?php foreach ($forums as $rows): ?> <pre><?php // var_dump($rows); ?></pre> <?php // echo var_dump($rows->sujet_info[0]->id); ?>
-		  <h3 id="sujet" style="font-family: Times new roman"> <?php echo $rows->sujet; ?>  </h3>
+		  <span class="span_description"><?php echo $rows->sujet; ?>  </span> 
 	    </div>
 
 	    <div class="columns large-12 medium-12" id="categorie">
@@ -108,11 +108,13 @@
     	<div class="columns large-12 medium-12" style="text-align: right; font-style: italic; color: gray;"><?= $rows->sujet_post[$key]->date_hres_edition; ?> </div>
         <div class="columns large-12 medium-12">
     	<p> <?php echo $rows->sujet_post[$key]->contenu_m  ?> </p>
-    	</div> <?php endforeach ?>
+    	</div> 
+    </div>  
+
+	</div>
+	<?php endforeach ?>
     <?php endif ?>
     <?php endforeach ?>
-    </div>    
-	</div>
 	</div>
 
 </div>

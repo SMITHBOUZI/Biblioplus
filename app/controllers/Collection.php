@@ -1,93 +1,139 @@
 <?php
 
-/**
-* 
-*/
-class Collection extends CI_Controller
-{
+class Collection extends CI_Controller {
 	
-	function __construct()
-	{
+	function __construct() {
  		parent::__construct();
  		$this->load->helper(array('url'));
  		$this->load->library(array('session'));
  		$this->load->model('Collection_model');
+ 		$this->load->model('Notification_model');
+ 		$this->load->model('Recherche_model');
+
+ 		$this->load->helper('form');
+		$this->load->library('form_validation');
  	}
 
- 	public function index() {
-		$req = $this->Collection_model->lister();
+ 	function notify () {
+ 		$data = new stdClass();
 
-		if ($req) {
-			# afficher les livres ..
-			foreach ($req as $key ) {
-				$data = array (
-					'titre'		=> $key->titre
-				);
-			}
+ 		if (isset($_GET['notify_id'])) {
+ 			$notify_id = $this->uri->segment(3);
+			$this->Notification_model->vue_notify($notify_id);
+ 		}			
 
-			// $this->load->view('templates/header');
-			// $this->load->view('collection/lister', $data);
-		}
-		$this->load->view('templates/header');
-		$this->load->view('collection/lister');
-	}
-
-	function ouvrage()	{
-		$this->load->view('templates/header');
-		$this->load->view('templates/ouvrage');
-		 $this->load->view('templates/footer');
-	}
-
-	function auteurs()	{
-		$this->load->view('templates/header');
-		$this->load->view('auteurs');
+		$notifications = $this->Notification_model->count_notify();
 		
+		foreach ($notifications as $notification ) {
+			$notification->event_notify = $this->Notification_model->notification();
+		}
+
+		$data->notifications = $notifications;
+
+		$this->load->view('templates/header', $data);
 	}
 
-	public function form_uploaded_doc() {
-		$this->form_validation->set_rules('titre', 'titre', 'trim|required|htmlspecialchars');
-		$this->form_validation->set_rules('categorie', 'categorie', 'trim|required|htmlspecialchars');
-		$this->form_validation->set_rules('pages', 'pages', 'trim|required|htmlspecialchars');
-		// $this->form_validation->set_rules('userfile', 'photo', 'trim|required|htmlspecialchars');
-		$this->form_validation->set_rules('isbn', 'isbn', 'trim|required|htmlspecialchars');
+ 	public function index() {
+ 		if ( isset( $_GET['search'] ) ) {
+  			$this->search_x();
+ 		} else {
+			$this->notify();
+			$this->load->view('collection/collection');
+		}
+	}
 
-		if ($this->form_validation->run() === FALSE) {
-			$this->load->view('template/header');
-			$this->load->view('collection/form_uploaded_doc');
-		}else{
-			if($this->input->post('save')) {
-				$config['upload_path']          = 'assets/livres/';
-				$config['allowed_types']        = 'doc|pdf|docx';
-				$config['max_size']             = 0;
+	function search_x(){
+		$data = new stdClass();	
+		if ($_GET['search']) {
+			$search = $_GET['search'];
+			$fetch = $this->Recherche_model->search($search); // var_dump($fetch);
+			
+			$data->fetch = $fetch;
+			$this->notify();
+			$this->load->view('search', $data); 
+		} else {
+			redirect('login/index');
+		}
+	}
 
-
-				$this->upload->initialize($config);
+	function inserer_livre(){
+		$this->load->library('upload');
+		if ($this->input->post('ajout_ouvrage')) {
+			if (!empty($this->input->post('titre')) AND !empty($this->input->post('isbn'))
+				AND !empty($this->input->post('edition')) AND !empty($this->input->post('pages'))
 				
-				if ( ! $this->upload->do_upload('userfile') ) {
-					$_SESSION['flash']['warning'] = 'Ce format n\'est pas prisse en charger ' ;
-					$_SESSION['flash']['info'] = 'Essayer avec un format doc | pdf ' ;
+			 ) {
+			 	$config['upload_path']      = 'assets/img/';
+				$config['allowed_types']    = 'jpg|png|jpeg|JPG|PNG|JPEG';
+				$config['max_size']         = '0';
+				$config['max_width']        = '1024';
+				$config['max_height']       = '1024';
+				$config['file_ext_tolower'] = true;
+				$config['encrypt_name']     = true;
+
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+
+				if ( ! $this->upload->do_upload('livreChemin') ) {
 					$error = array('error' => $this->upload->display_errors());
-					$this->load->view('template/header');
-					$this->load->view('collection/form_uploaded_doc');					
 				} else {
-					$data =  $this->upload->data();			
-				} if (!empty($data)) {
-				    $this->account->form_uploaded_doc($data);
-				    $_SESSION['flash']['success'] = 'Vous venez d\'ajouter un livre felicitation ' ;
-				    $this->load->view('template/header');
-					$this->load->view('collection/form_uploaded_doc');
+					$data =  $this->upload->data();					
 				}
+
+				$data =  $this->upload->data();
+					$foto 	  = $data['file_name'];
+
+					$t = $this->form_uploaded_doc();
+						     
+				$titre 				   = trim($this->input->post('titre'));
+				$isbn  				   = trim($this->input->post('isbn'));
+				$edition 			   = trim($this->input->post('edition'));
+				$langue 			   = trim($this->input->post('langue'));
+				$categorie 			   = trim($this->input->post('categorie'));
+				$pages 				   = trim($this->input->post('pages'));
+				$pointVente 		   = trim($this->input->post('pointVente'));
+				$desc 		   		   = trim($this->input->post('desc'));
+				 
+				$this->Collection_model->ajouter_ouvrage($titre, $isbn, $edition, $langue, $categorie, $pages, $pointVente, $desc, $foto, $t);
+
+				$this->notify();
+				$_SESSION['flash']['success'] = 'Vous avez ajoute un ouvrage';
+				$this->load->view('collection/collection');
+				$this->load->view('templates/footer');	
+			} else {
+				$_SESSION['flash']['danger'] = 'Veuiller remplir tous les champs';
+				$this->notify();
+				$this->load->view('collection/collection');
 			}
-		}		     
+		}
+	}
+
+	// uploaded doc only pdf
+    function form_uploaded_doc() {
+		$config['upload_path']      = 'assets/web/';
+		$config['max_size']         = '0';
+		$config['allowed_types']    = 'pdf|PDF';
+		$config['encrypt_name']     = true;
+
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+
+		if ( ! $this->upload->do_upload('couvertureOuvragePath') ) {
+			$error = array('error' => $this->upload->display_errors());
+		} else {
+			$data =  $this->upload->data();					
+		}
+		
+		$data =  $this->upload->data(); 
+ 		return $book_path	  = $data['file_name'];  	     
     }
 
-    function collection(){
-		$this->load->view('templates/header');
-		$this->load->view('collection/lister');
-		$this->load->view('templates/footer');
+    function ouvrage_membre() {
+        $req = $this->Collection_model->ouvrage_membre();
+        $d = new stdClass();
 
-	}
-
-    
-
+        $d->req = $req; 
+        $this->notify();
+        $this->load->view('collection/auteur_ouvrage', $d);
+    }
 }

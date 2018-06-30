@@ -1,18 +1,27 @@
 $(document).ready(function(){
 $(document).foundation();
- 
- $("#login").click(function(e){
+$(".ouvrage").hover (function(e){
 
-$("#nav_menu").hide();
-$("#search").hide();
-<<<<<<< HEAD
+$("#info_ouvrage").show(200);
+
+});
+
+$("#login").click(function(e){
+ 
+	$("#nav_menu").hide();
+
+$("#search").hide();	
+
+
+
 $("#nav_menu").hide(10);
+
+
 $("#search").hide(100);	
-// $("#user").slideToggle(350);
-=======
-	
+
+
 $("#user").slideToggle(350);
->>>>>>> 025237a1cb94d027882ff6740bb7838bfae3dc2a
+
 $("#box_authen").slideToggle(500);
 });
 
@@ -22,33 +31,61 @@ $("#nav_menu").hide(10);
 $("#box_authen").hide(100);
 $("#search").slideToggle(500);
 
+
+
 });
+$("#nouveauSujet").click(function(e){
+$("#nouveau_sujet_view").slideToggle(300);
+
+})
+$("#ajouterSujet").click(function(e){
+$("#box_authen").slideDown(300);
+
+})
+
+ 
+
+
 
 // Resnponsive
 $(".menu-icon").click(function(e){
 	$("#search").hide(10);
+
+
+$("#xox").hide(100);
+    
+
+$("#xox").hide(100);
     $("#user").hide(10);
-    $("#box_authen").hide(100);
+
+
+$("#box_authen").hide(100);
+
     $("#user").hide(10);
-    $("#nav_menu").slideToggle(400);
+
+
+
+
+$("#nav_menu").slideToggle(400);
+
 });
 
- 
- $("#connecter").click(function(e){
+$("#connecter").click(function(e){
    e.preventDefault();
-   if(   ($("#mot_de_passe").val()=='') && ($("#pseudo").val()=='')   ){
+   if(   ($("#mot_de_passe").val()=='') && ($("#pseudo").val()=='')){
     $("#temp").text("Veuillez remplir tous les champs").css("color","red");
-}
+
+   }
+
 });
-
-
 
 
 
 $('.owl-carousel').owlCarousel({
-    loop:true,
+    // loop:true,
     margin:5,
     nav:true,
+    center:true,
     autoplay:true,
    
     responsive:{
@@ -56,7 +93,7 @@ $('.owl-carousel').owlCarousel({
             items:1
         },
 
-        300:{
+        330:{
             items:2
         },
         600:{
@@ -72,6 +109,8 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
+
+
 });
 
 

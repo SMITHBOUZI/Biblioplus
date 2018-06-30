@@ -10,8 +10,7 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/css/app.css'); ?> ">
 <link rel="stylesheet" href="<?php echo base_url('assets/css/croppie.css'); ?> ">
         <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.min.css'); ?> ">
-         <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.theme.default.min'); ?> ">
-
+         <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.theme.default.min'); ?> "> 
         
         <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Bevan|Carter+One|Fira+Sans+Extra+Condensed|Fjalla+One|Fredoka+One|Hind+Madurai|Oswald|Palanquin+Dark|Paytone+One|Ramabhadra|Suez+One" rel="stylesheet">
@@ -26,7 +25,7 @@
         <div class="grid-x ">
         <button class="menu-icon show-for-small-only"></button>   
                  <div class="cell medium-12 large-2  small-2" style="text-align:center;">
-                  <div id="logo" ><img src="<?php echo base_url('assets/img/BPlogo.png'); ?>" style="max-width:160px;"></div>
+                  <div id="logo" ><img src="<?php echo base_url('assets/img/BPlogo.png'); ?>"  style="max-width:160px;"/></div>
 
                 </div>
                 
@@ -35,25 +34,21 @@
                   <ul class="  menu align-center"  id="nav_menu">
                     <li><a href="<?php echo base_url('login/index'); ?>"><i class="fas fa-home " ></i></a></li>
                     <li><a href="<?php echo base_url('collection/index'); ?>">Collection</a></li>
-                    <li><a href="<?php echo base_url('auteur/lister'); ?>">Auteurs</a></li>
+                    <li><a href="<?php echo base_url('auteur/index'); ?>">Auteurs</a></li>
                     <li><a href="<?php echo base_url('event/index'); ?>">Evenements</a></li> 
                     <li><a href="<?php echo base_url('forum/index'); ?>">Forum</a></li>
-                    <li><a href="<?php echo base_url('login/index'); ?>"><span>1</span></a></li>
                   </ul>
                   
                 </nav>
 
-
                  <div class="cell small-4  medium-2 large-2">
                   <section class="menu align-center" style="padding:0px;" id="search_login" >
 
-                <li><a href="#" id="login"><i class="fas fa-user-circle  ">
-                   
+                <li><a href="#" id="login"><i class="fas fa-user-circle  ">                   
 
-              </i></a></li>
-                   
+              </i></a></li>                    
 
-        <?php // if ($this->session->userdata('pseudo') === NULL) : ?>
+        <?php if ($this->session->userdata('pseudo') === NULL) { ?>
               <div  id="authen">
                 <div id="box_authen">
                    <a href="<?php echo base_url('login/sign_in'); ?>"> 
@@ -64,27 +59,29 @@
                    </a>
                 </div>
               </div>
-        <?php // endif ?>
 
+              
+        <?php } else { ?>
 
-
-<?php if ($this->session->userdata('pseudo') !== NULL) : ?>
 
   <!-- user connect -->
 
-  <div id="login_box" >
-
-    <div id="user"> <!-- Drop down login_box -->
-      <form >
+  <div  id="authen">
+  <div id="box_authen"> <!-- Drop down login_box -->
+      <form>
         <div class="grid-container">
           <div class="grid-x padding-x">
 
             <div class="cell medium-12 ">
               <?php if(empty($_SESSION['photo'] )){ ?>
-                <img src="<?php echo base_url('assets/avatar/avatar.png'); ?>" />
+              <a href="http://localhost/biblioplus/auteur/info?id=<?php echo $this->session->userdata('idmembre'); ?>">
+                <img src="<?php echo base_url('assets/avatar/avatar.png'); ?>" style="height: 120px; width: 120px; " class="circle_round" />
+              </a>
               <?php } else {?>
-                 <img src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" />
+              <a href="http://localhost/biblioplus/auteur/info?id=<?php echo $this->session->userdata('idmembre'); ?>">
+                 <img class="circle_round" style="height: 120px; width: 120px; " src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" />
               <?php } ?>
+            </a>
             </div>
 
             <div class="medium-12 cell">
@@ -101,48 +98,43 @@
   </div><!-- end of dropdown_login  -->
 
   <!-- end user connect -->
-<?php endif ?>   
+<?php }  ?>   
 
-        <li><a id="search_button" ><i class="fas fa-search" ></i></a></li>
-            <div id="search_box" ><!-- Drop down search -->
+<li><a id="search_button" ><i class="fas fa-search" ></i></a></li>
+  <div id="search_box"><!-- Drop down search -->
 
-   <div id="search" > 
-<?php  // echo form_open('account/search_bar','');?> 
+<!-- <?php // echo form_open('rechercher/index',''); ?>  -->
+<form>
+<div id="search" > 
 
-    <div class="grid-container">
-      <div class="grid-x padding-x">
-      
+  <div class="grid-container">
+    <div class="grid-x padding-x">  
 
-        <div class="medium-12 cell">
-          
-          <input class="custom_input" type="text" placeholder="Rechercher" name="search_bar"> 
-          
-        </div>
+      <div class="medium-12 cell">
         
-
+        <input class="custom_input" type="text" placeholder="Rechercher" name="search"> 
+        
       </div>
-    </div> 
-<?php  // echo form_close();  ?>
+    </div>
+  </div> 
+</div>  
+ <!-- <?php // echo form_close();  ?> -->
+</form> 
 
- </div>   
-    
-           </div> <!-- End of dropdwown_search -->
+       </div> <!-- End of dropdwown_search -->
 
      </section> <!-- end of section menu -->
 
+              </div>
 
-      
-                      </div>
-
-                    </div>
-
+            </div>
              <!--end of grid-->
           </div><!--end of grid-container-header-->
       </header>
 
   </div>
 
-  
+
 
 <script src="<?php echo base_url('assets/node_modules/jquery/dist/jquery.js'); ?>  "></script>
 <script src="<?php echo base_url('assets/node_modules/what-input/dist/what-input.js'); ?>  "></script>

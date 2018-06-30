@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/gitbiblioplus/public_html/';
+$config['base_url'] = 'http://localhost/biblioplus/';
 
 /*
 |--------------------------------------------------------------------------
@@ -159,7 +159,7 @@ $config['composer_autoload'] = TRUE;
 |
 */
 $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
-// ‘a-z 0-9~%.:\_\=+%\&'
+
 /*
 |--------------------------------------------------------------------------
 | Enable Query Strings

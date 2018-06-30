@@ -49,6 +49,60 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
+
+/*
+*----------------------------------------------------
+* User routes
+*----------------------------------------------------
+*/
+$route['login'] = 'login/index';
+$route['login/sign_in'] = 'login/sign_in';
+$route['login/sign_up'] = 'login/sign_up';
+
+$route['account'] = 'account/index';
+$route['account/pass_fotgot'] = 'account/pass_fotgot';
+$route['account/confirmation'] = 'account/confirmation';
+$route['account/password_reset'] = 'account/password_reset';
+$route['account/update_pass'] = 'account/update_pass';
+
+
+/*
+*----------------------------------------------------
+* Forum routes
+*----------------------------------------------------
+*/
+$route['forum'] = 'forum/index';
+$route['forum/nouveau_sujet'] = 'forum/nouveau_sujet';
+$route['forum/view'] = 'forum/view';
+
+/*
+*----------------------------------------------------
+* Evenement routes
+*----------------------------------------------------
+*/
+$route['event/index'] = 'event/index';
+
+/*
+*----------------------------------------------------
+* Evenement routes
+*----------------------------------------------------
+*/
+$route['auteur'] = 'auteur/index';
+
+/*
+*----------------------------------------------------
+* Collection routes
+*----------------------------------------------------
+*/
+$route['collection'] = 'collection/index';
+
+
+/*
+*----------------------------------------------------
+* Default routes
+*----------------------------------------------------
+*/
 $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

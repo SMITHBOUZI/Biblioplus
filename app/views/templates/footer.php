@@ -27,7 +27,7 @@
 <a><i class="fab fa-facebook-f fa-2x" style="background-color:#2e7f4d; border-radius:50%;  color:white ; padding:5px; width:30px;height:30px"></i></a>
 <a><i class="fab fa-google fa-2x" style="background-color:#2e7f4d; border-radius:50%;  color:white; padding:5px; width:30px;height:30px"></i></a>
 <a><i class="fab fa-twitter fa-2x" style="background-color:#2e7f4d; border-radius:50%;  color:white ; padding:5px; width:30px;height:30px"></i></a>
-<a><i class="fab fa-linkedin fa-2x" style="background-color:#2e7f4d; border-radius:50%;  color:white; padding:5px; width:30px;height:30px"></i></a>
+<a><i class="fab fa-instagram fa-2x" style="background-color:#2e7f4d; border-radius:50%;  color:white; padding:5px; width:30px;height:30px"></i></a>
 
 </div>
 

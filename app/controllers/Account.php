@@ -10,39 +10,71 @@ class Account extends CI_Controller {
 		$this->load->library(array('session'));
 		$this->load->helper(array('url'));
 		$this->load->model('account_model');
+		$this->load->model('Collection_model');
+		$this->load->model('Notification_model');
+		$this->load->model('Recherche_model');
+	}
+
+	function notify () {
+ 		$data = new stdClass();
+
+ 		if (isset($_GET['notify_id'])) {
+ 			$notify_id = $this->uri->segment(3);
+			$this->Notification_model->vue_notify($notify_id);
+ 		}			
+
+		$notifications = $this->Notification_model->count_notify();
+		
+		foreach ($notifications as $notification ) {
+			$notification->event_notify = $this->Notification_model->notification();
+		}
+
+		$data->notifications = $notifications;
+
+		$this->load->view('templates/header', $data);
 	}
  
 	public function index() {
-		if ($this->session->get_userdata('logged_in')) {
-			$session_data 	 = $this->session->userdata('logged_in');
-			$data['id']		 = $session_data['id'];
-			$data['pseudo']	 = $session_data['pseudo'];
-			$data['photo'] 	 = $session_data['photo'];
+		if ( isset( $_GET['search'] )) {
+			$this->search_x();
+		} else {
+			// $data = new stdClass();
+			$this->load->model('evenement_model');
+			$this->load->model('Auteur_model');
+			// if ($this->session->get_userdata('logged_in')) {
+			// 	$session_data 	 = $this->session->userdata('logged_in');
+			// 	$data['id']		 = $session_data['id'];
+			// 	$data['pseudo']	 = $session_data['pseudo'];
+			// 	$data['photo'] 	 = $session_data['photo'];
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('index');
-		}else{
-			redirect('user_connect', 'refresh');
+				$data1 = new stdClass();
+				$auteurs = $this->Auteur_model->info_auteur_acc();
+				foreach ($auteurs as $auteur ) { 
+					$auteur->nbr_ouvrage = $this->Auteur_model->count_ouvrage_auteur($auteur->idmembre); 
+					$auteur->nbr_event = $this->Auteur_model->count_event_auteur($auteur->idmembre); 
+					$auteur->nbr_post = $this->Auteur_model->count_post_auteur($auteur->idmembre);
+				}
+				$data1->auteurs  = $auteurs;
+				$this->notify();
+				// $this->load->view('templates/header');
+				$this->load->view('index', $data1);
+			// }else{
+			// 	redirect('user_connect', 'refresh');
+			// }
 		}
 	}
-
-	function search_bar(){
-		$search = $this->input->post('search_bar');
-		$fetch = $this->account->search_bar($search);
-		if ($fetch) {
-			foreach ($fetch as $key) {
-				$data = array(
-					'pseudo'			=> $key->pseudo,
-					'email'				=> $key->email,
-					'sexe'				=> $key->sexe,
-					'date_naissance'	=> $key->date_naissance,
-					'status'			=> $key->status,
-					'photo'				=> $key->photo,
-					'nom_prenom'		=> $key->nom_prenom
-				);
-			}
-			$this->load->view('templates/header');
-			$this->load->view('search', $data);
+	
+	function search_x(){
+		$data = new stdClass();	
+		if ($_GET['search']) {
+			$search = $_GET['search'];
+			$fetch = $this->Recherche_model->search($search);
+			
+			$data->fetch = $fetch;
+			$this->notify();
+			$this->load->view('search', $data); 
+		} else {
+			redirect('login/index');
 		}
 	}
 
@@ -57,7 +89,6 @@ class Account extends CI_Controller {
 		$user_id = $this->uri->segment(3);
 		$token = $this->uri->segment(4);
 
-		// load form helper 
 		$this->load->helper('form');
 		
 		$result  = $this->account_model->confirmation($user_id, $token);
@@ -65,19 +96,22 @@ class Account extends CI_Controller {
 			foreach ($result as $user) {
 				if ($user && $user->confirm_token === $token) {
 					$_SESSION['flash']['info'] = 'Votre compté a étè confirmé avec succés' ;
-					$this->load->view('templates/header');
-					$this->load->view('sign_in');
+					// $this->load->view('templates/header');
+					$this->notify();
+					$this->load->view('compte/connexion');
 				}
 				else{
-					$this->load->view('templates/header');
+					// $this->load->view('templates/header');
+					$this->notify();
 					$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
-					$this->load->view('sign_in');
+					$this->load->view('compte/connexion');
 				}				
 			}			
 		} else {
-			$this->load->view('templates/header');
+			// $this->load->view('templates/header');
+			$this->notify();
 			$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
-		    $this->load->view('sign_in');
+		    $this->load->view('compte/connexion');
 		}
     }
 
@@ -91,21 +125,24 @@ class Account extends CI_Controller {
 			 
 			$req = $this->account_model->password_fotgot($reset_token, $email); 
 			 
-			if ($req) {				
+			if ($req) {		
 				$_SESSION['flash']['success'] = 'Un mail de réinitialisation vous a été envoyé ';		
 		
-				$this->load->view('templates/header');
-				$this->load->view('mail_recup');
+				// $this->load->view('templates/header');
+				$this->notify();
+				$this->load->view('compte/mail_recup');
 
 			} else{
 				$_SESSION['flash']['danger'] = 'Aucun compter ne correspond a cet email ';
 				// $this->Exceptions->show_error();
-				$this->load->view('templates/header');
-				$this->load->view('mail_recup');
+				// $this->load->view('templates/header');
+				$this->notify();
+				$this->load->view('compte/mail_recup');
 			}
 		} else {
-			$this->load->view('templates/header');
-			$this->load->view('mail_recup');
+			// $this->load->view('templates/header');
+			$this->notify();
+			$this->load->view('compte/mail_recup');
 		}
     }
 
@@ -119,18 +156,21 @@ class Account extends CI_Controller {
 		if ($result) {
 			foreach ($result as $user) {
 				if ($user && $user->reset_token == $reset_token) {
-					$this->load->view('templates/header');
-					$this->load->view('pass_reset');
+					// $this->load->view('templates/header');
+					$this->notify();
+					$this->load->view('compte/pass_reset');
 				} else{
-					$this->load->view('templates/header');
+					// $this->load->view('templates/header');
+					$this->notify();
 					$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide ' ;
-					$this->load->view('pass_reset');
+					$this->load->view('compte/pass_reset');
 				}				
 			} 		
 		} else {
-			$this->load->view('templates/header');
+			// $this->load->view('templates/header');
+			$this->notify();
 			$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide ' ;
-			$this->load->view('sign_in');
+			$this->load->view('compte/connexion');
 		}
     }
 
@@ -141,19 +181,22 @@ class Account extends CI_Controller {
 		$this->form_validation->set_rules('mot_de_passe_c', 'mot de passe de confirmation', 'trim|required|min_length[8]|htmlspecialchars|matches[mot_de_passe]');
 
 		if ($this->form_validation->run() === FALSE) {
-			$this->load->view('templates/header');
-			$this->load->view('pass_reset');
+			// $this->load->view('templates/header');
+			$this->notify();
+			$this->load->view('compte/pass_reset');
 		}else {
 			$mot_de_passe = sha1($this->input->post('mot_de_passe'));
 			$query = $this->account_model->update_pass($mot_de_passe);
 			if ($query) {
 				$_SESSION['flash']['success'] = 'Votre mot de passe a été modifier avec succés ';
-				$this->load->view('templates/header');
-				$this->load->view('sign_in');
+				// $this->load->view('templates/header');
+				$this->notify();
+				$this->load->view('compte/connexion');
 			}else {
 				$_SESSION['flash']['danger'] = 'Une erreur ce produit lors de la mise a jour de votre mot de passe ';
-				$this->load->view('templates/header');
-				$this->load->view('mail_recup');
+				// $this->load->view('templates/header');
+				$this->notify();
+				$this->load->view('compte/mail_recup');
 			}			
 		}
     }

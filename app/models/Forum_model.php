@@ -3,8 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Forum_model extends CI_Model {
 
-	public function __construct() {
-		
+	public function __construct() {		
 		parent::__construct();
 		$this->load->database();
 		$this->load->helper(array('url'));
@@ -95,8 +94,7 @@ class Forum_model extends CI_Model {
 		$this->db->join('f_sujets', 'f_messages.id_sujet = f_sujets.id');
 		$this->db->where('f_sujets.id', $f_suj_id);
 		$this->db->group_by('f_messages.id');
-		return count($this->db->get()->result());
-		
+		return count($this->db->get()->result());		
 	}
 
 	public function fetch_forum_posts($f_suj_id) { 
@@ -128,6 +126,20 @@ class Forum_model extends CI_Model {
 		} else {
 			echo "Sujet not exist ..";
 		}
-
 	}
+
+	function forum_membre() {
+      
+        if (isset($_GET['id'])) {
+            $id_membre = $_GET['id'];
+            $sql = "SELECT * FROM f_sujets WHERE idmembre = ?";
+            $req = $this->db->query($sql, array($id_membre));
+
+            if ( $req->num_rows() > 0 ) {
+                return $req->result();
+            } else {
+                return false;
+            }
+        }
+    }
 }

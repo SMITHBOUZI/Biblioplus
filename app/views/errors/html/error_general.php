@@ -57,8 +57,8 @@ p {
 </head>
 <body>
 	<div id="container">
-		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
+		<h1><?php echo "Sorry! "; // echo $heading; ?></h1>
+		<?php echo "Vous pouvez pas reenvoyer le formulaire"; // echo $message; ?>
 	</div>
-</body>
+</body> 
 </html>
