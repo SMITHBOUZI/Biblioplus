@@ -41,13 +41,13 @@
 </div>
 </div>
 <div class="row" style="justify-content:center;">
-	<?php if ($auteurs) {?>
+	<?php if ($auteurs) { ?>
 		
-		<?php foreach ($auteurs as $rows ): ?>			
+		<?php foreach ($auteurs as $rows ): ?>		
 			  <div class="column large-2 medium-4 small-5 auteurCadreInfo">
 			    <div class="medium-12" style="padding:10px">
 			    <a href="<?php echo base_url('auteur/info?id=').$rows->idmembre?>">	
-			  	 <img src="<?php echo base_url('assets/img/auteur_homme.jpg') ?>" class="circle_round" />
+			  	 <img src="<?php echo base_url('assets/avatar/'.$rows->photo) ?>" class="circle_round" />
 			  	</a>
 			    </div>
 				<div class="medium-12" style="background-color:#2e7f4d; padding: 8px; "> 
@@ -56,7 +56,9 @@
 			  </div>	
 		<?php endforeach ?>
 		
-	<?php } ?>
+	<?php } else {
+		echo 'Aucun resultat trouver';
+	} ?>
 </div>
 
 <?php
@@ -80,12 +82,3 @@
    $data["links"] = $this->pagination->create_links();
 
 ?>
-<pre><?php  var_dump($data); ?></pre>
-<p><?php // echo $data['links']; ?></p>
-
-<?php foreach ($data as $key => $t) { 
- var_dump($key);
- // var_dump($t);
- 	// echo $key['links']; 
- 	// echo $key[0]['links']; 
-} ?>

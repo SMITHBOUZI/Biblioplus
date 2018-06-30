@@ -108,9 +108,10 @@ class Auteur_model extends CI_Model
 		}
 	}
 
-	function modif($idmembre, $pseudo, $email, $mot_de_passe, $telephone) {
-		$sql = "UPDATE membre SET pseudo = ?, email = ?, mot_de_passe = ?, telephone = ? WHERE idmembre = ?";
-		$req = $this->db->query($sql, array($pseudo, $pseudo, $email, $mot_de_passe, $telephone, $idmembre));
+	function modif($idmembre, $pseudo, $nom_prenom, $email,  $telephone, $desc, $foto) {
+		
+		$sql = "UPDATE membre SET pseudo =?, nom_prenom =?, email =?, telephone =?, description =?, photo =? WHERE idmembre =?";
+		$req = $this->db->query($sql, array($pseudo, $nom_prenom, $email,  $telephone, $desc, $foto, $idmembre));
 	}
 
 	function record_count() { 

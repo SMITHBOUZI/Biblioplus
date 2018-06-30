@@ -10,6 +10,7 @@ class Event extends CI_Controller {
 	  $this->load->model('evenement_model');
 	  $this->load->model('Notification_model');
 	  $this->load->model('Recherche_model');
+	  $this->load->model('login_model');
 	  $this->load->library('pagination');
 	}
 
@@ -63,9 +64,9 @@ class Event extends CI_Controller {
 			
 		    		$config['upload_path']      = 'assets/img/';
 					$config['allowed_types']    = 'gif|jpg|png|jpeg|GIF|JPG|PNG|JPEG';
-					$config['max_size']         = 2048;
-					$config['max_width']        = 1024;
-					$config['max_height']       = 1024;
+					$config['max_size']         = '10240';
+					// $config['max_width']        = 1024;
+					// $config['max_height']       = 1024;
 					$config['file_ext_tolower'] = true;
 					$config['encrypt_name']     = true;
 
@@ -88,7 +89,7 @@ class Event extends CI_Controller {
 	    			// $this->load->view('templates/header');	  
 					redirect('event/index'); 
 	    		} else { 
-	    			$_SESSION['flash']['danger'] = 'Veuille remplir tous les champs';
+	    			$_SESSION['flash']['alert'] = 'Veuille remplir tous les champs';
 	    			$this->notify();
 					// $this->load->view('templates/header');
 					$this->load->view('evenement/index');
@@ -159,13 +160,10 @@ class Event extends CI_Controller {
 
 	 function modifier () {
 	 	if ($this->input->post('addEvent')) {
-	 		$col = $this->evenement_model->modifier_evenement(); 
+	 		$col = $this->evenement_model->modifier_evenement();
+	 		$_SESSION['flash']['success'] = 'Modification reussie.';
 	 	    redirect('event/index');
 	 	}
-	}
-	function list_e () {
-		$this->notify();
-	 	$this->load->view('evenement/list');
 	}
 
 	function evenement_membre() {
@@ -174,7 +172,14 @@ class Event extends CI_Controller {
 			$this->notify();
 			foreach ($req as $key ) {
 				$data = array ( 
-					'titre' => $key->titre 
+					'titre' => $key->titre ,
+					'description' => $key->description,
+					'photo'=> $key->photo,
+					'lieuEvenement'=> $key->lieuEvenement,
+					'date_debut'=> $key->date_debut,
+					'date_fin'=> $key->date_fin,
+					'idevenement'=> $key->idevenement
+					
 				);
 				$this->load->view('evenement/auteur_evenement', $data);
 			}

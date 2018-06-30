@@ -3,12 +3,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Forum_model extends CI_Model {
 
-	public function __construct() {		
+	/**
+	* function __construct
+	*
+	* @access public
+	* @return void 
+	* 
+	*/
+	function __construct() {		
 		parent::__construct();
 		$this->load->database();
 		$this->load->helper(array('url'));
-	} 
+	}
 
+	/**
+	* function nouveau_sujet
+	*
+	* @access public
+	* @param int id_user
+	* @param String sujet
+	* @param Sting categorie 
+	* 
+	*/
 	function nouveau_sujet($user_id, $ts, $tc){
 		$cat = htmlspecialchars($this->input->post('categorie'));
 
@@ -19,8 +35,17 @@ class Forum_model extends CI_Model {
 				if ($key->contenu_c !== $cat ) {
 					// return false;
 				} else {
-					$requte = "INSERT INTO f_sujets ( `idmembre`, `id_categorie`, `sujet`, `contenu_s`, `date_hres_creation`) VALUES ( ?, ?, ?, ?, CURRENT_TIMESTAMP() )";
-					$this->db->query($requte, array($user_id, $key->id, $ts, $tc ));
+					// $requte = 'INSERT INTO f_sujets ( idmembre, id_categorie, sujet, contenu_s, date_hres_creation) VALUES ( ?, ?, ?, ?, CURRENT_TIMESTAMP() )';
+					// $this->db->query($requte, array($user_id, $key->id, $ts, $tc ));
+
+					$data = array (
+						'idmembre'				=> $user_id,
+						'id_categorie'			=> $key->id,
+						'sujet'					=> $ts,
+						'contenu_s'				=> $tc,
+						'date_hres_creation'	=> date('Y-m-j H:i:s')
+					);
+					$this->db->insert('f_sujets', $data);
 
 					$sql = "SELECT * FROM f_sujets WHERE id = ? AND idmembre = ?";
 
@@ -33,25 +58,38 @@ class Forum_model extends CI_Model {
 		}
 	}
 
-	// used
+	/**
+	* function comment
+	* @access public
+	* @param int id_sujet
+	* @param String comment 
+	* 
+	*/
 	function comment($id_sujet, $cm) {
 
 		$sql = "SELECT * FROM f_sujets WHERE id = ".$id_sujet;
 
 		$user_id 	= $this->session->userdata('idmembre');
 		$pseudo 	= $this->session->userdata('pseudo');
+		$foto 		= $this->session->userdata('photo');
 
 		$req = $this->db->query($sql, array($user_id));
 		if($req->num_rows()){
 			foreach ($req->result() as $key ) {
 				$sujet_id = $key->id ;
 
-				$query = "INSERT INTO f_messages ( id_sujet, date_hres_edition, contenu_m, idmembre, pseudo_poster) VALUES ( ?, CURRENT_TIMESTAMP(), ?, ?, ?) ";
-				$req1 = $this->db->query($query, array($sujet_id, $cm, $user_id, $pseudo ));
+				$query = "INSERT INTO f_messages ( id_sujet, date_hres_edition, contenu_m, idmembre, pseudo_poster, photo) VALUES ( ?, CURRENT_TIMESTAMP(), ?, ?, ?, ?) ";
+				$req1 = $this->db->query($query, array($sujet_id, $cm, $user_id, $pseudo, $foto ));
 			}
 		}
 	}
 
+	/**
+	* function get_sujet_cat
+	* @access public
+	* @return object 
+	* 
+	*/
 	function get_sujet_cat(){
 		$sql = "SELECT * FROM f_categorie";
 		$req 	= $this->db->query($sql );
@@ -63,15 +101,25 @@ class Forum_model extends CI_Model {
 			return $req->result() ;
 		}
 	}
-
 	
-	public function get_forums() {
+	/**
+	* function get_forums
+	*
+	* @return array object
+	* 
+	*/
+	function get_forums() {
 		$this->db->order_by('id', 'DESC');
 		$this->db->limit(14);
 		return $this->db->get('f_sujets')->result();		
 	}
 
-	public function get_topic_mem($membre_id) {
+	/**
+	* function get_topic_mem
+	* @param int membre_id
+	* 
+	*/
+	function get_topic_mem($membre_id) {
 		
 		$this->db->select("membre.pseudo, membre.photo");
 		$this->db->from('f_sujets'); 
@@ -80,15 +128,25 @@ class Forum_model extends CI_Model {
 		return $this->db->get()->row();		
 	}
 
-	public function get_forum_topics($f_msg_id) {
-		
+	/**
+	* function get_forum_topics
+	* @param int f_msg_id
+	* @return array object
+	* 
+	*/
+	function get_forum_topics($f_msg_id) {		
 		$this->db->from("f_messages");
 		$this->db->where('id', $f_msg_id);
 		return $this->db->get()->result();		
 	}
 
-	public function count_forum_posts($f_suj_id) {
-		
+	/**
+	* function count_forum_posts
+	* @param int f_suj_id
+	* @return array object
+	* 
+	*/
+	function count_forum_posts($f_suj_id) {		
 		$this->db->select("f_messages.id_sujet,f_messages.contenu_m");
 		$this->db->from('f_messages');
 		$this->db->join('f_sujets', 'f_messages.id_sujet = f_sujets.id');
@@ -97,28 +155,52 @@ class Forum_model extends CI_Model {
 		return count($this->db->get()->result());		
 	}
 
-	public function fetch_forum_posts($f_suj_id) { 
+	/**
+	* function fetch_forum_posts
+	* @param int f_suj_id
+	* @return array object
+	* 
+	*/
+	function fetch_forum_posts($f_suj_id) { 
 		$this->db->from('f_sujets');
 		$this->db->join('f_categorie', 'f_sujets.id_categorie = f_categorie.id');
 		$this->db->where('f_sujets.id', $f_suj_id);
 		return $this->db->get()->result();
 	}
 
-	public function get_topic_cat($cat_id) {
+	/**
+	* function get_topic_cat
+	* @param int cat_id
+	* 
+	*/
+	function get_topic_cat($cat_id) {
 		$this->db->select("contenu_c");
 		$this->db->from('f_categorie');
 		$this->db->where('id', $cat_id);
 		return $this->db->get()->row();
 	}
 
-	public function get_topic_post($f_suj_id) {
-		$this->db->select("contenu_m, pseudo_poster,date_hres_edition, id_sujet");
+	/**
+	* function get_topic_post
+	* @param int f_suj_id
+	* @return array object
+	* 
+	*/
+	function get_topic_post($f_suj_id) {
+		$this->db->select("contenu_m, pseudo_poster,date_hres_edition, id_sujet, photo");
 		$this->db->from('f_messages');
 		$this->db->where('id_sujet', $f_suj_id);
 		return $this->db->get()->result();
 	}
 
-	public function sujet_valid ($sujet_id, $sujet){
+	/**
+	* function sujet_valid
+	* @param int sujet_id
+	* @param String sujet
+	* @return array object
+	* 
+	*/
+	function sujet_valid ($sujet_id, $sujet){
 		$sql = "SELECT * FROM f_sujets WHERE id = ? AND sujet = ?" ;
 		$r = $this->db->query($sql, array($sujet_id, $sujet));
 		if ($r->num_rows() === 1) {
@@ -128,6 +210,11 @@ class Forum_model extends CI_Model {
 		}
 	}
 
+	/**
+	* function forum_membre
+	* @return array object
+	* 
+	*/
 	function forum_membre() {
       
         if (isset($_GET['id'])) {

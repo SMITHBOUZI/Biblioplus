@@ -23,7 +23,7 @@
           <?php if($req): ?>
             <?php foreach ($req as $key ): ?>
             
-      <div class=" columns large-3  medium-4 small-9"  data-open="<?php echo $key->idevenement.'event'; ?>"  style=" padding:0px; margin:15px;background-color:#dcece2;">
+      <div class=" columns large-3  medium-4 small-9"  data-open="<?php echo $key->idevenement.'event'; ?>"  style=" padding:0px; margin:10px;background-color:#dcece2;">
         
                     
          <?php if(empty($key->photo )){ ?>

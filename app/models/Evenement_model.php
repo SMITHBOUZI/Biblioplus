@@ -1,6 +1,12 @@
 <?php
-class Evenement_model extends CI_Model { 
- 	
+class Evenement_model extends CI_Model {
+
+	/**
+	 * function __construct.
+	 * 
+	 * @access public
+	 * @return void
+	 */ 	
  	function __construct() {
 		$this->load->database();		
  		parent::__construct();
@@ -9,6 +15,24 @@ class Evenement_model extends CI_Model {
  		$this->load->library('form_validation');
  	}
 
+ 	/**
+	 * function add evenement 
+	 * 
+	 * @access public
+	 * @param string nom
+	 * @param int 	 user_id
+	 * @param string lieuEvent
+	 * @param Date   dateEvent
+	 * @param string descEvent
+	 * @param Date   datedebutEvent
+	 * @param Date   datefinEvent
+	 * @param string Activites
+	 * @param double prix
+	 * @param string pointDevente
+	 * @param string foto
+	 * @return bool
+	 *
+	 */
  	function add($nom,$user_id,$lieuEvent,$dateEvent,$descEvent, $datedebutEvent,$datefinEvent,$Activites,$prix,$pointDevente,$foto) {
     	$data = array(
     		'titre'				=> $nom,
@@ -25,12 +49,21 @@ class Evenement_model extends CI_Model {
 			'date_creation'		=>  date('Y-m-j H:i:s'),
 			'notify'			=> '1'			
     	);
-    	$this->db->insert('evenement', $data);
+    	return $this->db->insert('evenement', $data);
 	}
 
+	/**
+	 * function lister.
+	 * 
+	 * @access public
+	 * @return array object
+	 */ 
 	function lister() {
 		// $r = setlocale(LC_TIME, "fr_FR", "French");
-		$sql = 'SELECT  DATE_FORMAT(evenement.date_debut, "%d %M %Y") as event_mois, DATE_FORMAT(evenement.date_debut, "%a %d %M %Y %r") as event_deb, DATE_FORMAT(evenement.date_fin, "%a %d %M %Y %r") as event_fin, evenement.idevenement, evenement.photo, evenement.titre, evenement.lieuEvenement, evenement.description, evenement.date_creation, evenement.activite, evenement.date_debut, evenement.date_fin, evenement.prix, evenement.point_de_vente, membre.pseudo, membre.email, evenement.idmembre FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement';
+		$r = "SET lc_time_names = 'fr_FR'";
+		$sql = 'SELECT  DATE_FORMAT(evenement.date_debut, "%d %M %Y") as event_mois, DATE_FORMAT(evenement.date_debut, "%a %d %M %Y %r") as event_deb, DATE_FORMAT(evenement.date_fin, "%a %d %M %Y %r") as event_fin, evenement.idevenement, evenement.photo, evenement.titre, evenement.lieuEvenement, evenement.description, evenement.date_creation, evenement.activite, evenement.date_debut, evenement.date_fin, evenement.prix, evenement.point_de_vente, membre.photo AS m_foto, membre.pseudo, membre.email, evenement.idmembre FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement';
+
+		$req1 = $this->db->query($r);
 		$req = $this->db->query($sql);
 
 		if ($req->num_rows() > 0) {
@@ -41,8 +74,16 @@ class Evenement_model extends CI_Model {
 		}		
 	}
 
+	/**
+	 * function lister_event_index.
+	 * 
+	 * @access public
+	 * @return array object
+	 */ 
 	function lister_event_index() {
-		$sql = 'SELECT  DATE_FORMAT(evenement.date_debut, "%d %M %Y") as event_mois, DATE_FORMAT(evenement.date_debut, "%a %d %M %Y %r") as event_deb, DATE_FORMAT(evenement.date_fin, "%a %d %M %Y %r") as event_fin, evenement.idevenement, evenement.photo, evenement.titre, evenement.lieuEvenement, evenement.description, evenement.date_creation, evenement.activite, evenement.date_debut, evenement.date_fin, evenement.prix, evenement.point_de_vente, membre.pseudo, membre.email, evenement.idmembre FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement LIMIT 4';
+		$r = "SET lc_time_names = 'fr_FR'";
+		$sql = 'SELECT  DATE_FORMAT(evenement.date_debut, "%d %M %Y") as event_mois, DATE_FORMAT(evenement.date_debut, "%a %d %M %Y %r") as event_deb, DATE_FORMAT(evenement.date_fin, "%a %d %M %Y %r") as event_fin, evenement.idevenement, evenement.photo, evenement.titre, evenement.lieuEvenement, evenement.description, evenement.date_creation, evenement.activite, evenement.date_debut, evenement.date_fin, evenement.prix, evenement.point_de_vente,membre.photo AS m_foto, membre.pseudo, membre.email, evenement.idmembre FROM evenement INNER JOIN membre on evenement.idmembre = membre.idmembre ORDER BY idevenement LIMIT 3';
+		$this->db->query($r);
 		$req = $this->db->query($sql);
 
 		if ($req->num_rows() > 0) {
@@ -53,11 +94,25 @@ class Evenement_model extends CI_Model {
 		}		
 	}
 
-	public function record_count() {
+	/**
+	 * function record_count.
+	 * 
+	 * @access public
+	 * @return one object
+	 */ 
+	function record_count() {
 		return $this->db->count_all("evenement");
 	}
 
-	public function fetch_data($limit, $id) {
+	/**
+	 * function fetch_data.
+	 * 
+	 * @access public
+	 * @param int limit
+	 * @param int id
+	 * @return array object
+	 */ 
+	function fetch_data($limit, $id) {
 		$this->db->limit($limit);
 		$this->db->where('idevenement', $id);
 		$query = $this->db->get("evenement");
@@ -70,20 +125,42 @@ class Evenement_model extends CI_Model {
 		return false;
 	}
 
+	/**
+	 * function delete.
+	 * 
+	 * @access public
+	 * @param int limit
+	 * @return bool
+	 */
 	function delete ($idevenement) {
 		$sql = 'DELETE FROM evenement WHERE idevenement = ?';
-		$this->db->query($sql, array($idevenement));
+		return $this->db->query($sql, array($idevenement));
 	}
 
+	/**
+	 * function modifier_evenement.
+	 * 
+	 * @access public
+	 * @return bool
+	 */
 	function modifier_evenement(){
   		// $user_id = $this->session->userdata('idmembre');
-  		$idevenement = $this->input->post('idEvent'); 
-  		$titreEvent = $this->input->post('titreEvent');
+  		$idevenement = trim($this->input->post('idEvent')); 
+  		$titreEvent  = trim($this->input->post('titreEvent'));
 
-  		$req = "UPDATE evenement SET titre = ? WHERE idevenement = ?";
-  		$this->db->query($req, array($titreEvent, $idevenement));    
+  		$datedebutEvent  = trim($this->input->post('datedebutEvent'));
+  		$datefinEvent    = trim($this->input->post('datefinEvent'));
+
+  		$req = "UPDATE evenement SET titre = ? WHERE idevenement = ?, date_debut = ?, date_fin = ? ";
+  		return $this->db->query($req, array($titreEvent, $idevenement, $datedebutEvent, $datefinEvent));    
     }
 
+    /**
+	 * function evenement_membre.
+	 * 
+	 * @access public
+	 * @return array object
+	 */
     function evenement_membre() {
       
         if (isset($_GET['id'])) {

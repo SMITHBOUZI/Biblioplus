@@ -9,6 +9,7 @@ class Collection extends CI_Controller {
  		$this->load->model('Collection_model');
  		$this->load->model('Notification_model');
  		$this->load->model('Recherche_model');
+ 		$this->load->model('login_model');
 
  		$this->load->helper('form');
 		$this->load->library('form_validation');
@@ -39,6 +40,7 @@ class Collection extends CI_Controller {
  		} else {
 			$this->notify();
 			$this->load->view('collection/collection');
+			$this->load->view('templates/footer');
 		}
 	}
 
@@ -57,61 +59,65 @@ class Collection extends CI_Controller {
 	}
 
 	function inserer_livre(){
-		$this->load->library('upload');
-		if ($this->input->post('ajout_ouvrage')) {
-			if (!empty($this->input->post('titre')) AND !empty($this->input->post('isbn'))
-				AND !empty($this->input->post('edition')) AND !empty($this->input->post('pages'))
-				
-			 ) {
-			 	$config['upload_path']      = 'assets/img/';
-				$config['allowed_types']    = 'jpg|png|jpeg|JPG|PNG|JPEG';
-				$config['max_size']         = '0';
-				$config['max_width']        = '1024';
-				$config['max_height']       = '1024';
-				$config['file_ext_tolower'] = true;
-				$config['encrypt_name']     = true;
+			$this->load->library('upload');
+			if ($this->input->post('ajout_ouvrage')) {
+				if (!empty($this->input->post('titre')) AND !empty($this->input->post('isbn'))
+					AND !empty($this->input->post('edition')) AND !empty($this->input->post('pages')) ) {
 
-				$this->load->library('upload', $config);
-				$this->upload->initialize($config);
+				 	$config['upload_path']      = 'assets/web/couverture';
+					$config['allowed_types']    = 'jpg|png|jpeg|JPG|PNG|JPEG';
+					$config['max_size']         = '10240';
+					// $config['max_width']        = '1024';
+					// $config['max_height']       = '1024';
+					$config['file_ext_tolower'] = true;
+					$config['encrypt_name']     = true;
 
-				if ( ! $this->upload->do_upload('livreChemin') ) {
-					$error = array('error' => $this->upload->display_errors());
+					$this->load->library('upload', $config);
+					$this->upload->initialize($config);
+
+					if ( ! $this->upload->do_upload('livreChemin') ) {
+						$error = array('error' => $this->upload->display_errors());
+						$_SESSION['flash']['success'] = 'La taille maximal pour upload est de 18Mo ';
+						$this->load->view('collection/collection');
+					} else {
+						$data =  $this->upload->data();					
+					}
+
+					$data =  $this->upload->data();
+						$foto 	  = $data['file_name'];
+
+						$t = $this->form_uploaded_doc();
+							     
+					$titre 				   = trim($this->input->post('titre'));
+					$isbn  				   = trim($this->input->post('isbn'));
+					$edition 			   = trim($this->input->post('edition'));
+					$langue 			   = trim($this->input->post('langue'));
+					$categorie 			   = trim($this->input->post('categorie'));
+					$pages 				   = trim($this->input->post('pages'));
+					$pointVente 		   = trim($this->input->post('pointVente'));
+					$desc 		   		   = trim($this->input->post('desc'));
+					 
+					$this->Collection_model->ajouter_ouvrage($titre, $isbn, $edition, $langue, $categorie, $pages, $pointVente, $desc, $foto, $t);
+
+					$this->notify();
+					$_SESSION['flash']['success'] = 'Vous avez ajoute un ouvrage';
+					$this->load->view('collection/collection');
+					$this->load->view('templates/footer');	
 				} else {
-					$data =  $this->upload->data();					
+					$_SESSION['flash']['alert'] = 'Veuiller remplir tous les champs';
+					$this->notify();
+					$this->load->view('collection/collection');
 				}
-
-				$data =  $this->upload->data();
-					$foto 	  = $data['file_name'];
-
-					$t = $this->form_uploaded_doc();
-						     
-				$titre 				   = trim($this->input->post('titre'));
-				$isbn  				   = trim($this->input->post('isbn'));
-				$edition 			   = trim($this->input->post('edition'));
-				$langue 			   = trim($this->input->post('langue'));
-				$categorie 			   = trim($this->input->post('categorie'));
-				$pages 				   = trim($this->input->post('pages'));
-				$pointVente 		   = trim($this->input->post('pointVente'));
-				$desc 		   		   = trim($this->input->post('desc'));
-				 
-				$this->Collection_model->ajouter_ouvrage($titre, $isbn, $edition, $langue, $categorie, $pages, $pointVente, $desc, $foto, $t);
-
-				$this->notify();
-				$_SESSION['flash']['success'] = 'Vous avez ajoute un ouvrage';
-				$this->load->view('collection/collection');
-				$this->load->view('templates/footer');	
 			} else {
-				$_SESSION['flash']['danger'] = 'Veuiller remplir tous les champs';
 				$this->notify();
 				$this->load->view('collection/collection');
 			}
-		}
 	}
 
 	// uploaded doc only pdf
     function form_uploaded_doc() {
-		$config['upload_path']      = 'assets/web/';
-		$config['max_size']         = '0';
+		$config['upload_path']      = 'assets/web/livres';
+		$config['max_size']         = '20400';
 		$config['allowed_types']    = 'pdf|PDF';
 		$config['encrypt_name']     = true;
 
@@ -120,6 +126,8 @@ class Collection extends CI_Controller {
 
 		if ( ! $this->upload->do_upload('couvertureOuvragePath') ) {
 			$error = array('error' => $this->upload->display_errors());
+			$_SESSION['flash']['success'] = 'La taille maximal pour upload est de 18Mo ';
+			$this->load->view('collection/collection');
 		} else {
 			$data =  $this->upload->data();					
 		}

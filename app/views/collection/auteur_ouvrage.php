@@ -1,16 +1,15 @@
-<div class="columns small-12 large-12">
-	<h4> Ouvrage publie par  </h4>
-</div>
+
 <!-- -->
 <div class="row" style="justify-content:center;text-align: center; ">
+<h4 > Ouvrage publie par  <?php echo $req[0]->pseudo; ?></h4>
 <div class="columns small-12">
-	<span class="collection_header">R&eacutecit</span>
+  <span class="collection_header">R&eacutecit</span>
 </div>
 <div class="columns small-12">
   <div class="owl-carousel owl-theme" style="border-top:1.6px solid #309958;padding-top:10px;">
 
     <?php  foreach($req as $rows): ?> 
-    	<?php if(($rows->categorie) === 'recit'): ?>
+      <?php if(($rows->categorie) === 'recit'): ?>
       <div class="items" >
         <a href="#" data-open="<?php echo 'modalInfoOuvrage'.$rows->idouvrage; ?>">
         <img src="<?php echo base_url('assets/img/'.$rows->images); ?>" class="thumbnail" alt="" />
@@ -95,7 +94,7 @@ Email : <?php echo $rows->email; ?>
 </button>
 </div>
 <!--  fin modalInfoOuvrage Romans-->
-	<?php endif ?>
+  <?php endif ?>
     <?php  endforeach ?>
   </div>
 </div>
@@ -106,13 +105,13 @@ Email : <?php echo $rows->email; ?>
 <!-- -->
 <div class="row" style="justify-content:center;text-align: center; ">
 <div class="columns small-12">
-	<span class="collection_header">Th&eacuteatres</span>
+  <span class="collection_header">Th&eacuteatres</span>
 </div>
 <div class="columns small-12">
   <div class="owl-carousel owl-theme" style="border-top:1.6px solid #309958;padding-top:10px;">
 
     <?php  foreach($req as $rows): ?> 
-    	<?php if(($rows->categorie) === 'theatre'): ?>
+      <?php if(($rows->categorie) === 'theatre'): ?>
       <div class="items" >
         <a href="#" data-open="<?php echo 'modalInfoOuvrage'.$rows->idouvrage; ?>">
         <img src="<?php echo base_url('assets/img/'.$rows->images); ?>" class="thumbnail" alt="" />
@@ -197,7 +196,7 @@ Email : <?php echo $rows->email; ?>
 </button>
 </div>
 <!--  fin modalInfoOuvrage Romans-->
-	<?php endif ?>
+  <?php endif ?>
     <?php  endforeach ?>
   </div>
 </div>
@@ -208,13 +207,13 @@ Email : <?php echo $rows->email; ?>
 <!-- -->
 <div class="row" style="justify-content:center;text-align: center; ">
 <div class="columns small-12">
-	<span class="collection_header">Po&eacutesies</span>
+  <span class="collection_header">Po&eacutesies</span>
 </div>
 <div class="columns small-12">
   <div class="owl-carousel owl-theme" style="border-top:1.6px solid #309958;padding-top:10px;">
 
     <?php  foreach($req as $rows): ?> 
-    	<?php if(($rows->categorie) === 'poetique'): ?>
+      <?php if(($rows->categorie) === 'poetique'): ?>
       <div class="items" >
         <a href="#" data-open="<?php echo 'modalInfoOuvrage'.$rows->idouvrage; ?>">
         <img src="<?php echo base_url('assets/img/'.$rows->images); ?>" class="thumbnail" alt="" />
@@ -299,7 +298,7 @@ Email : <?php echo $rows->email; ?>
 </button>
 </div>
 <!--  fin modalInfoOuvrage Romans-->
-	<?php endif ?>
+  <?php endif ?>
     <?php  endforeach ?>
   </div>
 </div>
@@ -310,13 +309,13 @@ Email : <?php echo $rows->email; ?>
 <!-- -->
 <div class="row" style="justify-content:center;text-align: center; ">
 <div class="columns small-12">
-	<span class="collection_header">Litterature d'id&eacutees</span>
+  <span class="collection_header">Litterature d'id&eacutees</span>
 </div>
 <div class="columns small-12">
   <div class="owl-carousel owl-theme" style="border-top:1.6px solid #309958;padding-top:10px;">
 
     <?php  foreach($req as $rows): ?> 
-    	<?php if(($rows->categorie) === 'litterature'): ?>
+      <?php if(($rows->categorie) === 'litterature'): ?>
       <div class="items" >
         <a href="#" data-open="<?php echo 'modalInfoOuvrage'.$rows->idouvrage; ?>">
         <img src="<?php echo base_url('assets/img/'.$rows->images); ?>" class="thumbnail" alt="" />
@@ -401,7 +400,7 @@ Email : <?php echo $rows->email; ?>
 </button>
 </div>
 <!--  fin modalInfoOuvrage Romans-->
-	<?php endif ?>
+  <?php endif ?>
     <?php  endforeach ?>
   </div>
 </div>

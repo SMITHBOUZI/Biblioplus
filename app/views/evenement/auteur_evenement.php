@@ -1,1 +1,1 @@
-<?= $titre; ?> <br />
+<img src="<?php echo base_url('asserts/img/'.$photo); ?>">

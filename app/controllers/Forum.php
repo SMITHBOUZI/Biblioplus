@@ -10,6 +10,8 @@ class Forum extends CI_Controller {
 		$this->load->helper(array('url'));
 		$this->load->model('forum_model');
 		$this->load->model('Notification_model');
+		$this->load->model('login_model');
+		$this->load->model('Recherche_model');
 	}
 
 	function notify () {
@@ -32,29 +34,28 @@ class Forum extends CI_Controller {
 	}
 	
 	function index(){
-		$data = new stdClass();
-		$forums = $this->forum_model->get_forums();
+		if ( isset( $_GET['search'] ) ) {
+  			$this->search_x();
+ 		} else {
+			$data = new stdClass();
+			$forums = $this->forum_model->get_forums();
 
-		foreach ($forums as $forum) {
-				
-			$forum->topics       = $this->forum_model->get_forum_topics($forum->id);
-			$forum->topics_cat   = $this->forum_model->get_topic_cat($forum->id_categorie);
-			$forum->topics_mem   = $this->forum_model->get_topic_mem($forum->idmembre);
-			$forum->count_topics = count($forum->topics);
-			$forum->count_posts  = $this->forum_model->count_forum_posts($forum->id);
+			foreach ($forums as $forum) {
+					
+				$forum->topics       = $this->forum_model->get_forum_topics($forum->id);
+				$forum->topics_cat   = $this->forum_model->get_topic_cat($forum->id_categorie);
+				$forum->topics_mem   = $this->forum_model->get_topic_mem($forum->idmembre);
+				$forum->count_topics = count($forum->topics);
+				$forum->count_posts  = $this->forum_model->count_forum_posts($forum->id);
+					
+			}
 			
-			// if ($forum->count_topics > 0) {
-				
-			// 	$forum->latest_topic            = $this->forum_model->get_forum_latest_topic($forum->id);
-				
-			// }	
-		}
-		
-		$data->forums     = $forums;
-		$this->notify();
-		// $this->load->view('templates/header');
-        $this->load->view('forum/index', $data);
-        $this->load->view('templates/footer');
+			$data->forums     = $forums;
+			$this->notify();
+			// $this->load->view('templates/header');
+	        $this->load->view('forum/index', $data);
+	        $this->load->view('templates/footer');
+	    }
 	}
 
 	function cat_valide(){
@@ -79,21 +80,22 @@ class Forum extends CI_Controller {
 			$this->load->view('forum/index');
 		}else{ 
 			if($this->input->post('poster')){
-
-				$ts = htmlspecialchars($this->input->post('tsujet')); 
-				$tc = htmlspecialchars($this->input->post('tcontenue'));
- 
-				if (strlen($ts) >= 90) {
-					$_SESSION['flash']['info'] = "Le sujet ne doit pas dépasser 90 caracteres !";
-					// $this->load->view('templates/header');
-					$this->notify();
-					$this->load->view('forum/index');
-				} else {
-				    $user_id = $this->session->userdata('idmembre');
-					$this->forum_model->nouveau_sujet($user_id, $ts, $tc);
-					$_SESSION['flash']['info'] = "Succés!";
-					redirect('forum/index');
-				}
+				if( !empty($this->input->post('tsujet')) AND !empty($this->input->post('tsujet')) ) {
+					$ts = htmlspecialchars_decode($this->input->post('tsujet')); 
+					$tc = htmlspecialchars_decode($this->input->post('tcontenue'));
+	 
+					if (strlen($ts) >= 90) {
+						$_SESSION['flash']['info'] = "Le sujet ne doit pas dépasser 90 caracteres !";
+						// $this->load->view('templates/header');
+						$this->notify();
+						$this->load->view('forum/index');
+					} else {
+					    $user_id = $this->session->userdata('idmembre');
+						$this->forum_model->nouveau_sujet($user_id, $ts, $tc);
+						$_SESSION['flash']['success'] = "Succés!";
+						redirect('forum/index');
+					}
+				} 'Veuillez remplir tous les champs';
 			}else{
 				// $this->load->view('templates/header');
 				$this->notify();
@@ -107,8 +109,12 @@ class Forum extends CI_Controller {
 		$data = new stdClass();
 		$this->load->helper('form');
 
-		$s  = htmlspecialchars($this->uri->segment(3));
-		$id = htmlspecialchars($this->uri->segment(4));		
+		// $s  = htmlentities($this->uri->segment(3));
+		// $id = htmlentities($this->uri->segment(4));
+
+		$s  = $_GET['s'];
+		$id = $_GET['id'];		
+
 
 		$forums = $this->forum_model->fetch_forum_posts($id);
 
@@ -125,7 +131,7 @@ class Forum extends CI_Controller {
 		// $this->load->view('templates/header');
 		$this->notify();
         $this->load->view('forum/discussions/view', $data);
-        $this->load->view('templates/footer');
+        // $this->load->view('templates/footer');
 	}
 
 	function comment (){
@@ -137,7 +143,7 @@ class Forum extends CI_Controller {
 
 				$req = $this->forum_model->comment($id, $cm);
 
-				header('Location:view/'.$cm.'/'.$id);
+				header('Location:view?s='.$cm.'&id='.$id);
 			} else {				
 				$_SESSION['flash']['info'] = 'Saisir le comment svp';
 				header('Location:view');
@@ -160,6 +166,20 @@ class Forum extends CI_Controller {
 			redirect('forum/index');
 		}
     }
+
+    function search_x(){
+		$data = new stdClass();	
+		if ($_GET['search']) {
+			$search = $_GET['search'];
+			$fetch = $this->Recherche_model->search($search);
+			
+			$data->fetch = $fetch;
+			$this->notify();
+			$this->load->view('search', $data); 
+		} else {
+			redirect('login/index');
+		}
+	}
 }
 
 			

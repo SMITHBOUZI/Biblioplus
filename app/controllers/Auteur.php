@@ -10,6 +10,7 @@ class Auteur extends CI_Controller {
 		$this->load->library(array('session'));
 		$this->load->model('Notification_model');
 		$this->load->model('Recherche_model');
+		$this->load->model('login_model');
 
 		$this->load->helper('form');
 		// $this->load->helper('form_validation');
@@ -50,6 +51,7 @@ class Auteur extends CI_Controller {
 				$this->notify();
 				// $this->load->view('templates/header');
 				$this->load->view('auteur/index', $data );
+				$this->load->view('templates/footer');
 			} else {
 				$let = $_GET['lettre'];
 				$auteurs = $this->Auteur_model->lister_auteur_nom($let);
@@ -59,7 +61,7 @@ class Auteur extends CI_Controller {
 				// $this->page();
 				// $this->load->view('templates/header');
 				$this->load->view('auteur/index', $data);
-				// $this->load->view('templates/footer');
+				$this->load->view('templates/footer');
 				// $this->page();
 			}
 		}
@@ -113,19 +115,45 @@ class Auteur extends CI_Controller {
 	}
 
 	function modifier_compte() {
+		if ( 	!empty($this->input->post('pseudo')) AND !empty($this->input->post('nom_prenom'))
+			AND !empty($this->input->post('email'))  AND !empty($this->input->post('telephone')) 	 ) {
+			
+			$idmembre = $this->input->post('id');
+			$pseudo = $this->input->post('pseudo');
 
-		$idmembre = $this->input->post('id');
-		$pseudo = $this->input->post('pseudo');
+			$nom_prenom = trim($this->input->post('nom_prenom'));
+			$email = trim($this->input->post('email'));
+			$mot_de_passe = trim(sha1($this->input->post('mot_de_passe')));
+			$telephone = trim($this->input->post('telephone'));
+			$desc = trim($this->input->post('desc'));
 
-		$nom_prenom = $this->input->post('nom_prenom');
-		$email = $this->input->post('email');
-		$mot_de_passe = $this->input->post('mot_de_passe');
-		$telephone = $this->input->post('telephone');
+			$config['upload_path']      = 'assets/avatar/';
+			$config['allowed_types']    = 'gif|jpg|png|GIF|JPG|PNG';
+			$config['max_size']         = '5170';
+			$config['max_width']        = '1024';
+			$config['max_height']       = '1024';
+			// $config['file_ext_tolower'] = true;
+			$config['overwrite'] 		= true;
+			$config['encrypt_name']     = true;
 
+			$this->load->library('upload', $config);
 
-		$this->Auteur_model->modif($idmembre, $pseudo, $email, $mot_de_passe, $telephone);		
-	
-		redirect('auteur/info?id='.$idmembre);
+			$this->upload->initialize($config);
+
+			if ( ! $this->upload->do_upload('userimage') ) {
+				// $_SESSION['flash']['danger'] = 'l\'images n\'a pas pu etre upload il faut un format : gif | jpg | png | jpeg ' ;
+				$error = array('error' => $this->upload->display_errors());
+			} 
+				$data =  $this->upload->data();
+				$foto = $this->upload->file_name;
+								
+			$this->Auteur_model->modif($idmembre, $pseudo, $nom_prenom, $email, $telephone, $desc, $foto);		
+		
+			redirect('auteur/info?id='.$idmembre);
+		} else {
+			$_SESSION['flash']['alert'] = "Veuillez remplir tous les champs";
+			redirect('auteur/info?id='.$this->session->userdata('idmembre'));
+		}
 	}
 
 	// function page() {

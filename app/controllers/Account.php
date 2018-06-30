@@ -13,6 +13,9 @@ class Account extends CI_Controller {
 		$this->load->model('Collection_model');
 		$this->load->model('Notification_model');
 		$this->load->model('Recherche_model');
+
+		$this->load->model('evenement_model');
+		$this->load->model('Auteur_model');
 	}
 
 	function notify () {
@@ -27,6 +30,12 @@ class Account extends CI_Controller {
 		
 		foreach ($notifications as $notification ) {
 			$notification->event_notify = $this->Notification_model->notification();
+
+			$notification->membres = $this->Notification_model->count_membre();
+
+			$notification->event = $this->Notification_model->count_evenement();
+			$notification->post  = $this->Notification_model->count_post();
+			$notification->ouvrage  = $this->Notification_model->count_ouvrege();
 		}
 
 		$data->notifications = $notifications;
@@ -39,30 +48,37 @@ class Account extends CI_Controller {
 			$this->search_x();
 		} else {
 			// $data = new stdClass();
-			$this->load->model('evenement_model');
-			$this->load->model('Auteur_model');
+
+			/*Test*/
 			// if ($this->session->get_userdata('logged_in')) {
 			// 	$session_data 	 = $this->session->userdata('logged_in');
 			// 	$data['id']		 = $session_data['id'];
 			// 	$data['pseudo']	 = $session_data['pseudo'];
 			// 	$data['photo'] 	 = $session_data['photo'];
+			/*Test*/
 
-				$data1 = new stdClass();
+				$data = new stdClass();
 				$auteurs = $this->Auteur_model->info_auteur_acc();
 				foreach ($auteurs as $auteur ) { 
 					$auteur->nbr_ouvrage = $this->Auteur_model->count_ouvrage_auteur($auteur->idmembre); 
 					$auteur->nbr_event = $this->Auteur_model->count_event_auteur($auteur->idmembre); 
 					$auteur->nbr_post = $this->Auteur_model->count_post_auteur($auteur->idmembre);
 				}
-				$data1->auteurs  = $auteurs;
+				$data->auteurs  = $auteurs;
 				$this->notify();
 				// $this->load->view('templates/header');
-				$this->load->view('index', $data1);
+				$this->load->view('index', $data);
+				/*Test*/
 			// }else{
 			// 	redirect('user_connect', 'refresh');
 			// }
+			/*Test*/
 		}
 	}
+
+	// function compteur_de_visiteurs() {
+	// 	$this->login_model->visiteurs();
+	// }
 	
 	function search_x(){
 		$data = new stdClass();	
@@ -95,22 +111,21 @@ class Account extends CI_Controller {
 		if ($result) {
 			foreach ($result as $user) {
 				if ($user && $user->confirm_token === $token) {
-					$_SESSION['flash']['info'] = 'Votre compté a étè confirmé avec succés' ;
+					$_SESSION['flash']['success'] = 'Votre compté a étè confirmé avec succés' ;
 					// $this->load->view('templates/header');
 					$this->notify();
 					$this->load->view('compte/connexion');
-				}
-				else{
+				} else {
 					// $this->load->view('templates/header');
 					$this->notify();
-					$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
+					$_SESSION['flash']['alert'] = 'Ce token n\'est plus valide' ;
 					$this->load->view('compte/connexion');
 				}				
 			}			
 		} else {
 			// $this->load->view('templates/header');
 			$this->notify();
-			$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide' ;
+			$_SESSION['flash']['alert'] = 'Ce token n\'est plus valide' ;
 		    $this->load->view('compte/connexion');
 		}
     }
@@ -130,10 +145,11 @@ class Account extends CI_Controller {
 		
 				// $this->load->view('templates/header');
 				$this->notify();
-				$this->load->view('compte/mail_recup');
+				// $this->load->view('compte/mail_recup');
+				$this->load->view('compte/connexion');
 
 			} else{
-				$_SESSION['flash']['danger'] = 'Aucun compter ne correspond a cet email ';
+				$_SESSION['flash']['alert'] = 'Aucun compter ne correspond a cet email ';
 				// $this->Exceptions->show_error();
 				// $this->load->view('templates/header');
 				$this->notify();
@@ -162,14 +178,14 @@ class Account extends CI_Controller {
 				} else{
 					// $this->load->view('templates/header');
 					$this->notify();
-					$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide ' ;
+					$_SESSION['flash']['alert'] = 'Ce token n\'est plus valide ' ;
 					$this->load->view('compte/pass_reset');
 				}				
 			} 		
 		} else {
 			// $this->load->view('templates/header');
 			$this->notify();
-			$_SESSION['flash']['danger'] = 'Ce token n\'est plus valide ' ;
+			$_SESSION['flash']['alert'] = 'Ce token n\'est plus valide ' ;
 			$this->load->view('compte/connexion');
 		}
     }
@@ -193,7 +209,7 @@ class Account extends CI_Controller {
 				$this->notify();
 				$this->load->view('compte/connexion');
 			}else {
-				$_SESSION['flash']['danger'] = 'Une erreur ce produit lors de la mise a jour de votre mot de passe ';
+				$_SESSION['flash']['alert'] = 'Une erreur ce produit lors de la mise a jour de votre mot de passe ';
 				// $this->load->view('templates/header');
 				$this->notify();
 				$this->load->view('compte/mail_recup');

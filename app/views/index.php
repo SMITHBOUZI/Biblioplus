@@ -126,24 +126,35 @@ Email : <?php echo $rows->email; ?>
              
          <!-- TOP 3 AUTEURS -->
 <div class="auteur_setion">
-  <div class="row" style="justify-content:center">
-    <div class="columns large-12 medium-12 small-12">
-     <h4>Les auteurs de la semaine</h4> </div>
-    <?php if ($auteurs) {?>
+  <div class="row" style="justify-content:center;" >
+    <div class="columns small-12 medium-12 large-12"> <h3>Les auteurs de la semaine</h3> </div>
+    <?php if ($auteurs) {?> <pre><?php // var_dump($auteurs)?></pre>
       <?php foreach ($auteurs as $rows ): ?>
+        <?php if($rows->status === 'Auteur'): ?>
         <div  class="columns large-4 medium-6 small-10">
-          <div class="columns medium-12" style="text-align:center;"> 
-            <img src="<?php echo base_url('assets/img/auteur_femme.jpg') ?>" class="circle_round" />
+          <div class="columns medium-12 " style="text-align:center;">
+            <?php if(empty($rows->photo)): ?>
+              <a href="<?php echo base_url('auteur/info?id=').$rows->idmembre?>">
+              <img src="<?php echo base_url('assets/avatar/avatar.png') ?>" class="circle_round" />
+            </a>
+            <?php else :?>
+              <a href="<?php echo base_url('auteur/info?id=').$rows->idmembre?>">
+              <img src="<?php echo base_url('assets/avatar/'.$rows->photo) ?>" class="circle_round" />
+            </a>
+            <?php endif ?>
             </div>
-            <h5> <?= $rows->pseudo ?></h5>
+            
             <div class="columns medium-12">
-             <span class="span_titre"><?= $rows->email; ?></span>
+            <h5> <?= $rows->pseudo ?></h5>
+             <span class="span_titre"> <?= $rows->email; ?></span>
             </div>
         </div>
+      <?php endif ?>
       <?php endforeach ?>
     <?php } ?>
   </div>
 </div>
+
 
 
 
@@ -154,7 +165,7 @@ Email : <?php echo $rows->email; ?>
     </div> 
   </div>
     <div class="row " style=" justify-content:center;" >
-          <?php $req = $this->evenement_model->lister(); ?>
+          <?php $req = $this->evenement_model->lister_event_index(); ?>
           <?php if($req): ?>
             <?php foreach ($req as $key ): ?>
             
@@ -180,10 +191,10 @@ Email : <?php echo $rows->email; ?>
            
              <div class="columns large-3 medium-4 small-4 ">
               
-                <?php if(empty($_SESSION['photo'] )){ ?>
-                  <img style="border-radius: 50%;" src="<?php echo base_url('assets/avatar/avatar.png'); ?>" width="30px" title="<?php echo $key->pseudo; ?>"  alt="photo utilisateur" />
+                <?php if(empty($key->m_foto)){ ?>
+                  <img style="border-radius: 50%; width: 30px; height: 30px; " src="<?php echo base_url('assets/avatar/avatar.png'); ?>" title="<?php echo $key->pseudo; ?>"  alter="photo utilisateur" />
                 <?php } else { ?>
-                 <img  style="border-radius: 50%;" src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" class="circle_round_evenement" />
+                 <img  style="border: 0px; width:35px; height:35px;" src="<?php echo base_url('assets/avatar/'.$key->m_foto); ?>" class="circle_round_evenement" />
                <?php } ?>
             
            </div> 
@@ -219,7 +230,7 @@ Email : <?php echo $rows->email; ?>
                
                 
                 
-            <?php if ($this->session->userdata('pseudo') !== NULL) : ?>
+            <?php if ($this->session->userdata('idmembre') === $key->idmembre) : ?>
               <div class=" columns large-12 medium-12" style="border-bottom: 1px solid #f3f1f1; margin-bottom:5px; margin-top: 10px;">
                    <a href="#" data-open="<?php echo $key->idevenement.'evente';  ?>" ><i class="fa fa-edit"></i>modifier </a> 
                    <a  href="http://localhost/biblioplus/event/enlever?idevenement=<?php echo $key->idevenement; ?>" title="supprimer votre événement"><i class="fa fa-trash"></i>
@@ -227,6 +238,10 @@ Email : <?php echo $rows->email; ?>
               </div>
             <?php endif ?>
                  <!-- fin modal suppression evenement --> 
+                 <div class="columns large-12 medium-7" style="margin-top:5px;  word-wrap: break-word; text-align: justify; border-bottom: 1px solid #f3f1f1 ">
+                 <span class="span_titre" ><?php echo $key->titre; ?></span>
+                
+                </div>
                 <div class="columns large-12 medium-7" style="margin-top:5px;  word-wrap: break-word; text-align: justify; border-bottom: 1px solid #f3f1f1 ">
                  <span class="span_titre">Description</span> 
                   <span class="span_description"> <?php echo $key->description; ?></span>
@@ -276,9 +291,9 @@ Email : <?php echo $rows->email; ?>
 
 
 
-          <?php $req = $this->evenement_model->lister(); ?>
+          <?php $req = $this->evenement_model->lister_event_index(); ?>
           <?php if($req): ?>
-            <?php foreach ($req as $key ): ?>
+            <?php foreach ($req as $key ): ?> 
 <!-- Commencement modal modifie_evenement -->
           <div class="reveal" id="<?php echo $key->idevenement.'evente'; ?>" data-reveal> 
 
@@ -358,12 +373,55 @@ Email : <?php echo $rows->email; ?>
 </div>
 <div class="row">  
 <div class="columns large-3 large-centered" >
-<button class="border_button"> Voir les evenements</button>
+<a href="http://localhost/biblioplus/event/index"><button class="border_button"> Voir les evenements</button></a>
 </div> 
 
 </div>
 
 
+<hr>
+<div class="row" style="justify-content:center;  margin-top:2em;">
 
+  <div class="columns large-10" align="center">
+  <?php if ($notifications) : ?>
+  <?php foreach ($notifications as $key ) :?>
+<div class="columns large-2">
+  <h6> Membres</h6>
+    <?php echo " ".$key->membres[0]->nbr_membre; ?> 
+</div>
+<div class="columns large-2">
+<h6> Evenements</h6>
+   <?php echo " ".$key->event[0]->nbr_event; ?> 
+</div>
+<div class="columns large-2">
+    <h6> Sujets</h6>
+   <?php echo " ".$key->post[0]->nbr_sujet; ?> 
+</div>
+
+<div class="columns large-2">
+    <h6>Ouvrages</h6>
+    <?php echo " ".$key->ouvrage[0]->nbr_ouvrage; ?> 
+</div>
+  <?php endforeach ?>
+<?php endif ?>
+
+  <?php if(site_url('account/')){ ?>
+    <?php // echo 'Le moi'; ?>
+    <?php $v = $this->login_model->count_nbr_visiteur();?>
+<div class="columns large-2">
+    <h6>Visiteurs</h6>
+     <?=  $v[0]->nbr_visiteurs; ?>
+  <?php } else {
+    echo " ";
+  } ?>
+    
+  </div>
+
+</div>
+</div>
+
+
+    
+  
    
 <!-- Begining of footer -->

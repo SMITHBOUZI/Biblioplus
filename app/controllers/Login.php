@@ -25,6 +25,12 @@ class Login extends CI_Controller {
 		
 		foreach ($notifications as $notification ) {
 			$notification->event_notify = $this->Notification_model->notification();
+
+			$notification->membres = $this->Notification_model->count_membre();
+
+			$notification->event = $this->Notification_model->count_evenement();
+			$notification->post  = $this->Notification_model->count_post();
+			$notification->ouvrage  = $this->Notification_model->count_ouvrege();
 		}
 
 		$data->notifications = $notifications;
@@ -33,6 +39,7 @@ class Login extends CI_Controller {
 	}
 
     function index() {
+    	$this->login_model->visiteurs();
     	if ( isset( $_GET['search'] ) ) {
   			$this->search_x();
  		} else {
@@ -46,7 +53,11 @@ class Login extends CI_Controller {
 				$auteur->nbr_event = $this->Auteur_model->count_event_auteur($auteur->idmembre); 
 				$auteur->nbr_post = $this->Auteur_model->count_post_auteur($auteur->idmembre);
 			}
+
+			// $nbr_visiteur = array();
+			// $nbr_visiteur = $this->login_model->count_nbr_visiteur(); var_dump($nbr_visiteur);
 		    $this->notify();
+		    // $this->count_membre();
 
 			$data->auteurs  = $auteurs;
 			// $this->load->view('templates/header');
@@ -59,7 +70,7 @@ class Login extends CI_Controller {
 		$data = new stdClass();	
 		if ($_GET['search']) {
 			$search = $_GET['search'];
-			$fetch = $this->Recherche_model->search($search); var_dump($fetch);
+			$fetch = $this->Recherche_model->search($search);
 			
 			$data->fetch = $fetch;
 			$this->notify();
@@ -67,6 +78,16 @@ class Login extends CI_Controller {
 		} else {
 			redirect('login/index');
 		}
+	}
+
+	function count_membre() {
+		$data = new stdClass();			
+
+		$membres = $this->Notification_model->count_membre();
+
+		$data->membres = $membres;
+
+		$this->load->view('templates/header', $data);
 	}
 
 	function sign_in() {
@@ -84,7 +105,7 @@ class Login extends CI_Controller {
 			$pass   =  sha1(trim($this->input->post('mot_de_passe')));
 		    $result =  $this->login_model->sign_in($pseudo, $pass);
 		    if(!$result) {
-		    	$_SESSION['flash']['danger'] = 'Ce compte n\'est pas actif, merci de verifier votre addresse mail pour la confirmation.';
+		    	$_SESSION['flash']['alert'] = 'Ce compte n\'est pas actif, merci de verifier votre addresse mail pour la confirmation.';
 		    	$this->notify();
 				// $this->load->view('templates/header');
 				$this->load->view('compte/connexion');
@@ -103,8 +124,9 @@ class Login extends CI_Controller {
 						$user = $this->session->userdata();
 
 						redirect('account');
+						// current_url('http://localhost/biblioplus/collection/index');
 			    	} else if( $user->mot_de_passe != $pass ) {
-				    		$_SESSION['flash']['danger'] = 'Connexion incorrect ';
+				    		$_SESSION['flash']['alert'] = 'Connexion incorrect ';
 				    		$this->notify();
 							// $this->load->view('templates/header');
 							$this->load->view('compte/connexion');
@@ -124,7 +146,7 @@ class Login extends CI_Controller {
 				    }
 				}	 
 			}  else {
-				$_SESSION['flash']['danger'] = 'Veuillez remplir tous les champs ';
+				$_SESSION['flash']['alert'] = 'Veuillez remplir tous les champs ';
 				// $this->load->view('templates/header');
 				$this->notify();
 				$this->load->view('compte/connexion');
@@ -139,7 +161,7 @@ class Login extends CI_Controller {
     }
 
     function check_if_pseudo_exists($request_pseudo){
-    	$pseudo_available = $this->login->check_if_pseudo_exists($request_pseudo);
+    	$pseudo_available = $this->login_model->check_if_pseudo_exists($request_pseudo);
     	if ($pseudo_available) {
     		return TRUE;
     	}else {
@@ -218,68 +240,79 @@ class Login extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('nom_prenom', 'nom complet', 'trim|required|htmlspecialchars|callback_ckeck_format_nom_prenom');
-		$this->form_validation->set_rules('pseudo', 'nom d\'utilisateur','trim|required|min_length[6]|max_length[12]|htmlspecialchars|callback_ckeck_format_pseudo');
+		$this->form_validation->set_rules('email', 'email', 'trim|required|callback_check_if_email_exists');
+		$this->form_validation->set_rules('pseudo', 'pseudo', 'trim|required|callback_check_if_pseudo_exists');
 		$this->form_validation->set_rules('mot_de_passe', 'mot de passe', 'trim|required|min_length[8]|htmlspecialchars');
 		$this->form_validation->set_rules('mot_de_passe_c', 'mot de passe de confirmation', 'trim|min_length[8]|htmlspecialchars|matches[mot_de_passe]');
-		$this->form_validation->set_rules('pseudo', 'nom d\'utilisateur', 'trim|required|min_length[6]|max_length[12]|htmlspecialchars|callback_ckeck_format_pseudo');
-		$this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|htmlspecialchars|callback_check_if_email_exists');
-		$this->form_validation->set_rules('date_naissance', 'date naissance', 'trim|required|htmlspecialchars|callback_ckeck_datenaiss_found');
-		$this->form_validation->set_rules('mem', '', 'trim|required|htmlspecialchars|callback_ckeck_status_found');
 
-
-		if ($this->form_validation->run() === FALSE) {
-			 $this->notify();
-			// $this->load->view('templates/header');
-			$this->load->view('compte/inscription', $data);
+		if ($this->form_validation->run() === FALSE ) {
+			// $_SESSION['flash']['success'] = 'Un mail de confirmation vous a été envoyé ';
+			$this->notify();
+			$this->load->view('compte/inscription');
 			$this->load->view('templates/footer');
 		} else {
-		
 			if($this->input->post('save')) {
 
 				if (!empty(trim($this->input->post('nom_prenom'))) AND !empty(trim($this->input->post('sexe')))
 					 AND !empty(trim($this->input->post('date_naissance'))) AND !empty(trim($this->input->post('email'))) 
 					 AND !empty(trim($this->input->post('pseudo'))) AND !empty(trim($this->input->post('mot_de_passe'))) 
 					 AND !empty(trim($this->input->post('mot_de_passe_c'))) AND !empty(trim($this->input->post('mem')))  )  {
+					if ( $this->input->post('mot_de_passe_c') === $this->input->post('mot_de_passe') ) {
+						# code...
+						$config['upload_path']          = 'assets/avatar/';
+						$config['allowed_types']    = 'gif|jpg|png|GIF|JPG|PNG';
+						$config['max_size']         = '2048';
+						$config['max_width']        = '1024';
+						$config['max_height']       = '1024';
+						$config['file_ext_tolower'] = true;
+						$config['encrypt_name']     = true;
 
-					$config['upload_path']          = 'assets/avatar/';
-					$config['allowed_types']    = 'gif|jpg|png|GIF|JPG|PNG';
-					$config['max_size']         = '2048';
-					$config['max_width']        = '1024';
-					$config['max_height']       = '1024';
-					$config['file_ext_tolower'] = true;
-					$config['encrypt_name']     = true;
+						$this->load->library('upload', $config);
 
-					$this->load->library('upload', $config);
+						$this->upload->initialize($config);
 
-					$this->upload->initialize($config);
+						if ( ! $this->upload->do_upload('userimage') ) {
+							// $_SESSION['flash']['danger'] = 'l\'images n\'a pas pu etre upload il faut un format : gif | jpg | png | jpeg ' ;
+							$error = array('error' => $this->upload->display_errors());
+						}
+						else {
+							$data =  $this->upload->data();					
+						}
+						if (!empty($data)) {
+						    $this->login_model->sign_up($data);
+						}else {
+							$this->login_model->sign_up();
+						}
 
-					if ( ! $this->upload->do_upload('userimage') ) {
-						// $_SESSION['flash']['danger'] = 'l\'images n\'a pas pu etre upload il faut un format : gif | jpg | png | jpeg ' ;
-						$error = array('error' => $this->upload->display_errors());
+						$_SESSION['flash']['success'] = 'Un mail de confirmation vous a été envoyé ';		
+						// $this->load->view('templates/header');
+						 $this->notify();
+						$this->load->view('compte/connexion');
+					} else {
+						$this->notify();
+						$_SESSION['flash']['alert'] = 'Les mot de passe doit être identique';
+						$this->load->view('compte/inscription');
+						$this->load->view('templates/footer');
 					}
-					else {
-						$data =  $this->upload->data();					
-					}
-					if (!empty($data)) {
-					    $this->login_model->sign_up($data);
-					}else {
-						$this->login_model->sign_up();
-					}
-
-					$_SESSION['flash']['success'] = 'Un mail de confirmation vous a été envoyé ';		
-					// $this->load->view('templates/header');
-					 $this->notify();
-					$this->load->view('compte/connexion');
 
 				}else {				
 					// $this->load->view('templates/header');
-					 $this->notify();
-					$_SESSION['flash']['danger'] = 'Remplir tous les champs ';
+					$this->notify();
+					$_SESSION['flash']['alert'] = 'Veuiller remplir tous les champs ';
 					$this->load->view('compte/inscription');
 					$this->load->view('templates/footer');
 				}
-			} 
+			} else {
+				$this->notify();
+				$this->load->view('compte/inscription');
+				$this->load->view('templates/footer');
+			}
 		}
+	}
+
+	function pas_trouve() {
+		$this->load->view('templates/header');
+		$this->load->view('errors/html/error_general');
+		
 	}
 }

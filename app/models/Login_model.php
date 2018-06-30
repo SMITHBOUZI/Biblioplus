@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login_model extends CI_Model {
 
-	public function __construct() {
+	function __construct() {
 		
 		parent::__construct();
-		$this->load->database();		
+		$this->load->database();
 	}
 
 	function sign_in($pseudo, $pass){
@@ -75,8 +75,7 @@ class Login_model extends CI_Model {
 			'token_confirmed'	=> $to,
 			'confirm_token' 	=> $co,
 			'photo'				=> $pho				
-		);
-		
+		);		
 			
 		if ($this->db->insert('inscription', $data)) {
 			$user_id = $this->db->insert_id();
@@ -146,5 +145,28 @@ class Login_model extends CI_Model {
 			return false;			
 		}
 		return false;		
+	}
+
+	function visiteurs () {
+		$select = "SELECT adresse_ip FROM visiteurs WHERE adresse_ip='".$_SERVER['REMOTE_ADDR']."';";
+	    $stmt_entrees = $this->db->query($select);
+
+	    if($stmt_entrees->num_rows() == 0)  {
+	        // On insere une nouvelle ligne en base de données
+	        $requete = "INSERT INTO visiteurs (adresse_ip, temps) VALUES ('".$_SERVER['REMOTE_ADDR']."','".date('Y-m-j H:i:s')."');";
+    	} else {
+    		// On met a jour le temps du visiteur en base de données
+      		$requete = "UPDATE visiteurs SET temps='".date('Y-m-j H:i:s')."'WHERE adresse_ip = '".$_SERVER['REMOTE_ADDR']."';"."\n";
+    	}
+    	$this->db->query($requete);
+
+    	$timestamp_5min = date('Y-m-j H:i:s') - (60 * 5); // Etat du timestamp il y a 5 minutes
+	    $requete = "DELETE FROM visiteurs WHERE temps < ". $timestamp_5min.";"; 
+	    $stmt = $this->db->query($requete);
+	}
+
+	function count_nbr_visiteur() {
+		$sql = "SELECT count(id) AS nbr_visiteurs FROM visiteurs";
+		return $this->db->query($sql)->result();
 	}
 }
