@@ -4,10 +4,10 @@
 
       
      
-        <h3>Le calendrier des &eacutev&eacutenements litteraires</h3>
+        <h4>Le calendrier des &eacutev&eacutenements litteraires</h4>
       
 
-      <div class="columns large-3 medium-6 small-12" >        
+      <div class="columns large-3 medium-6 small-12 " >        
         <a  data-open="modal_ajout_evenement" >
           <?php if ($this->session->userdata('pseudo') !== NULL) : ?>
           <i class="fa fa-plus-square"></i> Ajouter un nouvel &eacutev&eacutenement
@@ -23,7 +23,7 @@
           <?php if($req): ?>
             <?php foreach ($req as $key ): ?>
             
-      <div class=" columns large-3  medium-4 small-9"  data-open="<?php echo $key->idevenement.'event'; ?>"  style=" padding:0px; margin:10px;background-color:#dcece2;">
+      <div class=" columns large-3  medium-4 small-9 evenement"  data-open="<?php echo $key->idevenement.'event'; ?>"  style=" padding:0px; margin:10px;background-color:#dcece2;">
         
                     
          <?php if(empty($key->photo )){ ?>
@@ -45,10 +45,10 @@
            
              <div class="columns large-3 medium-4 small-4 ">
               
-                <?php if(empty($_SESSION['photo'] )){ ?>
-                  <img style="border-radius: 50%;" src="<?php echo base_url('assets/avatar/avatar.png'); ?>" width="30px" title="<?php echo $key->pseudo; ?>"  alt="photo utilisateur" />
+                <?php if(empty($key->m_foto)){ ?>
+                  <img style="border-radius: 50%; width: 35px; height: 35px; " src="<?php echo base_url('assets/avatar/avatar.png'); ?>" title="<?php echo $key->pseudo; ?>"  alt="photo utilisateur" />
                 <?php } else { ?>
-                 <img  style="border-radius: 50%;" src="<?php echo base_url('assets/avatar/'.$_SESSION['photo']); ?>" class="circle_round_evenement" />
+                 <img  style="border: 0px; width:35px; height:35px;" src="<?php echo base_url('assets/avatar/'.$key->m_foto); ?>" class="circle_round_evenement" />
                <?php } ?>
             
            </div> 
@@ -86,14 +86,28 @@
                 
             <?php if ($this->session->userdata('pseudo') !== NULL) : ?>
               <div class=" columns large-12 medium-12" style="border-bottom: 1px solid #f3f1f1; margin-bottom:5px; margin-top: 10px;">
-                   <a href="#" data-open="<?php echo $key->idevenement.'evente';  ?>" ><i class="fa fa-edit"></i>modifier </a> 
-                   <a  href="http://localhost/biblioplus/event/enlever?idevenement=<?php echo $key->idevenement; ?>" title="supprimer votre événement"><i class="fa fa-trash"></i>
-                   Supprimer  </a>              
+                   <a href="#" data-open="<?php echo $key->idevenement.'evente';  ?>" ><i class="fa fa-edit"></i>Modifier </a> 
+                   
+                   <a data-open="modal_supp_evenements"><i class="fa fa-trash"></i>
+                   Supprimer  </a> 
+
+                    
+
+
+
+
+
+
+
+
+
+
+
               </div>
             <?php endif ?>
                  <!-- fin modal suppression evenement --> 
                 <div class="columns large-12 medium-7" style="margin-top:5px;  word-wrap: break-word; text-align: justify; border-bottom: 1px solid #f3f1f1 ">
-                 <span class="span_titre">Description</span> 
+                 <span class="span_titre">Description</span> <br />
                   <span class="span_description"> <?php echo $key->description; ?></span>
                 </div>
                 <div class="columns large-12 medium-5" style="margin-top:5px;">
@@ -144,6 +158,22 @@
    
 
           <!-- Commencement modal ajout_evenement -->
+                       <div class="reveal" id="modal_supp_evenements"  data-reveal>
+<h6>Confirmation de suppression  </h6>
+<hr>
+  
+<span class="span_description" style="text-align:center;">Voulez vous vraiment supprimer cet evenement?
+</span>
+  
+<div class="columns small-12 medium-7 large-12" style="text-align:center;">  
+     
+      <button class="fill_button" aria-label="Dismiss alert" type="button" data-close>
+          NON
+        </button>      
+ <a  href="http://localhost/biblioplus/event/enlever?idevenement=<?php echo $key->idevenement; ?>" title="supprimer votre événement"><i class="fa fa-trash">
+        <button class="fill_button">OUI</button>  </a>
+      </div>
+      </div> 
           <div class="reveal" id="modal_ajout_evenement" data-reveal> 
 
             <div class="row">

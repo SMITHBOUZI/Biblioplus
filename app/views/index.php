@@ -127,7 +127,7 @@ Email : <?php echo $rows->email; ?>
          <!-- TOP 3 AUTEURS -->
 <div class="auteur_setion">
   <div class="row" style="justify-content:center;" >
-    <div class="columns small-12 medium-12 large-12"> <h3>Les auteurs de la semaine</h3> </div>
+    <div class="columns small-12 medium-12 large-12"> <h4>Les auteurs de la semaine</h4> </div>
     <?php if ($auteurs) {?> <pre><?php // var_dump($auteurs)?></pre>
       <?php foreach ($auteurs as $rows ): ?>
         <?php if($rows->status === 'Auteur'): ?>
@@ -161,7 +161,7 @@ Email : <?php echo $rows->email; ?>
   <div class="row">
     <div class="columns large-12 medium-12" style=" margin-top:2em; text-align:center;">
       <h3>Les &eacutev&eacutenements les plus proches</h3>
-      <p>Amant du livre, vous qui ne voulez pas manquer un &eacutev&eacutenement auxquels vous voudriez prendre part<br/> dans cette section vous resterez informer.</p>                      
+      <p>Amant du livre, vous qui ne voulez pas manquer un &eacutev&eacutenement auxquel vous voulez prendre part<br/> dans cette section vous resterez informer.</p>                      
     </div> 
   </div>
     <div class="row " style=" justify-content:center;" >
@@ -169,7 +169,7 @@ Email : <?php echo $rows->email; ?>
           <?php if($req): ?>
             <?php foreach ($req as $key ): ?>
             
-      <div class=" columns large-3  medium-4 small-9"  data-open="<?php echo $key->idevenement.'event'; ?>"  style=" padding:0px; margin:15px;background-color:#dcece2;">
+      <div class=" columns large-3  medium-4 small-9 evenement"  data-open="<?php echo $key->idevenement.'event'; ?>"  style=" padding:0px; margin:15px;background-color:#dcece2;">
         
                     
          <?php if(empty($key->photo )){ ?>
@@ -192,7 +192,7 @@ Email : <?php echo $rows->email; ?>
              <div class="columns large-3 medium-4 small-4 ">
               
                 <?php if(empty($key->m_foto)){ ?>
-                  <img style="border-radius: 50%; width: 30px; height: 30px; " src="<?php echo base_url('assets/avatar/avatar.png'); ?>" title="<?php echo $key->pseudo; ?>"  alter="photo utilisateur" />
+                  <img style="border-radius: 50%; width: 30px; height: 30px; " src="<?php echo base_url('assets/avatar/avatar.png'); ?>" title="<?php echo $key->pseudo; ?>"  alt="photo utilisateur" />
                 <?php } else { ?>
                  <img  style="border: 0px; width:35px; height:35px;" src="<?php echo base_url('assets/avatar/'.$key->m_foto); ?>" class="circle_round_evenement" />
                <?php } ?>
@@ -233,8 +233,35 @@ Email : <?php echo $rows->email; ?>
             <?php if ($this->session->userdata('idmembre') === $key->idmembre) : ?>
               <div class=" columns large-12 medium-12" style="border-bottom: 1px solid #f3f1f1; margin-bottom:5px; margin-top: 10px;">
                    <a href="#" data-open="<?php echo $key->idevenement.'evente';  ?>" ><i class="fa fa-edit"></i>modifier </a> 
-                   <a  href="http://localhost/biblioplus/event/enlever?idevenement=<?php echo $key->idevenement; ?>" title="supprimer votre événement"><i class="fa fa-trash"></i>
-                   Supprimer  </a>              
+                  
+
+                   <a  href="#" data-open="modal_modifier_compte"><i class="fa fa-trash"></i>
+                   Supprimer  </a> 
+
+                    
+
+             <div class="reveal" id="modal_supp_evenements"  data-reveal>
+<h6>Confirmation de suppression  </h6>
+<hr>
+  
+<span class="span_description" style="text-align:center;">Voulez vous vraiment supprimer cet evenement?
+</span>
+  
+<div class="columns small-12 medium-7 large-12" style="text-align:center;">  
+     
+      <button class="fill_button" aria-label="Dismiss alert" type="button" data-close>
+          NON
+        </button>      
+ <a  href="http://localhost/biblioplus/event/enlever?idevenement=<?php echo $key->idevenement; ?>" title="supprimer votre événement"><i class="fa fa-trash">
+        <button class="fill_button">OUI</button>  </a>
+      </div>
+      </div>
+
+
+
+
+
+
               </div>
             <?php endif ?>
                  <!-- fin modal suppression evenement --> 
@@ -405,15 +432,7 @@ Email : <?php echo $rows->email; ?>
   <?php endforeach ?>
 <?php endif ?>
 
-  <?php if(site_url('account/')){ ?>
-    <?php // echo 'Le moi'; ?>
-    <?php $v = $this->login_model->count_nbr_visiteur();?>
-<div class="columns large-2">
-    <h6>Visiteurs</h6>
-     <?=  $v[0]->nbr_visiteurs; ?>
-  <?php } else {
-    echo " ";
-  } ?>
+
     
   </div>
 

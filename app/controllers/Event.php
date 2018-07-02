@@ -168,24 +168,14 @@ class Event extends CI_Controller {
 
 	function evenement_membre() {
 		$req = $this->evenement_model->evenement_membre();
-		if(!empty($req)){
+		
 			$this->notify();
-			foreach ($req as $key ) {
-				$data = array ( 
-					'titre' => $key->titre ,
-					'description' => $key->description,
-					'photo'=> $key->photo,
-					'lieuEvenement'=> $key->lieuEvenement,
-					'date_debut'=> $key->date_debut,
-					'date_fin'=> $key->date_fin,
-					'idevenement'=> $key->idevenement
-					
-				);
-				$this->load->view('evenement/auteur_evenement', $data);
-			}
-		} else {
-			// $this->notify();
-			redirect('event/index');
-		}
+			$d = new stdClass();
+
+        $d->req = $req; 
+        
+				$this->load->view('evenement/auteur_evenement', $d);
+				$this->load->view('templates/footer');
+		
     }
 }
