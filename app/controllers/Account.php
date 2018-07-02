@@ -115,7 +115,12 @@ class Account extends CI_Controller {
 					// $this->load->view('templates/header');
 					$this->notify();
 					$this->load->view('compte/connexion');
+<<<<<<< HEAD
 				} else {
+=======
+				}
+				else{
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 					// $this->load->view('templates/header');
 					$this->notify();
 					$_SESSION['flash']['alert'] = 'Ce token n\'est plus valide' ;

@@ -34,9 +34,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		            <nav class="cell small-10 medium-9 large-8 ">
 		              <ul class="  menu align-center"  id="nav_menu">
 		                    <li><a href="login/index"><i class="fas fa-home " ></i></a></li>
-		                    <li><a href="#">Collection</a></li>
-		                    <li><a href="#">Auteurs</a></li>
-		                    <li><a href="#">Evenements</a></li>
+		                    <li><a href="collection/index">Collection</a></li>
+		                    <li><a href="auteur/index">Auteurs</a></li>
+		                    <li><a href="event/index">Evenements</a></li>
 		                    <li><a href="forum/index">Forum</a></li>
 		              </ul>                  
 		            </nav>

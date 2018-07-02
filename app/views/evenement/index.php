@@ -1,4 +1,15 @@
+ <?php if (isset($_SESSION['flash'])): ?>
+  <?php foreach ($_SESSION['flash'] as $type => $message):?>
+    <div class="alert alert-<?= $type; ?>">
+     <?= $message; ?>            
+   </div>
+ <?php endforeach ?>
+ <?php unset($_SESSION['flash']) ?>
+<?php endif ?>
+  
+  <div class="row">             
 
+<<<<<<< HEAD
   
   <div class="row" style="margin-top:3em" >             
 
@@ -8,15 +19,28 @@
       
 
       <div class="columns large-3 medium-6 small-12 " >        
+=======
+      <div class=" columns large-12 medium-12" style="margin-top: 15px;">
+       <div class=" columns large-6 medium-6">
+        <h3 style="font-size:28px;">Le calendrier des &eacutev&eacutenements litteraires</h3>
+      </div>
+
+      <div class="columns large-6 medium-6" style="text-align: right;">        
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
         <a  data-open="modal_ajout_evenement" >
           <?php if ($this->session->userdata('pseudo') !== NULL) : ?>
           <i class="fa fa-plus-square"></i> Ajouter un nouvel &eacutev&eacutenement
         <?php endif ?>
         </a>
       </div>
+<<<<<<< HEAD
      
 
    
+=======
+
+    </div>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 
     <div class="row " style=" justify-content:center;" >
           <?php $req = $this->evenement_model->lister(); ?>
@@ -27,6 +51,7 @@
         
                     
          <?php if(empty($key->photo )){ ?>
+<<<<<<< HEAD
               <img src="http://via.placeholder.com/350x200" class="thumbnail"   />
             <?php } else {?>
              <img src="<?php echo base_url('assets/img/'.$key->photo); ?>"  style="width: 100%; height:170px; " />
@@ -148,6 +173,139 @@
                 </button>
                 </div>
               </div>
+=======
+              <img src="http://via.placeholder.com/350x200" class="thumbnail" style="width: 350px; height:200px; "  />
+            <?php } else {?>
+             <img src="<?php echo base_url('assets/img/'.$key->photo); ?>" class="thumbnail" style="width: 350px; height:200px; " />
+           <?php } ?>
+         </div> 
+          <div class="columns large-12 medium-12 " align="center"  style="padding: 0px">
+             <div class="columns large-8 medium-8 small-8" style="padding: 0px" >
+               <span style="text-align:left;"><?php echo $key->titre; ?></span>
+             </div>
+           
+             <div class="columns large-4 medium-4 small-4 " align="right">
+              <a data-open="modal_voir_user" href="<?php echo base_url('auteur/info?id=').$key->idmembre; ?>">
+                <?php if(empty($_SESSION['photo'] )){ ?>
+                  <img style="border-radius: 50%;" src="<?php echo base_url('assets/avatar/avatar.png'); ?>" width="30px" title="<?php echo $key->pseudo; ?>"  alter="photo utilisateur" />
+                <?php } else { ?>
+                 <img  style="border-radius: 50%;" src="<?php echo base_url('assets/img/'.$key->photo); ?>" class="circle_round_evenement" />
+               <?php } ?>
+             </a>
+           </div> 
+
+         </div>
+         <div class="columns large-12 medium-12 small-12">
+         <div class="columns large-6 medium-6 small-6" align="left">      
+           <h3 style="  font-style: italic; font-size: 12px;"><strong><?php echo $key->event_mois; ?></strong></h3>
+          </div>
+           <div class="columns large-6 medium-6 small-6" align="right">
+           <span style="  font-style: italic; font-size: 12px;"><?php echo $key->lieuEvenement; ?></span>
+         </div>
+         </div>
+         <div class="columns large-12 medium-12" align="right">
+         <span style="font-style: italic; font-size: 12px;">
+          <a data-open="<?php echo $key->idevenement.'event'; ?>"><i class="fa fa-plus"></i> Voir plus</a></span>
+       </div>
+       </div>
+      </div>
+
+       <!-- Modal Voir un evenement -->
+
+          <div class="reveal small" id="<?php echo $key->idevenement.'event'; ?>" data-reveal style="border-radius: 3%;">
+            <div class="rows"> 
+              <div class="columns large-12 medium-12" style="margin: 0px">
+            <div class="columns large-12 medium-12" style=" margin: 0px; background-color: #f3f1f1;  
+            box-shadow: 0px 0px 3px 0.4px #888888; border-radius: 3%;">       
+                <div class="columns large-8 medium-8" style="margin-bottom: -15px; position: relative; right: 30px;" >
+                  <!-- <img src="http://via.placeholder.com/350x200"  class="thumbnail" > -->
+                   <?php if(empty($key->photo )){ ?>
+                      <img src="http://via.placeholder.com/350x200" class="thumbnail" style="width: 200px; height:250px; "  />
+                    <?php } else {?>
+                     <img src="<?php echo base_url('assets/img/'.$key->photo); ?>" class="thumbnail" style="width: 290px; height:270px; " />
+                   <?php } ?>
+                </div>
+                <div class="columns large-4 medium-4">
+                  <div class=" columns large-12 medium-12">
+                   <h4><?php echo $key->event_mois; ?></h4>         
+                  </div>
+                  <div class=" columns large-12 medium-12">
+                   <h3><?php echo $key->titre; ?></h3>         
+                  </div>
+                  <div class=" columns large-12 medium-12">
+                   <h5> Ce&eacuter par : <?php echo $key->pseudo; ?></h5>         
+                  </div>
+                </div>
+                </div>
+            <?php if ($this->session->userdata('pseudo') !== NULL) : ?>
+              <div class=" columns large-12 medium-12" style="border-bottom: 1px solid #f3f1f1; margin-bottom:5px; margin-top: 10px;">
+                   <a href="#" data-open="<?php echo $key->idevenement.'evente';  ?>" ><i class="fa fa-edit"></i>modifier &eacutev&eacutevement </a> 
+                   <a  href="http://localhost/biblioplus/event/enlever?idevenement=<?php echo $key->idevenement; ?>" title="supprimer votre événement"><i class="fa fa-trash"></i>
+                   Supprimer &eacutev&eacutevement </a>              
+              </div>
+            <?php endif ?>
+                 <!-- fin modal suppression evenement --> 
+                <div class="columns large-7 medium-7" style="margin-top:5px;  word-wrap: break-word; text-align: justify; box-shadow: 0px 0px 1px 0.4px #888888;">
+                  <h5>Description</h5> 
+                  <?php echo $key->description; ?>
+                </div>
+                <div class="columns large-5 medium-5" style="margin-top:5px;">
+                    <div class="columns large-12 medium-12 small-12">
+                    <div class=" columns large-12 medium-12 small-12">
+                    <h5>Date et l'Heure</h5>  
+                    </div>
+                    <div class=" columns large-12 medium-12 small-12">
+                       <?php echo $key->event_deb; ?> <br/> <?php echo $key->event_fin; ?>
+                    </div>
+                    </div>
+                    <div class="columns large-12 medium-12 small-12"  style="margin-top: 10px;">
+                    <div class=" columns large-12 medium-12 small-12">
+                    <h5>Lieu</h5>  
+                    </div>
+                    <div class=" columns large-12 medium-12 small-12">
+                       <?php echo $key->lieuEvenement; ?>
+                    </div>
+                    <div class=" columns large-12 medium-12 small-12" style="margin-top: 5px;">
+                    <div class="columns large-8 medium-8 small-8">
+                    <?php if ( $key->activite == 1) { ?>
+                    <h5>Activité <?php echo 'Payant'; ?> </h5>
+                    <?php } else { ?>
+                    <h5>Activité <?php echo 'Gratuit'; ?> </h5>
+                      <?php } ?>
+                    </div>  
+                    
+                    <div class=" columns large-4 medium-4 small-4">
+                       <?php //echo $key->activite; ?>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+           
+                  <div class="columns large-12 medium-12 small-12">
+                 
+                  <h5 align="center" style="margin-top: 2px;">Partager avec des amis</h5>  
+                  
+                  <div class="columns small-12 medium-12" style="margin-top:1em; text-align:center; margin-bottom:5px;">
+                  <a><i class="fab fa-facebook-f fa-2x" style="background-color:silver; border-radius:50%;  color:white ; padding:5px; width:30px;height:30px"></i></a>
+                  <a><i class="fab fa-google fa-2x" style="background-color:silver; border-radius:50%;  color:white; padding:5px; width:30px;height:30px"></i></a>
+                  <a><i class="fab fa-twitter fa-2x" style="background-color:silver; border-radius:50%;  color:white ; padding:5px; width:30px;height:30px"></i></a>
+                  <a><i class="fab fa-linkedin fa-2x" style="background-color:silver; border-radius:50%;  color:white; padding:5px; width:30px;height:30px"></i></a>
+                  </div>
+                  </div>
+                <button class="close-button" data-close aria-label="Close modal" type="button">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+              </div>
+          </div>
+          <!-- Modal Voir un evenement -->
+          <?php endforeach ?>
+          <?php endif ?>
+
+    </div>
+
+    </div>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
           </div>
           <!-- Modal Voir un evenement -->
           <?php endforeach ?>
@@ -324,8 +482,26 @@
           <!-- Fin modal modifier_evenement -->
 <?php endforeach ?>
 <?php endif ?>
+<<<<<<< HEAD
 </div>
 
 
 
 
+=======
+
+
+  <div class="reveal" id="modal_voir_user" data-reveal>
+    <div class="rows">
+      <div class="columns large-12 medium-12">    
+        <h1>USER PROFIL</h1>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4

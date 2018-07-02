@@ -1,15 +1,27 @@
+<<<<<<< HEAD
 
 <!-- -->
 <div class="row" style="justify-content:center;text-align: center; ">
 <h4 > Ouvrage publie par  <?php echo $req[0]->pseudo; ?></h4>
 <div class="columns small-12">
   <span class="collection_header">R&eacutecit</span>
+=======
+<h4 style="text-align: center; "> Ouvrage publie par  <?php echo $req[0]->pseudo; ?></h4>
+<!-- -->
+<div class="row" style="justify-content:center;text-align: center; ">
+<div class="columns small-12">
+	<span class="collection_header">R&eacutecit</span>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 </div>
 <div class="columns small-12">
   <div class="owl-carousel owl-theme" style="border-top:1.6px solid #309958;padding-top:10px;">
 
     <?php  foreach($req as $rows): ?> 
+<<<<<<< HEAD
       <?php if(($rows->categorie) === 'recit'): ?>
+=======
+    	<?php if(($rows->categorie) === 'recit'): ?>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
       <div class="items" >
         <a href="#" data-open="<?php echo 'modalInfoOuvrage'.$rows->idouvrage; ?>">
         <img src="<?php echo base_url('assets/img/'.$rows->images); ?>" class="thumbnail" alt="" />
@@ -94,7 +106,11 @@ Email : <?php echo $rows->email; ?>
 </button>
 </div>
 <!--  fin modalInfoOuvrage Romans-->
+<<<<<<< HEAD
   <?php endif ?>
+=======
+	<?php endif ?>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
     <?php  endforeach ?>
   </div>
 </div>
@@ -105,13 +121,21 @@ Email : <?php echo $rows->email; ?>
 <!-- -->
 <div class="row" style="justify-content:center;text-align: center; ">
 <div class="columns small-12">
+<<<<<<< HEAD
   <span class="collection_header">Th&eacuteatres</span>
+=======
+	<span class="collection_header">Th&eacuteatres</span>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 </div>
 <div class="columns small-12">
   <div class="owl-carousel owl-theme" style="border-top:1.6px solid #309958;padding-top:10px;">
 
     <?php  foreach($req as $rows): ?> 
+<<<<<<< HEAD
       <?php if(($rows->categorie) === 'theatre'): ?>
+=======
+    	<?php if(($rows->categorie) === 'theatre'): ?>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
       <div class="items" >
         <a href="#" data-open="<?php echo 'modalInfoOuvrage'.$rows->idouvrage; ?>">
         <img src="<?php echo base_url('assets/img/'.$rows->images); ?>" class="thumbnail" alt="" />
@@ -196,7 +220,11 @@ Email : <?php echo $rows->email; ?>
 </button>
 </div>
 <!--  fin modalInfoOuvrage Romans-->
+<<<<<<< HEAD
   <?php endif ?>
+=======
+	<?php endif ?>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
     <?php  endforeach ?>
   </div>
 </div>
@@ -207,13 +235,21 @@ Email : <?php echo $rows->email; ?>
 <!-- -->
 <div class="row" style="justify-content:center;text-align: center; ">
 <div class="columns small-12">
+<<<<<<< HEAD
   <span class="collection_header">Po&eacutesies</span>
+=======
+	<span class="collection_header">Po&eacutesies</span>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 </div>
 <div class="columns small-12">
   <div class="owl-carousel owl-theme" style="border-top:1.6px solid #309958;padding-top:10px;">
 
     <?php  foreach($req as $rows): ?> 
+<<<<<<< HEAD
       <?php if(($rows->categorie) === 'poetique'): ?>
+=======
+    	<?php if(($rows->categorie) === 'poetique'): ?>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
       <div class="items" >
         <a href="#" data-open="<?php echo 'modalInfoOuvrage'.$rows->idouvrage; ?>">
         <img src="<?php echo base_url('assets/img/'.$rows->images); ?>" class="thumbnail" alt="" />
@@ -298,7 +334,11 @@ Email : <?php echo $rows->email; ?>
 </button>
 </div>
 <!--  fin modalInfoOuvrage Romans-->
+<<<<<<< HEAD
   <?php endif ?>
+=======
+	<?php endif ?>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
     <?php  endforeach ?>
   </div>
 </div>
@@ -309,13 +349,21 @@ Email : <?php echo $rows->email; ?>
 <!-- -->
 <div class="row" style="justify-content:center;text-align: center; ">
 <div class="columns small-12">
+<<<<<<< HEAD
   <span class="collection_header">Litterature d'id&eacutees</span>
+=======
+	<span class="collection_header">Litterature d'id&eacutees</span>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 </div>
 <div class="columns small-12">
   <div class="owl-carousel owl-theme" style="border-top:1.6px solid #309958;padding-top:10px;">
 
     <?php  foreach($req as $rows): ?> 
+<<<<<<< HEAD
       <?php if(($rows->categorie) === 'litterature'): ?>
+=======
+    	<?php if(($rows->categorie) === 'litterature'): ?>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
       <div class="items" >
         <a href="#" data-open="<?php echo 'modalInfoOuvrage'.$rows->idouvrage; ?>">
         <img src="<?php echo base_url('assets/img/'.$rows->images); ?>" class="thumbnail" alt="" />
@@ -400,7 +448,11 @@ Email : <?php echo $rows->email; ?>
 </button>
 </div>
 <!--  fin modalInfoOuvrage Romans-->
+<<<<<<< HEAD
   <?php endif ?>
+=======
+	<?php endif ?>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
     <?php  endforeach ?>
   </div>
 </div>

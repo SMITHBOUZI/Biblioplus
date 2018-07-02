@@ -131,6 +131,7 @@ class Event extends CI_Controller {
 	// 	foreach ($notifications as $notification ) {
 	// 		$notification->event_notify = $this->evenement_model->notification();
 	// 	}
+<<<<<<< HEAD
 
 	// 	$data->notifications = $notifications;
 
@@ -145,6 +146,22 @@ class Event extends CI_Controller {
 	// 	$idevent = $this->uri->segment(3);
 	// 	// $req  = $this->evenement_model->likes($like);
 
+=======
+
+	// 	$data->notifications = $notifications;
+
+	// 	$this->load->view('templates/header');
+	// 	$this->load->view('evenement/modifier', $data);
+	// }
+
+
+
+	// function likes() {
+	// 	$like = 1; 
+	// 	$idevent = $this->uri->segment(3);
+	// 	// $req  = $this->evenement_model->likes($like);
+
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 	// 	$data  = new stdClass();
 	// 	$likes = $this->evenement_model->liked($like, $idevent);
 		
@@ -160,14 +177,19 @@ class Event extends CI_Controller {
 
 	 function modifier () {
 	 	if ($this->input->post('addEvent')) {
+<<<<<<< HEAD
 	 		$col = $this->evenement_model->modifier_evenement();
 	 		$_SESSION['flash']['success'] = 'Modification reussie.';
+=======
+	 		$col = $this->evenement_model->modifier_evenement(); 
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 	 	    redirect('event/index');
 	 	}
 	}
 
 	function evenement_membre() {
 		$req = $this->evenement_model->evenement_membre();
+<<<<<<< HEAD
 		
 			$this->notify();
 			$d = new stdClass();
@@ -177,5 +199,19 @@ class Event extends CI_Controller {
 				$this->load->view('evenement/auteur_evenement', $d);
 				$this->load->view('templates/footer');
 		
+=======
+		if(!empty($req)){
+			$this->notify();
+			foreach ($req as $key ) {
+				$data = array ( 
+					'titre' => $key->titre 
+				);
+				$this->load->view('evenement/auteur_evenement', $data);
+			}
+		} else {
+			// $this->notify();
+			redirect('event/index');
+		}
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
     }
 }

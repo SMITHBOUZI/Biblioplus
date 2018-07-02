@@ -1,15 +1,25 @@
 <!doctype html>
 
-<html class="no-js" lang="en">
+<html class="no-js" lang="fr">
   <head>
       <meta charset="utf-8">
-            <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="">
+      <meta name="keywords" content="">
+      <meta name="author" content="">
+
         <title>BiBlioPlus</title>
         <link rel="stylesheet" href="<?php echo base_url('assets/css/app.css'); ?> ">
+<<<<<<< HEAD
 <link rel="stylesheet" href="<?php echo base_url('assets/css/app.css'); ?> ">
 <link rel="stylesheet" href="<?php echo base_url('assets/css/croppie.css'); ?> ">
         <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.min.css'); ?> ">
+=======
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/app.css'); ?> ">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/croppie.css'); ?> ">
+         <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.min.css'); ?> ">
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
          <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.theme.default.min'); ?> "> 
         
         <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
@@ -59,11 +69,20 @@
                    </a>
                 </div>
               </div>
+<<<<<<< HEAD
+=======
+
+              
+        <?php } else { ?>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 
               
         <?php } else { ?>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
   <!-- user connect -->
 
   <div  id="authen">
@@ -134,7 +153,21 @@
 
   </div>
 
+<<<<<<< HEAD
 
+=======
+<?php if ($notifications) : ?><pre><?php // var_dump($notifications); ?></pre>
+  <?php foreach ($notifications as $key ) :?>
+      <li><a href="#">Notification :</a>
+       <?php echo " ".$key->nbr_notify; ?> 
+      </li>
+    <?php endforeach ?>
+<?php endif ?>
+
+
+<?php // var_dump($membres); ?>
+  
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 
 <script src="<?php echo base_url('assets/node_modules/jquery/dist/jquery.js'); ?>  "></script>
 <script src="<?php echo base_url('assets/node_modules/what-input/dist/what-input.js'); ?>  "></script>

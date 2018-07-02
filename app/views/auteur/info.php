@@ -14,7 +14,11 @@
   <?php foreach ($auteurs as $key ):?>
 
   <div class="columns medium-12">
+<<<<<<< HEAD
     <h3>Profil de <?= $key->pseudo; ?> </h3>
+=======
+    <h1>Profil <?= $key->pseudo; ?> </h1>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
   </div>
   <?php endforeach ?>
 
@@ -41,6 +45,7 @@
       <?php if(  $this->session->userdata('idmembre') === $_GET['id'] ) {?>
       <div id="compte">
         <span class="spanInfoUtilisateur">Compte</span >
+<<<<<<< HEAD
        
           <button class="fill_button"  data-open="modal_supp_compte" >Fermer</button>
        <!--  </a> -->
@@ -48,6 +53,15 @@
 
         <a href="#">
          <button class="fill_button" data-open="modal_modifier_compte" >Mise a jour</button>
+=======
+        <a href="http://localhost/biblioplus/auteur/ferme_compter?id=<?php echo $key->idmembre; ?>"> 
+          <button class="fill_button">Fermer</button>
+        </a>
+        <a href="http://localhost/biblioplus/auteur/modifier_compte?id=<?php echo $key->idmembre; ?>">
+
+        <a href="#">
+         <button class="fill_button" data-open="modal_modifier_compte" >Modifier</button>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
         </a>
       </div>
       <?php } ?>
@@ -58,11 +72,16 @@
   <h5>A propos </h5>
   <p align="justify"> <?= $key->description; ?></p>
   <hr/>
+<<<<<<< HEAD
     <div class="row" style="padding:5px; justify-content:center; text-align:center;">
+=======
+    <div class="row" style="padding:5px; background-color:lightgrey;justify-content:center; text-align:center;">
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
       <div class="columns medium-12 small-12">
         <h4> Activites</h4>
       </div>
       <?php if( $key->status === 'Auteur' ): ?>
+<<<<<<< HEAD
           <div class="column large-3 medium-5 small-10 ficheOuvrage">
       <?php if (($key->nbr_ouvrage[0]->NBO) > 0 ) { ?>
       
@@ -70,6 +89,13 @@
       <a href="#">
         <?php } ?>
         
+=======
+      <?php if (($key->nbr_ouvrage[0]->NBO) > 0 ) { ?>
+      <a href="http://localhost/biblioplus/collection/ouvrage_membre?id=<?= $key->idmembre; ?>"> <?php } else {  ?>
+      <a href="#">
+        <?php } ?>
+        <div class="column large-3 medium-5 small-10 ficheOuvrage">
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
           <div class="columns medium-12">
             <i class="fas fa-book fa-4x"></i>
           </div>
@@ -80,12 +106,20 @@
         </div>
       </a>
       <?php endif ?>
+<<<<<<< HEAD
       <div class="column large-3 medium-5 small-10 ficheOuvrage">
       <?php if (($key->nbr_event[0]->NBE) > 0 ) { ?>
     <a href="http://localhost/biblioplus/event/evenement_membre?id=<?= $key->idmembre; ?>"> <?php } else {  ?>
       <a href="#">
         <?php } ?>
         
+=======
+      <?php if (($key->nbr_event[0]->NBE) > 0 ) { ?>
+      <a href="http://localhost/biblioplus/event/evenement_membre?id=<?= $key->idmembre; ?>"> <?php } else {  ?>
+      <a href="#">
+        <?php } ?>
+        <div class="column large-3 medium-5 small-10 ficheOuvrage">
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
           <div class="columns medium-12">
             <i class="fas fa-calendar-alt fa-4x"></i>
           </div>
@@ -95,12 +129,19 @@
           </div>
         </div>
       </a>
+<<<<<<< HEAD
       <div class="column large-3 medium-5 small-10 ficheOuvrage">
+=======
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
       <?php if (($key->nbr_post[0]->NBP) > 0 ) { ?>
       <a href="http://localhost/biblioplus/forum/forum_membre?id=<?= $key->idmembre; ?>"> <?php } else {  ?>
       <a href="#">
         <?php } ?>
+<<<<<<< HEAD
       
+=======
+        <div class="column large-3 medium-5 small-10 ficheOuvrage">
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
           <div class="columns medium-12">
             <i class="fas fa-comments fa-4x"></i>
           </div>
@@ -117,6 +158,7 @@
   </div>
 </div>
 
+<<<<<<< HEAD
 <div class="reveal" id="modal_supp_compte"  data-reveal>
 <h6>Confirmation de fermeture </h6>
 <hr>
@@ -135,6 +177,8 @@
       </div>
 
 
+=======
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 <!-- debut modal_modifier_compte -->
 <div class="reveal small" id="modal_modifier_compte"  data-reveal>
 

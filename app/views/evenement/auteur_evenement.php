@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="row" style="justify-content:center; margin-top:2em;">
 	<div class="columns small-12">
 		<h4 > Evenements publie par  <?php echo $req[0]->pseudo; ?></h4>
@@ -316,3 +317,6 @@
 
 
 </div>
+=======
+<?= $titre; ?> <br />
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4

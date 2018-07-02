@@ -1,14 +1,26 @@
+<<<<<<< HEAD
 <?php if (isset($_SESSION['flash'])): ?>
   <?php foreach ($_SESSION['flash'] as $type => $message):?>
      <div class="alert alert-<?= $type; ?>">
+=======
+
+<div class="row" style="padding:2em; text-align:center;">
+<div class="columns small-12 medium-12 medium-centered">
+<?php if (isset($_SESSION['flash'])): ?>
+  <?php foreach ($_SESSION['flash'] as $type => $message):?>
+     <div class="callout <?= $type; ?>">
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
         <?= $message; ?>            
      </div>
   <?php endforeach ?>
   <?php unset($_SESSION['flash']) ?>
 <?php endif ?>
+<<<<<<< HEAD
 
 <div class="row" style="padding:2em; text-align:center;">
 <div class="columns small-12 medium-12 medium-centered">
+=======
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 <h3>Un catalogue diversifi&eacute</h3>
 <p>Diverse ouvrage en format multiple group&eacute par cat&eacutegorie</p>
 
@@ -163,7 +175,11 @@ Email : <?php echo $rows->email; ?>
 
 </div>
 
+<<<<<<< HEAD
 <div class="row" style="border:2px solid red">
+=======
+<div class="row" style="border:2px solid white">
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 <div class="columns medium-6">
 <div class="columns medium-12">
 <strong><u>Specifications</u></strong>
@@ -205,7 +221,11 @@ Email : <?php echo $rows->email; ?>
 </div>
  
 <button class="close-button" data-close aria-label="Close reveal" type="button">
+<<<<<<< HEAD
 <span aria-hidden="true" style="color:yellow;">&times;</span>
+=======
+<span aria-hidden="true" >&times;</span>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 </button>
 </div>
 <!--  fin modalInfoOuvrage Romans-->
@@ -255,7 +275,11 @@ Email : <?php echo $rows->email; ?>
 
 </div>
 
+<<<<<<< HEAD
 <div class="row" style="border:2px solid red">
+=======
+<div class="row" style="border:2px solid white">
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 <div class="columns medium-6">
 <div class="columns medium-12">
 <strong><u>Specifications</u></strong>
@@ -297,7 +321,11 @@ Email : <?php echo $rows->email; ?>
 </div>
  
 <button class="close-button" data-close aria-label="Close reveal" type="button">
+<<<<<<< HEAD
 <span aria-hidden="true" style="color:yellow;">&times;</span>
+=======
+<span aria-hidden="true" >&times;</span>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 </button>
 </div>
 <!--  fin modalInfoOuvrage Romans-->
@@ -347,7 +375,11 @@ Email : <?php echo $rows->email; ?>
 <?php echo $rows->description; ?></p>
 </div>
 
+<<<<<<< HEAD
 <div class="row" style="border:2px solid red">
+=======
+<div class="row" style="border:2px solid white">
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 <div class="columns medium-6">
 <div class="columns medium-12">
 <strong><u>Specifications</u></strong>
@@ -388,7 +420,11 @@ Email : <?php echo $rows->email; ?>
 </div>
  
 <button class="close-button" data-close aria-label="Close reveal" type="button">
+<<<<<<< HEAD
 <span aria-hidden="true" style="color:yellow;">&times;</span>
+=======
+<span aria-hidden="true" >&times;</span>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 </button>
 </div>
 <!--  fin modalInfoOuvrage Romans-->

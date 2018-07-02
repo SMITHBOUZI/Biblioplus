@@ -82,3 +82,15 @@
    $data["links"] = $this->pagination->create_links();
 
 ?>
+<<<<<<< HEAD
+=======
+<pre><?php  // var_dump($data); ?></pre>
+<p><?php // echo $data['links']; ?></p>
+
+<?php foreach ($data as $key => $t) { 
+ // var_dump($key);
+ // var_dump($t);
+ 	// echo $key['links']; 
+ 	// echo $key[0]['links']; 
+} ?>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4

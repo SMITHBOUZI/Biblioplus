@@ -64,7 +64,11 @@ class Collection extends CI_Controller {
 				if (!empty($this->input->post('titre')) AND !empty($this->input->post('isbn'))
 					AND !empty($this->input->post('edition')) AND !empty($this->input->post('pages')) ) {
 
+<<<<<<< HEAD
 				 	$config['upload_path']      = 'assets/web/couverture';
+=======
+				 	$config['upload_path']      = 'assets/img/';
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 					$config['allowed_types']    = 'jpg|png|jpeg|JPG|PNG|JPEG';
 					$config['max_size']         = '10240';
 					// $config['max_width']        = '1024';
@@ -77,8 +81,11 @@ class Collection extends CI_Controller {
 
 					if ( ! $this->upload->do_upload('livreChemin') ) {
 						$error = array('error' => $this->upload->display_errors());
+<<<<<<< HEAD
 						$_SESSION['flash']['success'] = 'La taille maximal pour upload est de 18Mo ';
 						$this->load->view('collection/collection');
+=======
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 					} else {
 						$data =  $this->upload->data();					
 					}
@@ -108,10 +115,16 @@ class Collection extends CI_Controller {
 					$this->notify();
 					$this->load->view('collection/collection');
 				}
+<<<<<<< HEAD
 			} else {
 				$this->notify();
 				$this->load->view('collection/collection');
 			}
+=======
+			}	
+		$this->notify();
+		$this->load->view('collection/collection');
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 	}
 
 	// uploaded doc only pdf
@@ -126,8 +139,11 @@ class Collection extends CI_Controller {
 
 		if ( ! $this->upload->do_upload('couvertureOuvragePath') ) {
 			$error = array('error' => $this->upload->display_errors());
+<<<<<<< HEAD
 			$_SESSION['flash']['success'] = 'La taille maximal pour upload est de 18Mo ';
 			$this->load->view('collection/collection');
+=======
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 		} else {
 			$data =  $this->upload->data();					
 		}

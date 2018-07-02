@@ -74,7 +74,11 @@ $route['account/update_pass'] = 'account/update_pass';
 */
 $route['forum'] = 'forum/index';
 $route['forum/nouveau_sujet'] = 'forum/nouveau_sujet';
+
 $route['forum/view'] = 'forum/view';
+
+$route['forum/view/(:num)'] = 'forum/view/';
+
 
 /*
 *----------------------------------------------------

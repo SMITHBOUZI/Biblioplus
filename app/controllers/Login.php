@@ -38,6 +38,12 @@ class Login extends CI_Controller {
 		$this->load->view('templates/header', $data);
 	}
 
+
+	// function compteur_de_visiteurs() {
+	// 	$this->login_model->visiteurs();
+	// }
+
+
     function index() {
     	$this->login_model->visiteurs();
     	if ( isset( $_GET['search'] ) ) {
@@ -240,6 +246,7 @@ class Login extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
+
 		$this->form_validation->set_rules('email', 'email', 'trim|required|callback_check_if_email_exists');
 		$this->form_validation->set_rules('pseudo', 'pseudo', 'trim|required|callback_check_if_pseudo_exists');
 		$this->form_validation->set_rules('mot_de_passe', 'mot de passe', 'trim|required|min_length[8]|htmlspecialchars');
@@ -251,6 +258,10 @@ class Login extends CI_Controller {
 			$this->load->view('compte/inscription');
 			$this->load->view('templates/footer');
 		} else {
+
+		$this->form_validation->set_rules('mot_de_passe', 'mot de passe', 'trim|required|min_length[8]|htmlspecialchars');
+		$this->form_validation->set_rules('mot_de_passe_c', 'mot de passe de confirmation', 'trim|min_length[8]|htmlspecialchars|matches[mot_de_passe]');
+
 			if($this->input->post('save')) {
 
 				if (!empty(trim($this->input->post('nom_prenom'))) AND !empty(trim($this->input->post('sexe')))
@@ -307,7 +318,11 @@ class Login extends CI_Controller {
 				$this->load->view('compte/inscription');
 				$this->load->view('templates/footer');
 			}
+
 		}
+
+		// }
+
 	}
 
 	function pas_trouve() {

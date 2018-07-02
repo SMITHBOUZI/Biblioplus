@@ -42,7 +42,11 @@
             
                <div class="columns large-12" style="margin-top:0.4em;"> 
              <a href="<?php echo base_url('login/sign_up'); ?>"> 
+<<<<<<< HEAD
               <input type="button" id="" class="border_button" name="sign_up" value="Nouveau compte"/> </a>
+=======
+              <input type="button" id="" class="fill_button" name="sign_up" value="Nouveau compte"/> </a>
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
             </div>
             
             

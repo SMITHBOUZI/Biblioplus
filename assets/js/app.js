@@ -1,10 +1,14 @@
 $(document).ready(function(){
 $(document).foundation();
+<<<<<<< HEAD
 $(".ouvrage").hover (function(e){
 
 $("#info_ouvrage").show(200);
 
 });
+=======
+
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 
 $("#login").click(function(e){
  
@@ -20,7 +24,11 @@ $("#nav_menu").hide(10);
 $("#search").hide(100);	
 
 
+<<<<<<< HEAD
 
+=======
+$("#user").slideToggle(350);
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 
 $("#box_authen").slideToggle(500);
 });
@@ -56,12 +64,20 @@ $("#xox").hide(100);
     
 
 $("#xox").hide(100);
+<<<<<<< HEAD
     
+=======
+    $("#user").hide(10);
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 
 
 $("#box_authen").hide(100);
 
+<<<<<<< HEAD
   
+=======
+    $("#user").hide(10);
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 
 
 

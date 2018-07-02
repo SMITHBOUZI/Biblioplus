@@ -131,7 +131,10 @@ class Forum extends CI_Controller {
 		// $this->load->view('templates/header');
 		$this->notify();
         $this->load->view('forum/discussions/view', $data);
+<<<<<<< HEAD
         $this->load->view('templates/footer');
+=======
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
         // $this->load->view('templates/footer');
 	}
 

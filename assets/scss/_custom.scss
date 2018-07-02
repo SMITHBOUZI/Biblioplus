@@ -3,6 +3,7 @@ header{
   background: linear-gradient(to bottom right, #2b2b2b, #232323);
 
 
+<<<<<<< HEAD
 }
 /*typographie*/
 /*h1,h2,h3,h4,h5,h6,p{
@@ -12,6 +13,8 @@ font-family: arial sans-serif
 }
 p{
   
+=======
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 }
 */
 
@@ -37,8 +40,12 @@ h3,h4,h5,h6{
   position: relative;
   height: 350px;
   background-image: url(../../assets/img/Biblio.jpg);
+<<<<<<< HEAD
 text-align: center !important;
 color: white !important;
+=======
+text-align: center;
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 
   
   /*  -webkit-filter: brightness(0.73);*/
@@ -141,9 +148,15 @@ background-color:#383737;
 
 }
 body{
+<<<<<<< HEAD
 
   height: auto !important; 
 
+=======
+color: black;
+  height: auto !important; 
+
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 }
 
 
@@ -256,6 +269,18 @@ form{
   width: 100%;
 }
 
+<<<<<<< HEAD
+=======
+ h6{
+ /*color: white;*/
+/* font-weight: bolder;*/
+font-family: arial;
+letter-spacing: 0.02px;
+
+font-size:1.2em;
+
+ }
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 
  span {
  
@@ -394,6 +419,21 @@ form{
   background-color: #f9fffb
 }
 }
+<<<<<<< HEAD
+=======
+
+.ouvrage{
+
+    width: 180px;
+    height: 250px;
+  }
+
+
+#inscription{
+margin-top:4em;
+
+padding:15px;
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 
 #info_ouvrage{
 bottom: 0px;
@@ -447,9 +487,12 @@ color: black;
 width: 100%;
 margin-top: 4em;
 z-index: 10000;
+<<<<<<< HEAD
 a{
   color: black !important;
 }
+=======
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 
 
  li{
@@ -613,6 +656,26 @@ top:0px;
 
 }
 .ficheOuvrage{
+<<<<<<< HEAD
+=======
+
+  background-color: #2e7f4d;
+  margin: 0.20em;
+  padding: 15px;
+  color: white;
+
+text-align: center;
+
+  h6{
+
+padding: 2px;
+
+  }
+  :hover{
+cursor: pointer;
+  };
+
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 
   background-color: #2e7f4d;
   margin: 0.20em;
@@ -657,6 +720,33 @@ li{
   margin: 2px;
 
 }
+<<<<<<< HEAD
+=======
+.info{
+  margin: 0px;
+padding: 0.40em;
+background-color: #efefef;
+text-align: center;
+
+
+}
+
+.alphabetiqueMenu{
+
+li{
+ display: inline-block;
+  padding: 4.5px;
+  text-align: center;
+  width: 35px;
+  height:35px;
+  background-color: #2e7f4d;
+  color: white;
+ /* font-size: 12px;*/
+  font-family: arial;
+  margin: 2px;
+
+}
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 li:hover{
   opacity:0.92;
   cursor: pointer;
@@ -750,6 +840,12 @@ li:hover{
 }
 
 #nouveau_sujet_view{
+<<<<<<< HEAD
+=======
+margin-top:.7em;
+padding:10px;
+display: none;
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 
 display: none;
 margin-top: 20px;

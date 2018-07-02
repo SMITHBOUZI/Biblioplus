@@ -3,7 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login_model extends CI_Model {
 
+<<<<<<< HEAD
 	function __construct() {
+=======
+	public function __construct() {
+>>>>>>> 8dbcaa63ade5a8b36ea3647ad89d9acd3ba0bfe4
 		
 		parent::__construct();
 		$this->load->database();
